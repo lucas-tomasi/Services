@@ -1,10 +1,27 @@
+function verifyAuthenticate( req , res , next ) 
+{
+	 if ( req.isAuthenticated() ) 
+	 {
+	 	return next();
+	 } 
+	 else 
+	 {
+		res.status('401').json("Don't authorized");	 	
+	 }
+}
+
 module.exports = function( app )
 {
 	var controller = app.controllers.CategoryController;
 
-	app.get('/categories'      , controller.list   );
-	app.get('/category/:id'    , controller.get    );
-	app.get('/category/'       , controller.get    );
-	app.delete('/category/:id' , controller.delete );
-	app.post('/category/'      , controller.store  );
+	app.route( '/categories' )
+		.get( verifyAuthenticate, controller.list );
+
+	app.route( '/category/:id' )
+		.get(    verifyAuthenticate , controller.get    )
+	    .delete( verifyAuthenticate , controller.delete );
+
+	app.route( '/category/' )
+		.get( verifyAuthenticate , controller.get   )
+		.post(verifyAuthenticate , controller.store );
 }
