@@ -1,0 +1,28 @@
+{
+  "name": "services",
+  "version": "1.0.0",
+  "description": "App MEAN Stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Lucas Tomasi",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "express-load": "^1.1.15",
+    "express-session": "^1.13.0",
+    "html-pdf": "^2.0.1",
+    "method-override": "^2.3.6",
+    "mongodb": "^2.1.18",
+    "mongoose": "^4.5.1",
+    "mpromise": "^0.5.5",
+    "node-ini": "^1.0.0",
+    "nodemailer": "^2.4.2",
+    "passport": "^0.3.2"
+  }
+}

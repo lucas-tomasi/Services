@@ -1,0 +1,106 @@
+.bs-body {
+	width: 100%;
+}
+
+.bs-page-title {
+	margin-top: 20px;
+	background-color: #276327 !important ;
+	border-radius: 20px;
+	color: white;
+	padding-left: 10px;
+	margin-bottom: 0px !important;
+}
+
+.bs-page-content {
+	padding: 10px;
+	border-color: #d2d2d2 !important;
+	margin-bottom: 0px !important;
+	height: 425px !important;	
+}
+
+.bs-alert {
+	position: fixed;
+	top: 50%; 
+	width: 40%;
+	margin-left:20%;
+	margin-right:20%
+}
+
+.bs-page-footer {
+	border-color: #d2d2d2 !important;
+	padding: 5px;
+}
+
+.bs-menu-title {
+	cursor: pointer;
+	background-color: #d2d2d2 !important;
+	margin: 0 0 0 0 !important;
+	padding-left: 15px;
+	border-bottom: solid #e7e7e7 1px;
+}
+
+.bs-menu {
+	background-color: #d2d2d2 !important;
+	padding: 0 0 0 0 !important;
+}
+
+.bs-menu-actions {
+	
+	padding: 0 0 0 0 !important;
+}
+
+.bs-menu-item {
+	border-bottom: solid #e7e7e7 1px;
+	background-color: #f8f8f8 !important;
+	cursor: pointer;
+}
+
+.bs-table-id {
+	width: 10%;
+}
+
+.bs-table-actions {
+	width: 12%;
+}
+
+.bs-footer {
+	margin: 1%;
+	font-weight: bold;
+}
+
+.red {
+	color: red;
+}
+
+.text-red {
+	color: red;
+}
+
+.text-green {
+	color: #276327;
+}
+
+.green {
+	color: #276327;
+}
+
+a {
+	color: #333 !important;
+}
+
+body {
+	padding-top: 50px;
+}
+
+nav {
+	background-color: #276327 !important;
+	color: white !important;
+}	
+
+nav a {
+	color: white !important;
+}
+
+th {
+	cursor: pointer;
+}
