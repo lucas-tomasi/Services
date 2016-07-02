@@ -4,11 +4,12 @@
 
 	angular.module( 'services' , ['ngRoute' ,'angularUtils.directives.dirPagination' ] )
 	
-	.config( [ '$routeProvider' , 
+	.config( [ '$routeProvider' , '$httpProvider' , 
 
-		function ( $routeProvider ) 
+		function ( $routeProvider , $httpProvider ) 
 		{
 
+			$httpProvider.interceptors.push('Interceptor');
 			$routeProvider
 				.when('/categories', 
 				{
@@ -26,13 +27,10 @@
 					templateUrl: 'partials/categories/category.html',
 					controller: 'CategoryController'
 				})
-				.when('/', 
-				{
-					templateUrl: 'partials/categories/.html',
-					controller: 'CategoryController'
+				.when('/auth', {
+					templateUrl: 'partials/auth/auth.html'
 				});
 
 			$routeProvider.otherwise({ redirectTo: '/' });
-		}])
-
+		}]);
 })();

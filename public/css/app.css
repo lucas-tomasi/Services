@@ -90,6 +90,8 @@ a {
 
 body {
 	padding-top: 50px;
+	margin:		 0; 
+	height: 	 100%;
 }
 
 nav {

@@ -1,7 +1,7 @@
 var http   = require( 'http' );
 var config = require( 'node-ini' );
 var app    = require( './config/express' )();
-var pass   = require( './config/passport' );
+var pass   = require( './config/passport' )();
 var db     = require( './config/database');
 
 config.parse( './config/db.ini' , function ( error , config ) {

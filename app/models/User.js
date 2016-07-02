@@ -11,7 +11,19 @@ module.exports = function ()
 	 	},
 	 	name: {
 	 		type: 'String', 
-	 		index: true 
+	 		unique: true,
+	 		required: true
+	 	},
+	 	email: {
+	 		type: 'String',
+	 		unique: true,
+	 		required: true
+	 	},
+	 	url: {
+	 		type: 'String'
+	 	},
+	 	provider: {
+	 		type: 'String'
 	 	},
 	 	inclusao: {
 	 		type: Date,
