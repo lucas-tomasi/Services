@@ -34,21 +34,16 @@
 			
 
 			$scope.store = function () {
-				console.log($scope.category);
 				CategoriesServices.storeCategory( $scope.category )
 					.success(
 						function ( data ) 
 						{
-							console.log(data);
-							$scope.category = data;
-							$scope.info.type = 'success';
-							$scope.info.message = 'Success!';
-							
+							Message.success("Category saved");
+							$scope.category = data;							
 						})
 					.error(
 						function ( data ) {
-							$scope.info.type    = 'error';
-							$scope.info.message = " Error: " + data.code + ", Contact your administrator";
+							Message.error( data );
 						});
 			};
 
