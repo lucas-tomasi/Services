@@ -1,2 +1,0 @@
-# Services
-Aplicação em MEAN
