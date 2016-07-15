@@ -4,7 +4,7 @@ module.exports = function()
 
 	controller.index = function( req, res )
 	{
-		var _username = 'Log In';
+		var _username = 'Login';
 		var _link     = '#/auth/';
 		var _menu     = false;
 

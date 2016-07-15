@@ -1,42 +1,15 @@
-<div class="bs-body">
-	<div class="panel">	
-		<div class="panel bs-page-title">
-			<h4>{{ modulo }}</h4>
-		</div>
-		<div class="panel bs-page-content">
-			<div style="width: 250px;">
-	          <input data-ng-model="filter" type="text" class="form-control" placeholder="search" >	
-	        </div>
-			
-			<table class="table table-hover  table-condensed">
-				<thead>
-					<th  data-ng-click="sort( '_id' )">
-						Code <i data-ng-show="sortKey === '_id' " data-ng-class="{ 'fa fa-angle-up' : reverse , 'fa fa-angle-down' : !reverse }"></i>
-					</th>
-					<th data-ng-click="sort( 'name' );" >
-						Name <i data-ng-show="sortKey === 'name' " data-ng-class="{ 'fa fa-angle-up' : reverse , 'fa fa-angle-down' : !reverse }"></i>
-					</th>
-					<th style="text-align:center;" data-ng-click="sort( 'active' );">
-						Active <i data-ng-show="sortKey === 'active' " data-ng-class="{ 'fa fa-angle-up' : reverse , 'fa fa-angle-down' : !reverse }"></i>
-					</th>
-					<th>&nbsp;</th>
-				</thead>
-				<tr dir-paginate="category in categories | filter : {name: filter} | orderBy: sortKey: reverse | itemsPerPage: 5"> 
-					<td class="bs-table-id">{{ category._id }}</td>
-					<td ><a data-ng-href="#/category/{{category._id}}">{{ category.name }}</a></td>
-					<td class="bs-table-id" style="text-align:center;"><input type="checkbox" ng-checked="{{category.active}}" readonly disabled ></td>
-					<td class="bs-table-actions">
-						<button class="btn" data-ng-click="onDelete( category );" ><i class="fa fa-trash-o red" ></i></button>
-						<button class="btn text-red" data-ng-click="delete(category._id);" ng-show="category.delete">Yes</button>
-					</td>
-				</tr>
-			</table>
-		<footer style='text-align:center'>
-			<dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
-	    </footer>
-		</div>
-		 <div class="panel bs-page-footer">
-            <a class="btn btn-default" ng-href="/#/category"><i class='fa fa-plus-circle'></i>&nbsp;New Category</a>
-        </div>
-	</div>
-</div>
+<mypanel title="Categories">
+	
+	<mypanelbody>
+		
+		<mytable columns="columns" items="categories" linkform="#/category/" funcdel="delete( id )" ></mytable>
+
+	</mypanelbody>
+	
+	<mypanelfooter>
+
+	    <a class="btn btn-default" data-ng-href="#/category"><i class='fa fa-plus-circle'></i>&nbsp;New Category</a>
+	
+	</mypanelfooter>
+
+</mypanel>

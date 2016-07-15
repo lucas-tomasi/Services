@@ -4,11 +4,15 @@
 
 .bs-page-title {
 	margin-top: 20px;
-	background-color: #276327 !important ;
+	background-color: #459c50 !important ;
 	border-radius: 20px;
 	color: white;
 	padding-left: 10px;
 	margin-bottom: 0px !important;
+}
+
+.left {
+	text-align: left !important;
 }
 
 .bs-page-content {
@@ -33,15 +37,20 @@
 
 .bs-menu-title {
 	cursor: pointer;
-	background-color: #d2d2d2 !important;
+	background-color: #459c50 !important;
 	margin: 0 0 0 0 !important;
 	padding-left: 15px;
+	color: white;
 	border-bottom: solid #e7e7e7 1px;
 }
 
 .bs-menu {
-	background-color: #d2d2d2 !important;
+	background-color: #459c50 !important;
 	padding: 0 0 0 0 !important;
+}
+
+.center {
+	text-align: center;
 }
 
 .bs-menu-actions {
@@ -68,6 +77,11 @@
 	font-weight: bold;
 }
 
+.title {
+	font-size: 30px !important;
+    font-weight: bolder;
+}
+
 .red {
 	color: red;
 }
@@ -77,11 +91,11 @@
 }
 
 .text-green {
-	color: #276327;
+	color: #459c50;
 }
 
 .green {
-	color: #276327;
+	color: #459c50;
 }
 
 a {
@@ -92,10 +106,11 @@ body {
 	padding-top: 50px;
 	margin:		 0; 
 	height: 	 100%;
+	font-family: -webkit-pictograph !important;
 }
 
 nav {
-	background-color: #276327 !important;
+	background-color: #459c50 !important;
 	color: white !important;
 }	
 

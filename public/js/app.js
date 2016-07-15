@@ -2,7 +2,10 @@
 	
 	'use strict';
 
-	angular.module( 'services' , ['ngRoute' ,'angularUtils.directives.dirPagination' ] )
+	angular.module( 'services' , [  'frapontillo.bootstrap-switch' , 
+									'ngRoute' ,
+									'angularUtils.directives.dirPagination' 
+								 ])
 	
 	.config( [ '$routeProvider' , '$httpProvider' , 
 

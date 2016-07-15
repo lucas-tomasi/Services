@@ -10,29 +10,15 @@
 		{			
 			$scope.init = function()
 			{
+				$scope.columns = [
+					{ title: 'Code'   , type: 'code'       , key: '_id'   , id: '_id' },
+					{ title: 'Name'   , type: 'link'       , key: 'name'  , id: '_id' },
+					{ title: 'Active' , type: 'check'      , key: 'active', id: '_id' },
+					{ title: ''       , type: 'btn-delete' , key: ''      , id: '_id' }
+				];
 
-				$scope.sort = function( keyname )
-				{
-					$scope.sortKey = keyname;
-					$scope.reverse = !$scope.reverse;
-				}
-
-				$scope.modulo = "Categories";
-				$scope.nome = "Lucas Tomasi";
-				
 				getCategories();
-
-				$scope.onDelete = function ( category ) {
-					if( category.delete == 'undefined' )
-					{
-						category.delete = true;
-					}
-					else
-					{
-						category.delete = !category.delete;
-					}
-				}
-				
+			
 				$scope.delete = function ( id ) 
 				{
 					CategoriesServices.deleteCategory( id )	
@@ -41,12 +27,13 @@
 						function ( data ) 
 						{
 							getCategories();
+							Message.alert( 'Category: ' + id + ', deleted successfully' );
 						});
 				};
 			};			
 
-			function getCategories() 
-			{
+			function getCategories() {
+
 				CategoriesServices.getCategories()
 			 	
 			 	.success( 
