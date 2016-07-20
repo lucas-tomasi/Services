@@ -3,6 +3,15 @@ var mongoose     = require( 'mongoose' )
 
 module.exports = function ()
 {
+	var schemaAddress = mongoose.Schema({
+		city:{
+			type: 'ObjectId' , ref: 'Cities'
+		},
+		district: 'String',
+		number:   'String',
+		street:   'String'
+	});
+
 	var schema = mongoose.Schema({
 	 	login: { 
 	 		type: 'String', 
@@ -19,12 +28,11 @@ module.exports = function ()
 	 		unique: true,
 	 		required: true
 	 	},
-	 	url: {
-	 		type: 'String'
-	 	},
-	 	provider: {
-	 		type: 'String'
-	 	},
+	 	phone: 'String',
+	 	url:   'String',
+	 	provider: 'String',
+	 	active: 'Boolean',
+	 	address: schemaAddress,
 	 	inclusao: {
 	 		type: Date,
 	 		default: Date.now
