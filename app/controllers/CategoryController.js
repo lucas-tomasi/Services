@@ -6,7 +6,7 @@ module.exports = function ( app )
 	var Category = app.models.Category;
 
 	var controller = {};
-	
+
 	/*
 	 *	returns all records
 	 */
@@ -40,7 +40,7 @@ module.exports = function ( app )
 			
 			{ _id: _id }).exec(
 
-			function( err, categories ) 
+			function( err, category ) 
 			{
 				if( err ) 
 				{
@@ -48,13 +48,13 @@ module.exports = function ( app )
 			  	} 
 			  	else 
 			  	{
-			    	res.status(200).json( categories );
+			    	res.status(200).json( category );
 			  	}
 			});
 		}
 		else
 		{
-			res.status(200).json({ name: '' , active: true });
+			res.status(200).json( new Category() );
 		}
 	}
 

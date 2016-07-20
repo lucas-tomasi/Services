@@ -9,9 +9,6 @@
 		function( $scope , CategoriesServices ){
 			
 			$scope.init = function () {
-			
-				$scope.modulo = "Category";
-				$scope.info   = { type: '' , message: '' };
 				getCategory();
 			};
 
