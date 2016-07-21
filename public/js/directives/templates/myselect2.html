@@ -4,9 +4,9 @@
     
     <div class="col-sm-7">
         
-        <select style="width:100%;" class="form-control" data-ng-model="model[name]" ></select>
+        <select id="{{name}}" style="width:100%;" class="form-control" data-ng-model="model" ></select>
         
-        <input name="{{name}}" type="hidden" ng-model="model[name]" data-ng-required="required">
+        <input name="{{name}}" type="hidden"  data-ng-model="model" data-ng-required="required">
     
         <span class="text-danger" data-ng-show="form[name].$error.required">{{ label }} is required</span>
     

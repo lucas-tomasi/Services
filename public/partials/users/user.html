@@ -6,21 +6,21 @@
 
     <mytabs> 
         <mytabcontent title='User'>
-            <myhidden   model="user" name="_id" ></myhidden>
-            <mytext     model="user" name="name"     label="Name"     form="userForm"  minlength="6" required="true"></mytext>
-            <mytext     model="user" name="login"    label="Login"    form="userForm"  required="true"></mytext>
-            <mytext     model="user" name="email"    label="E-mail"   form="userForm"  required="true"></mytext>
-            <mytext     model="user" name="url"      label="Url"      form="userForm"  ></mytext>
-            <mytext     model="user" name="provider" label="Provider" form="userForm"  ></mytext>
-            <mytext     model="user" name="phone"    label="Phone"    form="userForm"  ></mytext>
-            <mycheckbox model="user" name="active"   label="Active"></mycheckbox>
+            <myhidden   model="user._id"      name="_id" ></myhidden>
+            <mytext     model="user.name"     name="name"     label="Name"     form="userForm"  minlength="6" required="true"></mytext>
+            <mytext     model="user.login"    name="login"    label="Login"    form="userForm"  required="true"></mytext>
+            <mytext     model="user.email"    name="email"    label="E-mail"   form="userForm"  required="true"></mytext>
+            <mytext     model="user.url"      name="url"      label="Url"      form="userForm"  ></mytext>
+            <mytext     model="user.provider" name="provider" label="Provider" form="userForm"  ></mytext>
+            <mytext     model="user.phone"    name="phone"    label="Phone"    form="userForm"  ></mytext>
+            <mycheckbox model="user.active"   name="active"   label="Active"></mycheckbox>
         </mytabcontent>
 
         <mytabcontent title='Address'>
-            <myselect2 model="user.address" name="city"     label="Cidade"   data="cities" form="userForm"> </myselect2> 
-            <mytext    model="user.address" name="district" label="Distrito" form="userForm"> </mytext>
-            <mytext    model="user.address" name="number"   label="Number"   form="userForm"> </mytext>
-            <mytext    model="user.address" name="street"   label="Street"   form="userForm"> </mytext>
+            <myselect2 model="user.address.city"     name="city"     label="Cidade"   data="cities" form="userForm"> </myselect2> 
+            <mytext    model="user.address.district" name="district" label="Distrito" form="userForm"> </mytext>
+            <mytext    model="user.address.number"   name="number"   label="Number"   form="userForm"> </mytext>
+            <mytext    model="user.address.street"   name="street"   label="Street"   form="userForm"> </mytext>
         </mytabcontent>
 
     </mytabs>        

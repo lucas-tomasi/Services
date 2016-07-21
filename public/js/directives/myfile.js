@@ -115,9 +115,6 @@
 					          		document.getElementById('myfileslist').insertBefore(span, null);		
 					          	}
 
-					          	// ver types
-					          	// add css para não voltar para apagar
-					          	// arquives lentos
 					          	document.getElementById(theFile.name).addEventListener('click', removeElement, false);
 			                        
 		                        scope.model.push({

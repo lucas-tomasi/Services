@@ -1,9 +1,9 @@
 <myform formname="categoryForm" funcsubmit="store()">
 <mypanel title="Category #{{ category._id }}">
     <mypanelbody>            
-        <myhidden   model="category" name="_id" ></myhidden>
-        <mytext     model="category" name="name"   label="Name" form="categoryForm"  minlength="6" required="true"></mytext>
-        <mycheckbox model="category" name="active" label="Active"></mycheckbox>
+        <myhidden   model="category._id"    name="_id" ></myhidden>
+        <mytext     model="category.name"   name="name"   label="Name" form="categoryForm"  minlength="6" required="true"></mytext>
+        <mycheckbox model="category.active" name="active" label="Active"></mycheckbox>
     </mypanelbody>    
     <mypanelfooter>
         <button class="btn btn-default" type="submit"><i class='fa fa-save'></i>&nbsp;Submit</button>
