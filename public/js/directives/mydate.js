@@ -2,18 +2,17 @@
 
 	'use strict';
 
- 	angular.module('services').directive( 'mytext', [function () {
+ 	angular.module('services').directive( 'mydate', [function () {
 	
 		return {
 			restrict: 'E',
 			require: '^form',
 			replace: true,
-			templateUrl: '/js/directives/templates/mytext.html' ,
+			templateUrl: '/js/directives/templates/mydate.html' ,
 			scope : {
 				label: '@',
 				name: '@',
 				model: '=',
-				minlength: '@',
 				required: '@',
 				mask: '@'
 			},

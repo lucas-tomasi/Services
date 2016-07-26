@@ -13,6 +13,9 @@
 				label: '@',
 				name: '@',
 				model: '='
+			},
+			link: function( scope, element, attributes , form ) {
+				 scope.form = form;
 			}
 		};
 	

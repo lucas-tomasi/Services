@@ -1,6 +1,11 @@
-<div class="form-group">
+<div class="form-group has-feedback" data-ng-class="{ 'has-success' : form[name].$modelValue != undefined , 'has-error' : form[name].$modelValue == undefined }" >
     <label class="col-sm-2 control-label">{{ label }}</label>
      <div class="col-sm-7">
-        <input type="checkbox" data-ng-model="model" class="checkbox" bs-switch>
+        <input type="checkbox" data-ng-required="required" data-ng-model="model" class="checkbox" bs-switch>
+        
+        <input type="hidden" name="{{name}}" data-ng-model="model" >
+        <span class="glyphicon form-control-feedback" data-ng-class="{ 'glyphicon-ok' : form[name].$modelValue != undefined , 'glyphicon-remove' : form[name].$modelValue == undefined }" aria-hidden="true"></span>
+
+        <div class="text-danger" data-ng-show="form[name].$modelValue == undefined">{{ label }} is required</div>
     </div>
 </div>

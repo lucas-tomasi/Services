@@ -4,17 +4,18 @@
    
     <div class="col-sm-7">
 
-        <input type="text" 
-               data-ng-model="model" 
-        	   name="{{name}}" 
-        	   class="form-control" 
-        	   placeholder="{{label}}"
-        	   data-ng-minlength="minlength"
-        	   data-ng-required="required"
-        	   data-ng-maxlength="maxlength"
-        	   data-ng-pattern="pattern"
-               mymask="{{mask}}" >
-               
+        
+        
+        <ng-datepicker 
+            data-ng-model="model" 
+            name="{{name}}"
+        	locale="pt-br" 
+            format="{{mask}}" 
+            view-format="{{mask}}"
+            placeholder="{{mask}}"
+            data-ng-required="required">
+        </ng-datepicker>               
+        
         <span class="glyphicon form-control-feedback" data-ng-class="{ 'glyphicon-ok' : !form[name].$invalid , 'glyphicon-remove' : form[name].$invalid }" aria-hidden="true"></span>
         
         <span class="text-danger" data-ng-show="form[name].$error.required">{{ label }} is required</span>
