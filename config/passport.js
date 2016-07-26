@@ -2,7 +2,7 @@ var passport       = require( 'passport' );
 var GitHubStrategy = require( 'passport-github' ).Strategy;
 var mongoose       = require( 'mongoose' );
 
-module.exports = function () {
+module.exports = function (app) {
 	
 	var User = mongoose.model('User');
 
@@ -24,8 +24,7 @@ module.exports = function () {
 	    }, 
 	    
 	    function ( err , user ) {
-	    
-	      	return done(err, user);
+			return done(err, user);
 	    
 	    });
 

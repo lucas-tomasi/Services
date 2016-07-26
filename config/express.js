@@ -12,6 +12,7 @@ module.exports = function()
 	var app = express();
 
 	app.set( 'port', 8000 );
+
 	//
 	// init passport
 	// 
@@ -42,9 +43,19 @@ module.exports = function()
 	
 	app.set( 'view engine', 'ejs' );
 	app.set( 'views', './app/views' );
-	
-	app.use( bodyParser.urlencoded( { extended: true } ) );
-	app.use( bodyParser.json() );
+
+	var jsonParser = bodyParser.json({
+				     	limit:1024*1024*20, 
+						type:'application/json'
+					 });
+  	var urlencodedParser =  bodyParser.urlencoded({ 
+  								extended:true,
+  								limit:1024*1024*20,
+  								type:'application/x-www-form-urlencoding' 
+  							});
+
+	app.use( jsonParser );
+  	app.use( urlencodedParser );
 	app.use( methodOverride() );
 
 	load( 'models' , { cwd : 'app' } )

@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular.module( 'services' , [  'frapontillo.bootstrap-switch' , 
-									'ngRoute' ,
+									'ngRoute' , 'jkuri.datepicker' ,
 									'angularUtils.directives.dirPagination'
 								 ])
 	
@@ -39,10 +39,28 @@
 					templateUrl: 'partials/users/user.html',
 					controller: 'UserController' })
 
+/*routes services*/
+
+				.when('/services', {
+					templateUrl: 'partials/services/services.html',
+					controller: 'ServicesController' })
+				.when('/service/:id', {
+					templateUrl: 'partials/services/service.html',
+					controller: 'ServiceController' })
+				.when('/service/', {
+					templateUrl: 'partials/services/service.html',
+					controller: 'ServiceController' })
+
 /*routes auth*/
 
 				.when('/auth', {
 					templateUrl: 'partials/auth/auth.html' })
+
+/*routes reports*/
+				
+				.when('/reports/users', {
+					templateUrl: 'partials/reports/users.html',
+					controller: 'UserReportController' })
 		
 /*routes defaults*/
 		

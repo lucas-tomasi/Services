@@ -26,6 +26,9 @@
 	border-color: #d2d2d2 !important;
 	margin-bottom: 0px !important;
 	height: 425px !important;	
+	width: 100%;
+	overflow: auto;
+	overflow-x: hidden;
 }
 
 .bs-alert {

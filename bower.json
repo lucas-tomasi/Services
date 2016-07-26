@@ -15,7 +15,8 @@
     "font-awesome": "fontawesome#^4.6.3",
     "bootstrap3-dialog": "bootstrap-dialog#^1.35.2",
     "angular-bootstrap-switch": "^0.5.1",
-    "select2": "^4.0.3"
+    "select2": "^4.0.3",
+    "ngDatepicker": "*"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.7"

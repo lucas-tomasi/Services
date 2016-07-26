@@ -22,6 +22,7 @@
     "mongo-sanitize": "^1.0.0",
     "mongodb": "^2.1.18",
     "mongoose": "^4.5.1",
+    "mongoose-double": "0.0.1",
     "mongoose-findorcreate": "^0.1.2",
     "mongoose-unique-validator": "^1.0.2",
     "mpromise": "^0.5.5",
