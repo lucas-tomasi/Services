@@ -1,126 +1,28 @@
-var sanitize = require( 'mongo-sanitize' );
+var MyController = require( '../utils/MyController.js' );
 
 module.exports = function ( app ) 
 {
-
 	var Category = app.models.Category;
 
-	var controller = {};
+	var CategoryController = new MyController( Category , { active: true } );
 
-	/*
-	 *	returns all records
-	 */
-	controller.list = function( req, res )
-	{
+	CategoryController.getCategoriesComposite = function( req, res ) {	
+		
 		Category.find( {} ).exec(
 			
-			function( err , categories ) 
-			{
-		    	if( err ) 
-		    	{
-		        	res.status(500).json( err );
-		      	} 
-		      	else 
-		      	{
-					res.status(200).json( categories );
-		      	}
-		    });
+		function( err , categories ) {
+	    	if( err ) {
+	        	res.status(500).json( err );
+	      	} else {
+	      		
+	      		var composite = [];
+	      		for( i in categories ) {
+	      			composite.push( { id: categories[i]._id , text: categories[i].name } );
+	      		}
+				res.status(200).json( composite );
+	      	}
+	    });
 	};
 
-	/*
-	 * returns record by _id
-	 */
-	controller.get = function( req , res ) 
-	{
-		var _id = sanitize(req.params.id);
-
-		if( req.params.id !== 'undefined'  )
-		{
-			Category.findOne(
-			
-			{ _id: _id }).exec(
-
-			function( err, category ) 
-			{
-				if( err ) 
-				{
-			    	res.status(500).json( err );
-			  	} 
-			  	else 
-			  	{
-			    	res.status(200).json( category );
-			  	}
-			});
-		}
-		else
-		{
-			res.status(200).json( new Category() );
-		}
-	}
-
-	/*
-	 * update or insert record
-	 */
-	controller.store = function( req , res )
-	{
-		if( !req.body._id )
-		{
-			Category.create( req.body , 
-
-				function( err , category ) 
-				{
-			    	if(err) 
-			    	{
-			    		res.status(500).json( err );
-			    	} 
-			    	else 
-			    	{
-			      		res.status(200).json( category );
-			    	}
-			  	});
-		}
-		else
-		{
-			Category.findOneAndUpdate(
-			{ _id: req.body._id },
-			{ $set: req.body    }, 
-			{ new: true      }, 
-				function( err , category ) 
-				{
-			    	if ( err ) 
-			    	{
-			      		res.status(500).json( err );
-			    	} 
-			    	else 
-			    	{
-			      		res.status( 200 ).json( category );
-			    	}
-			  });
-		}
-	}
-
-	/*
-	 * delete record by _id
-	 */
-	controller.delete = function( req , res) 
-	{ 
-		var _id = sanitize(req.params.id);
-		Category.findOneAndRemove(
-			
-			{ _id: _id }, 
-
-			function( err , category ) 
-			{
-		    	if( err ) 
-		    	{
-		      		res.status(500).json( err );
-		    	}
-		    	else 
-		    	{
-		      		res.status(200).json(category);
-				}
-		  	});	
-	}
-
-	return controller;
-}
+	return CategoryController;
+};
