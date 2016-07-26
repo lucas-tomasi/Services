@@ -1,7 +1,7 @@
 var mongoose     = require( 'mongoose' )
   , findOrCreate = require( 'mongoose-findorcreate' );
 
-module.exports = function ()
+module.exports = function ( app )
 {
 	var schemaAddress = mongoose.Schema({
 		city:{
@@ -32,6 +32,7 @@ module.exports = function ()
 	 	url:   'String',
 	 	provider: 'String',
 	 	active: 'Boolean',
+	 	professional: 'Boolean',
 	 	address: schemaAddress,
 	 	inclusao: {
 	 		type: Date,

@@ -26,11 +26,17 @@
 				return $http.post( '/user/' , category );
 			};
 
+			var _getProfessionalsComposite = function () 
+			{
+				return $http.get( '/professionalsComposite/' );			 
+			}
+
 			return {	
 				getUsers:   _getUsers,
 				getUser:    _getUser,
 				storeUser:  _storeUser,
-				deleteUser: _deleteUser
+				deleteUser: _deleteUser,
+				getProfessionalsComposite : _getProfessionalsComposite
 			};
 		}]);
 })();
