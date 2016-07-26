@@ -17,6 +17,9 @@ module.exports = function( app )
 	app.route( '/categories' )
 		.get( verifyAuthenticate, controller.list );
 
+	app.route( '/categoriesComposite' )
+		.get( verifyAuthenticate, controller.getCategoriesComposite );
+
 	app.route( '/category/:id' )
 		.get(    verifyAuthenticate , controller.get    )
 	    .delete( verifyAuthenticate , controller.delete );
