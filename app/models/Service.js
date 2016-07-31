@@ -11,6 +11,15 @@ module.exports = function ()
 		bas64: 'Buffer'
 	});
 
+	var commentSchema = mongoose.Schema({
+		comment: 'String',
+		username: 'String',
+		date: {
+			type: Date,
+			default: new Date()
+		}
+	});
+
 	var schema = mongoose.Schema({
 	 	
 	 	title: { 
@@ -46,10 +55,10 @@ module.exports = function ()
 	 		type: Date
 	 	},
 	 	images: [ imageSchema ],
-	 	active: 'Boolean'
-
+	 	active: 'Boolean',
+	 	comments: [ commentSchema ]
 	});
-	
+
 	schema.plugin(uniqueValidator, { message: 'Title: {VALUE} already exstis in categories' } );
 	
 	return mongoose.model( 'Service', schema );
