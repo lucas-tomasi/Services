@@ -16,23 +16,25 @@ module.exports = function ( app )
 	 	login: { 
 	 		type: 'String', 
 	 		unique: true, 
-	 		required: true 
+	 		required: [ true , 'Login is required' ]
 	 	},
 	 	name: {
 	 		type: 'String', 
-	 		unique: true,
 	 		required: true
 	 	},
 	 	email: {
 	 		type: 'String',
-	 		unique: true,
-	 		required: true
+	 		required: [ true , 'Email is required' ]
 	 	},
 	 	phone: 'String',
 	 	url:   'String',
 	 	provider: 'String',
 	 	active: 'Boolean',
-	 	professional: 'Boolean',
+	 	professional: {
+	 		type: 'Boolean',
+	 		default: false 
+	 	},
+	 	password: 'String',
 	 	address: schemaAddress,
 	 	inclusao: {
 	 		type: Date,

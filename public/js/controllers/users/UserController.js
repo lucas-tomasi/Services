@@ -53,6 +53,7 @@
 					.success(
 						function ( data ) 
 						{
+							console.log(data);
 							Message.success("User saved");
 							$scope.user = data;							
 						})

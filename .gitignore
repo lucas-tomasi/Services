@@ -3,4 +3,7 @@
 /dist/*
 ./tmp/*
 /tmp/*
-teste.js
+/teste.js
+/public/js/controllers/TesteController.js
+/public/partials/teste.html
+

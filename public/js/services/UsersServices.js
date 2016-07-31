@@ -29,13 +29,26 @@
 			var _getProfessionalsComposite = function () 
 			{
 				return $http.get( '/professionalsComposite/' );			 
-			}
+			};
+
+			var _genereteReport = function () 
+			{
+				return $http.get( '/userReport/' );			 
+			};
+
+			var _authenticate = function ( user ) 
+			{
+				return $http.post( '/login/' , user );			 
+			};
+
 
 			return {	
 				getUsers:   _getUsers,
 				getUser:    _getUser,
 				storeUser:  _storeUser,
 				deleteUser: _deleteUser,
+				authenticate: _authenticate,
+				genereteReport: _genereteReport,
 				getProfessionalsComposite : _getProfessionalsComposite
 			};
 		}]);

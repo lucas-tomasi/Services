@@ -55,7 +55,9 @@
 
 				.when('/auth', {
 					templateUrl: 'partials/auth/auth.html' })
-
+				.when('/auth/login', {
+					templateUrl: 'partials/auth/login.html',
+					controller: 'LoginController' })
 /*routes reports*/
 				
 				.when('/reports/users', {
@@ -69,6 +71,8 @@
 				.when('/', {
 					templateUrl: 'partials/teste.html',
 					controller: 'TesteController'
+				})
+				.when('/_=_', {
 				});
 
 			$routeProvider.otherwise({ redirectTo: '/404' });

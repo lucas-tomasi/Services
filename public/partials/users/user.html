@@ -9,12 +9,12 @@
             <myhidden   model="user._id"          name="_id" ></myhidden>
             <mytext     model="user.name"         name="name"         label="Name"     form="userForm"  minlength="6" required="true"></mytext>
             <mytext     model="user.login"        name="login"        label="Login"    form="userForm"  required="true"></mytext>
+            <mypassword model="user.password"     name="password"     label="Password" form="userForm"></mypassword>
             <mytext     model="user.email"        name="email"        label="E-mail"   form="userForm"  required="true"></mytext>
             <mytext     model="user.url"          name="url"          label="Url"      form="userForm"  ></mytext>
             <mytext     model="user.provider"     name="provider"     label="Provider" form="userForm"  ></mytext>
-            <mytext     model="user.phone"        name="phone"        label="Phone"    form="userForm"  ></mytext>
-            <mycheckbox model="user.active"       name="active"       label="Active"></mycheckbox>
             <mycheckbox model="user.professional" name="professional" label="Professional"></mycheckbox>
+            <mycheckbox model="user.active"       name="active"       label="Active"></mycheckbox>
         </mytabcontent>
 
         <mytabcontent title='Address'>
@@ -22,6 +22,7 @@
             <mytext    model="user.address.district" name="district" label="Distrito" form="userForm"> </mytext>
             <mytext    model="user.address.number"   name="number"   label="Number"   form="userForm"> </mytext>
             <mytext    model="user.address.street"   name="street"   label="Street"   form="userForm"> </mytext>
+            <mytext    model="user.phone"            name="phone"    label="Phone"    form="userForm"  ></mytext>
         </mytabcontent>
 
     </mytabs>        

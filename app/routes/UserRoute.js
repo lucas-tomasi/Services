@@ -17,6 +17,9 @@ module.exports = function( app )
 	app.route( '/users' )
 		.get( verifyAuthenticate, controller.list );
 
+	app.route( '/userReport' )
+		.get( verifyAuthenticate, controller.genereteReport );
+
 	app.route( '/professionalsComposite' )
 		.get( verifyAuthenticate, controller.getProfessionalsComposite );
 
