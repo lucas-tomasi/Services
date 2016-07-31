@@ -19,22 +19,22 @@
 			link: function ( scope, element, attributes, form ) {
 				scope.form = form;
 				
-				var myselect = $(element).find('select');
-				
-				myselect.select2({
-					data: scope.data,
-					placeholder: "Select a value",
-					allowClear: true,
-					minimumInputLength: 2
-				});
-
 				setTimeout(
 					function () {
+						var myselect = $(element).find('select');
+						
+						myselect.select2({
+							data: scope.data,
+							placeholder: "Select a value",
+							allowClear: true,
+							minimumInputLength: 2
+						});
+				
 						if(scope.model)
 						{
 							$('[value="'+ scope.model +'"]').attr( 'selected' , 'selected' ).change();
 						}
-					}, 500 );
+					}, 700 );
 			}
 		};
 	
