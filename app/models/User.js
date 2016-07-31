@@ -1,5 +1,6 @@
 var mongoose     = require( 'mongoose' )
-  , findOrCreate = require( 'mongoose-findorcreate' );
+  , findOrCreate = require( 'mongoose-findorcreate' )
+  , uniqueValidator = require('mongoose-unique-validator');;
 
 module.exports = function ( app )
 {
@@ -43,6 +44,6 @@ module.exports = function ( app )
 	});
 
 	schema.plugin( findOrCreate );
-
+	schema.plugin(uniqueValidator, { message: 'Login: {VALUE} already exstis in users' } );
 	return mongoose.model( 'User', schema );
 }

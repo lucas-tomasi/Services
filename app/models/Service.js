@@ -18,13 +18,11 @@ module.exports = function ()
 	 		unique: true , 
 	 		required: [ true, 'Name is required' ],
 	 		minlength: [2,'Minimum 2 characters']
-	 	},
-	 	
+	 	},	 	
 	 	active: {
 	 		type: 'Boolean', 
 	 		index: true 
 	 	},
-
 	 	ref_category: {
 	 		type: 'ObjectId',
 	 		ref: 'Category',
@@ -51,6 +49,8 @@ module.exports = function ()
 	 	active: 'Boolean'
 
 	});
-	 
+	
+	schema.plugin(uniqueValidator, { message: 'Title: {VALUE} already exstis in categories' } );
+	
 	return mongoose.model( 'Service', schema );
 }
