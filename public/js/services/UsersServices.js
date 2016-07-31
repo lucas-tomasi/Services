@@ -41,6 +41,9 @@
 				return $http.post( '/login/' , user );			 
 			};
 
+			var _getUserLogged = function () {
+				 return $http.get( '/userLogged' );
+			};
 
 			return {	
 				getUsers:   _getUsers,
@@ -48,6 +51,7 @@
 				storeUser:  _storeUser,
 				deleteUser: _deleteUser,
 				authenticate: _authenticate,
+				getUserLogged: _getUserLogged,
 				genereteReport: _genereteReport,
 				getProfessionalsComposite : _getProfessionalsComposite
 			};

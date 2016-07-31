@@ -17,6 +17,9 @@ module.exports = function( app )
 	app.route( '/users' )
 		.get( verifyAuthenticate, controller.list );
 
+	app.route( '/userLogged' )
+		.get( verifyAuthenticate, controller.getUserLogged );
+
 	app.route( '/userReport' )
 		.get( verifyAuthenticate, controller.genereteReport );
 

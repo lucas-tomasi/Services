@@ -8,6 +8,10 @@ module.exports = function ( app )
 	var defaultModel = { active: true };
 	var UserController = new MyController( User , defaultModel );
 
+	UserController.getUserLogged = function ( req , res ) {
+		res.status(200).json(req.user);
+	}
+
 	UserController.getProfessionalsComposite = function( req, res )
 	{
 		User.find( { professional: true } ).exec(
