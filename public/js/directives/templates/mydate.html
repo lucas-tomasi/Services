@@ -9,13 +9,15 @@
         <ng-datepicker 
             data-ng-model="model" 
             name="{{name}}"
+            id="{{name}}"
         	locale="pt-br" 
             format="{{mask}}" 
             view-format="{{mask}}"
             placeholder="{{mask}}"
-            data-ng-required="required">
+            data-ng-required="required"
+            data-ng-dblclick="clear(this);">
         </ng-datepicker>               
-        
+
         <span class="glyphicon form-control-feedback" data-ng-class="{ 'glyphicon-ok' : !form[name].$invalid , 'glyphicon-remove' : form[name].$invalid }" aria-hidden="true"></span>
         
         <span class="text-danger" data-ng-show="form[name].$error.required">{{ label }} is required</span>

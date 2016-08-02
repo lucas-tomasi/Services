@@ -3,7 +3,7 @@
 	'use strict';
 
  	angular.module('services').directive( 'mydate', [function () {
-	
+		
 		return {
 			restrict: 'E',
 			require: '^form',
@@ -17,7 +17,11 @@
 				mask: '@'
 			},
 			link: function ( scope, element, attributes, form ) {
-				scope.form = form;
+				scope.form  = form;
+				scope.clear =  function ( el ) {
+					scope.model = '';
+					
+				};
 			}
 		};
 	
