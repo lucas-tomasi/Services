@@ -69,14 +69,19 @@ module.exports = function (app) {
           	active: true,
           	professional: true 
           }, function ( err, user) {
-          		if( bcrypt.compareSync( password , user.password ) )
+
+          		if( user )
           		{
-           			return done( null , user );
-          		}
-          		else
-          		{
-          			return done( err );
-          		}
+	          		if( bcrypt.compareSync( password , user.password ) )
+	          		{
+	           			return done( null , user );
+	          		}
+	          		else
+	          		{
+	          			return done( err );
+	          		}
+	          	}
+	          	return done( err );
           		
         });
     }));
