@@ -13,6 +13,7 @@
         	   data-ng-required="required"
         	   data-ng-maxlength="maxlength"
         	   data-ng-pattern="pattern"
+               data-ng-readonly="{{readonly}}"
                mymask="{{mask}}" >
                
         <span class="glyphicon form-control-feedback" data-ng-class="{ 'glyphicon-ok' : !form[name].$invalid , 'glyphicon-remove' : form[name].$invalid }" aria-hidden="true"></span>

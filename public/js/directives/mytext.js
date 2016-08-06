@@ -15,6 +15,7 @@
 				model: '=',
 				minlength: '@',
 				required: '@',
+				readonly: '@',
 				mask: '@'
 			},
 			link: function ( scope, element, attributes, form ) {

@@ -44,58 +44,58 @@
 				}
 
 
-				function setFile( theFile ) 
+				function setFile( theFile , e ) 
 				{
 					if( theFile.type.match('image.*') )
 	          		{
 	          			var span = document.createElement('span');
-		          		span.innerHTML = ['<i class="fa fa-file-image-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i>' ].join('');
+		          		span.innerHTML = ["<a target='_blank' href='"+ e.target.result +'\'><i class="fa fa-file-image-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i></a>' ].join('');
 		          		document.getElementById('myfileslist').insertBefore(span, null);
 		          	}
 		          	else if(theFile.type.match('application/pdf') )
 		          	{
 		          		var span = document.createElement('span');
-		          		span.innerHTML = ['<i class="fa fa-file-pdf-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i>' ].join('');
+		          		span.innerHTML = ["<a target='_blank' href='"+ e.target.result +'\'><i class="fa fa-file-pdf-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i></a>' ].join('');
 		          		document.getElementById('myfileslist').insertBefore(span, null);
 					}	                    	
 		          	else if(theFile.type.match('application/zip') )
 		          	{
 		          		var span = document.createElement('span');
-		          		span.innerHTML = ['<i class="fa fa-file-pdf-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i>' ].join('');
+		          		span.innerHTML = ["<a target='_blank' href='"+ e.target.result +'\'><i class="fa fa-file-pdf-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i></a>' ].join('');
 		          		document.getElementById('myfileslist').insertBefore(span, null);
 		          	}	                    	
 		          	else if(theFile.type.indexOf('sheet')  >= 0 )
 		          	{	
 		          		var span = document.createElement('span');
-		          		span.innerHTML = ['<i class="fa fa-file-excel-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i>' ].join('');
+		          		span.innerHTML = ["<a target='_blank' href='"+ e.target.result +'\'><i class="fa fa-file-excel-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i></a>' ].join('');
 		          		document.getElementById('myfileslist').insertBefore(span, null);
 		          	}	                    	
 		          	else if(theFile.type.indexOf('document')   >= 0 )
 		          	{
 		          		var span = document.createElement('span');
-		          		span.innerHTML = ['<i class="fa fa-file-word-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i>' ].join('');
+		          		span.innerHTML = ["<a target='_blank' href='"+ e.target.result +'\'><i class="fa fa-file-word-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i></a>' ].join('');
 		          		document.getElementById('myfileslist').insertBefore(span, null);
 		          	}	                    	
 		          	else if(theFile.type.indexOf('text/plain') >= 0  )
 		          	{
 		          		var span = document.createElement('span');
-		          		span.innerHTML = ['<i class="fa fa-file-text-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i>' ].join('');
+		          		span.innerHTML = ["<a target='_blank' href='"+ e.target.result +'\'><i class="fa fa-file-text-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i></a>' ].join('');
 		          		document.getElementById('myfileslist').insertBefore(span, null);	
 		          	}
 		          	else if( theFile.type.match('video.*') )
 		          	{
 		          		var span = document.createElement('span');
-		          		span.innerHTML = ['<i class="fa fa-file-video-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i>' ].join('');
+		          		span.innerHTML = ["<a target='_blank' href='"+ e.target.result +'\'><i class="fa fa-file-video-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i></a>' ].join('');
 		          		document.getElementById('myfileslist').insertBefore(span, null);		
 		          	}
 		          	else
 		          	{
 		          		var span = document.createElement('span');
-		          		span.innerHTML = ['<i class="fa fa-file-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i>' ].join('');
+		          		span.innerHTML = ["<a target='_blank' href='"+ e.target.result +'\'><i class="fa fa-file-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i></a>' ].join('');
 		          		document.getElementById('myfileslist').insertBefore(span, null);		
 		          	}
 
-		          	document.getElementById(theFile.name).addEventListener('click', removeElement, false);	 
+		          	//document.getElementById(theFile.name).addEventListener('click', removeElement, false);	 
 				}
 
 
@@ -129,7 +129,7 @@
 				        	
 				        	return function(e) {
 
-				          		setFile( theFile );
+				          		setFile( theFile , e );
 			                        
 		                        scope.model.push({
                                     base64: e.target.result,
