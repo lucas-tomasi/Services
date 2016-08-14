@@ -28,8 +28,8 @@
 			</td>
 
 			<td ng-repeat="column in columns" data-ng-if="column.type === 'check'" class="center" >
-
-				<input type="checkbox" ng-checked="item[column.key]" readonly disabled >
+				<i data-ng-class="{ 'fa fa-remove red' : !item[column.key] , 'fa fa-check green' : item[column.key] }"></i>
+				<!-- <input type="checkbox" ng-checked="item[column.key]" readonly disabled > -->
 
 			</td>
 				
