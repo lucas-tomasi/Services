@@ -6,9 +6,18 @@ require('mongoose-double')(mongoose);
 module.exports = function ()
 {
 	var imageSchema = mongoose.Schema({
-		name:  'String',
-		type:  'String',
-		bas64: 'Buffer'
+		name:  {
+			type: 'String',
+			require: [ true , 'Name to file is required' ]
+		},
+		type: {
+			type: 'String',
+			require: [ true , 'Type to file is required' ]
+		},
+		bas64: {
+			type: 'String',
+			require: [ true , 'bas64 to file is required' ]
+		}
 	});
 
 	var commentSchema = mongoose.Schema({
@@ -27,7 +36,8 @@ module.exports = function ()
 	 		unique: true , 
 	 		required: [ true, 'Name is required' ],
 	 		minlength: [2,'Minimum 2 characters']
-	 	},	 	
+	 	},
+	 	description: 'String',	 	
 	 	active: {
 	 		type: 'Boolean', 
 	 		index: true 
@@ -55,7 +65,6 @@ module.exports = function ()
 	 		type: Date
 	 	},
 	 	images: [ imageSchema ],
-	 	active: 'Boolean',
 	 	comments: [ commentSchema ]
 	});
 

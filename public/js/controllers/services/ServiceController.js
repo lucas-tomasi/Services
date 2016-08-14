@@ -9,9 +9,8 @@
 		function( $scope , ServicesServices, UsersServices, CategoriesServices ){
 			
 			$scope.init = function () {
-				getService();
 				getCategories();
-				getProfessionals();
+				getService();
 			};
 
 			function getService() 
@@ -21,28 +20,28 @@
 					.success( 
 				 		function( data ) 
 				 		{
-							$scope.service = data;
+				 			if( !data.professional )
+				 			{
+				 				UsersServices.getUserLogged()
+				 					.success( function ( user ) {
+				 						$scope.service    = data;	
+				 						$scope.service.professional = user._id;			
+				 						$scope.service.professionalname = user.name;			
+				 					});
+				 			}
+				 			else
+				 			{
+				 				var name = data.professional.name;
+				 				var _id  = data.professional._id;
+				 				$scope.service    = data;	
+				 				$scope.service.professional     = _id;	
+				 				$scope.service.professionalname = name;
+				 			}
 						})
 					.error( 
 						function (err) 
 						{
 				 			$scope.service =  {};
-						});
-			}
-
-			function getProfessionals() 
-			{
-				UsersServices.getProfessionalsComposite()
-
-					.success(
-						function ( data ) 
-						{
-							$scope.professionals = data;
-						})
-					.error(
-						function ( error ) 
-						{
-							$scope.professionals = [];
 						});
 			}
 			
@@ -68,7 +67,8 @@
 						function ( data ) 
 						{
 							Message.success("Service saved");
-							$scope.service = data;							
+							$scope.service = data;	
+							$scope.service.professionalname = data.professional.name;
 						})
 					.error(
 						function ( data ) {

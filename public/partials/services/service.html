@@ -3,15 +3,23 @@
 <mypanel title="Service #{{ service._id }}">
     
     <mypanelbody>            
-        <myhidden   model="service._id"          name="_id" ></myhidden>
-        <mytext     model="service.title"        name="title"        label="Title"        form="serviceForm" minlength="6" required="true"></mytext>
-        <myfile     model="service.images"       name="images"       label="Images"       form="serviceForm" required="required"></myfile>
-        <mytext     model="service.price"        name="price"        label="Price (R$)"   form="serviceForm" mask="number_format('2',',','.') " required="required"></mytext>
-        <myselect2  model="service.ref_category" name="ref_category" label="Category"     form="serviceForm" required="required" data="categories"></myselect2>
-        <myselect2  model="service.professional" name="professional" label="Professional" form="serviceForm" required="required" data="professionals"></myselect2>
-        <mydate     model="service.dt_start"     name="dt_start"     label="Date Start"   form="serviceForm" mask="DD/MM/YYYY"required="true"></mydate>
-        <mydate     model="service.dt_end"       name="dt_end"       label="Date End"     form="serviceForm" mask="DD/MM/YYYY"></mydate>
-        <mycheckbox model="service.active"       name="active"       label="Active"       form="serviceForm" ></mycheckbox>
+        <mytabs>
+            <mytabcontent title="Service">
+                <myhidden   model="service._id"          name="_id" ></myhidden>
+                <mytext     model="service.title"        name="title"        label="Title"        form="serviceForm" minlength="6" required="true"></mytext>
+                <mytextarea model="service.description"  name="description"  label="Description"  form="serviceForm" height="80"  required="true"></mytextarea>
+                <mytext     model="service.price"        name="price"        label="Price (R$/Hour)"   form="serviceForm" mask="number_format('2',',','.') " required="required"></mytext>
+                <mytext     model="service.professionalname" readonly="true" name="professionalname" label="Professional" form="serviceForm"  ></mytext>
+            </mytabcontent>
+            <mytabcontent title="Info">
+                <mydate     model="service.dt_start"     name="dt_start"     label="Date Start"   form="serviceForm" mask="DD/MM/YYYY"required="true"></mydate>
+                <mydate     model="service.dt_end"       name="dt_end"       label="Date End"     form="serviceForm" mask="DD/MM/YYYY"></mydate>
+                <myfile     model="service.images"       name="images"       label="Images"       form="serviceForm" required="required"></myfile>
+                <mycombo    model="service.ref_category" name="ref_category" label="Category"     form="serviceForm" required="required" data="categories"></mycombo>
+                <mycheckbox model="service.active"       name="active"       label="Active"       form="serviceForm" ></mycheckbox>
+            </mytabcontent>
+
+        </mytabs>
     </mypanelbody>    
 
     <mypanelfooter>

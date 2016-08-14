@@ -21,7 +21,7 @@
 			
 				$scope.delete = function ( id ) 
 				{
-					ServicesServices.deleteCategory( id )	
+					ServicesServices.deleteService( id )	
 
 					.success(
 						function ( data ) 
