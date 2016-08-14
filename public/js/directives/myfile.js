@@ -18,31 +18,16 @@
 			link: function ( scope, element, attributes, form ) {
 
 				scope.form = form;
-
-				if( scope.model )
-				{
-					for (var i = 0 ; i < scope.model.length ; i++ ) {
-						setFile( scope.model[i] );
-					};
-				}
-
-				function removeElement (argument) {
-
-					var file = $(argument.toElement);
-
-					scope.model = scope.model.filter(function (el) {
-                     	return el.name !== file.attr('id');
-                 	});
-
-					if( scope.model.length == 0 )
+				setTimeout(function () {
+					if( scope.model )
 					{
-						scope.model = null;
+						for (var i = 0 ; i < scope.model.length ; i++ ) {
+							var e     = {};
+							e.target  = { bas64 : scope.model[i].bas64  };
+							setFile( scope.model[i] , e );
+						};
 					}
-
-					scope.$apply();
-                 	file.remove(); 
-				}
-
+				}, 0);
 
 				function setFile( theFile , e ) 
 				{
@@ -94,8 +79,6 @@
 		          		span.innerHTML = ["<a target='_blank' href='"+ e.target.result +'\'><i class="fa fa-file-o icon-upload"  title="'+theFile.name+'" id="'+ theFile.name +'"></i></a>' ].join('');
 		          		document.getElementById('myfileslist').insertBefore(span, null);		
 		          	}
-
-		          	//document.getElementById(theFile.name).addEventListener('click', removeElement, false);	 
 				}
 
 
@@ -132,7 +115,7 @@
 				          		setFile( theFile , e );
 			                        
 		                        scope.model.push({
-                                    base64: e.target.result,
+                                    bas64 : e.target.result,
 		                            name  : theFile.name,
                                     type  : theFile.type
 		                        });
