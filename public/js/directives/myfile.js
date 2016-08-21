@@ -23,11 +23,11 @@
 					{
 						for (var i = 0 ; i < scope.model.length ; i++ ) {
 							var e     = {};
-							e.target  = { bas64 : scope.model[i].bas64  };
+							e.target  = { result : scope.model[i].bas64  };
 							setFile( scope.model[i] , e );
 						};
 					}
-				}, 0);
+				}, 500);
 
 				function setFile( theFile , e ) 
 				{

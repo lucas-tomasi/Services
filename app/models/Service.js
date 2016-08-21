@@ -62,7 +62,8 @@ module.exports = function ()
 	 		required: [ true, 'Enter a start date' ] 
 	 	},
 	 	dt_end: {
-	 		type: Date
+	 		type: Date,
+	 		default: ''
 	 	},
 	 	images: [ imageSchema ],
 	 	comments: [ commentSchema ]

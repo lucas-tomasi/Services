@@ -5,9 +5,23 @@ module.exports = function ( app )
 	
 	var Service = app.models.Service;
 
-	var defaultModel = { dt_start: Date.now(), active: true };
+	var defaultModel = { dt_start: Date.now(), active: true, dt_end: '' };
 
 	var ServiceController = new MyController( Service , defaultModel );
+
+	ServiceController.getServicesHome = function ( req, res ) 
+	{
+		Service.find( { active: true , $or: [ { dt_end:{ $eq : null } } , {dt_end: { $lte: new Date().toISOString() } } ] } )
+			.populate( 'professional' )
+			.exec(
+		function( err, itens ) {
+			if( err ) {
+		    	res.status(500).json( err );
+		  	} else {
+		    	res.status(200).json( itens );
+		  	}
+		});
+	}
 
 	ServiceController.get = function( req , res ) {
 		var _id = sanitize(req.params.id);

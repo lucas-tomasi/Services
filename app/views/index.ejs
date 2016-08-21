@@ -52,6 +52,8 @@
         <script type="text/javascript" src="/js/directives/mycombo.js">                                        </script>
         <script type="text/javascript" src="/js/directives/mycalendar.js">                                     </script>
         <script type="text/javascript" src="/js/directives/mytextarea.js">                                     </script>
+        <script type="text/javascript" src="/js/directives/mycard.js">                                         </script>
+        <script type="text/javascript" src="/js/directives/mycarousel.js">                                     </script>
         
         <script type="text/javascript" src="/js/services/InterceptorService.js">                               </script>
         <script type="text/javascript" src="/js/services/CategoriesServices.js">                               </script>
@@ -66,6 +68,7 @@
         <script type="text/javascript" src="/js/controllers/auth/LoginController.js">                          </script>        
         <script type="text/javascript" src="/js/controllers/services/ServiceController.js">                    </script>        
         <script type="text/javascript" src="/js/controllers/services/ServicesController.js">                   </script>        
+        <script type="text/javascript" src="/js/controllers/HomeController.js">                                </script>        
         <script type="text/javascript" src="/js/controllers/TesteController.js">                               </script>        
 
         <script type="text/javascript" src="/js/controllers/users/UserReportController.js">                    </script>
@@ -77,12 +80,38 @@
         <div>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-                    <a class="navbar-brand title" href="#">Services</a>
-                    <a class="navbar-brand navbar-right" href="<%=link%>"><%=username%></a>
+
+                    <a class="navbar-brand title" href="#/">Services</a>
+                  
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if( logged ){ %> 
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=username%>&nbsp;&nbsp;&nbsp;<img src="<%=image%>" style="border-radius:15px;"height="30px" width="30px"></a>
+
+                            <ul class="dropdown-menu">
+                            
+                                <li><a class="menu-navbar" data-ng-href="/#/orders"><i class="fa fa-history"></i> Meus pedidos</a></li>
+                                <li><a class="menu-navbar" data-ng-href="/#/account"><i class="fa fa-user"></i> Minha conta</a></li>
+                            
+                                <li role="separator" class="divider"></li>
+                            
+                                <li><a class="menu-navbar" data-ng-href="/auth/logout/"><i class="fa fa-power-off"></i> Logout</a></li>
+                            
+                            </ul>
+
+                        </li>
+                        <% } else {  %>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-ng-href="#/auth/" >Login</a>
+                            </li>
+                        <% }  %>
+                    </ul>
+
                 </div>
+
             </nav>
         </div>
-        <% if( menu ){ %> 
+        <% if( logged != 1 ){ %> 
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bs-menu"><div data-ng-include="'partials/menu.html'"></div></div>   
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" data-ng-view></div>
         <%}else{%>

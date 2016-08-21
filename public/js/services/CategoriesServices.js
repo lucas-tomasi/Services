@@ -8,27 +8,27 @@
 		{	
 			var _getCategories = function () 
 			{
-				return $http.get('/categories');
+				return $http.get( '/admin/categories' );
 			};
 
 			var _getCategory = function () 
 			{
-				return $http.get('/category/' + $routeParams.id );
+				return $http.get( '/admin/category/' + $routeParams.id );
 			};
 
 			var _deleteCategory = function ( id ) 
 			{
-				return $http.delete('/category/' + id );
+				return $http.delete( '/admin/category/' + id );
 			};
 
 			var _storeCategory = function ( category ) 
 			{
-				return $http.post( '/category/' , category );
+				return $http.post( '/admin/category/' , category );
 			};
 
 			var _getCategoriesComposite = function () 
 			{
-				return $http.get( '/categoriesComposite/' );		 
+				return $http.get( '/admin/categoriesComposite/' );		 
 			}
 
 			return {	

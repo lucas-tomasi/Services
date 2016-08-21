@@ -13,6 +13,7 @@
 				$scope.columns = [
 					{ title: 'Code'   , type: 'code'       , key: '_id'   , id: '_id' },
 					{ title: 'Title'  , type: 'link'       , key: 'title' , id: '_id' },
+					{ title: 'Price'  , type: 'link'       , key: 'price' , id: '_id' },
 					{ title: 'Active' , type: 'check'      , key: 'active', id: '_id' },
 					{ title: ''       , type: 'btn-delete' , key: ''      , id: '_id' }
 				];

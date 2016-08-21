@@ -29,22 +29,31 @@
 								center: 'title',
 								right: 'month,agendaWeek,agendaDay'
 							},
+							timezone: 'local',
 							defaultDate: new Date(),
 							selectable: true,
 							selectHelper: true,
 							select: function(start, end) {
-								var eventData = {
-									userid:   scope.user._id,
-									username: scope.user.name,
-									title: scope.user.name + ' (' + scope.user.email + ')',
-									start: start,
-									end: end,
-									editable: true
-								};
-								scope.data.push( eventData );
-								scope.$apply();
-								$(element).fullCalendar('renderEvent', eventData, true); // stick? = true
-								$(element).fullCalendar('unselect');
+								
+								if( start._d < moment().add(2,'d')._d )
+								{
+									Message.alert('Selecione uma data com dois dias de itervalo');
+								}
+								else
+								{
+									var eventData = {
+										userid:   scope.user._id,
+										username: scope.user.name,
+										title:    scope.user.name + ' (' + scope.user.email + ')',
+										start:    start,
+										end:      end,
+										editable: true
+									};
+									scope.data.push( eventData );
+									scope.$apply();
+									$(element).fullCalendar('renderEvent', eventData, true); // stick? = true
+									$(element).fullCalendar('unselect');
+								}
 							},
 							eventBorderColor: '#459c50',
 							eventBackgroundColor: 'white',

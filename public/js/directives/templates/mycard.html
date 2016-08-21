@@ -1,0 +1,22 @@
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <a ng-href="/#/">
+            <img style="width:320px;height:150px;background-size: 320px 150px;background-repeat:no-repeat;background-image:url('{{data.images[0].bas64}}');">
+            <div class="caption">
+                <h4 class="pull-right">R$ {{data.price}}</h4>
+                <h4>{{data.title}}</h4>
+                <p>{{data.description}}</p>
+            </div>
+        </a>
+        <div class="ratings">
+            <p class="pull-right">15 reviews</p>
+            <p>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 0 }" ng-mouseover="pintaAmarelo(1);"></span>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 1 }" ng-mouseover="pintaAmarelo(2);"></span>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 2 }" ng-mouseover="pintaAmarelo(3);"></span>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 3 }" ng-mouseover="pintaAmarelo(4);"></span>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 4 }" ng-mouseover="pintaAmarelo(5);"></span>
+            </p>
+        </div>
+    </div>
+</div>

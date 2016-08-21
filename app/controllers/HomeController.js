@@ -4,22 +4,30 @@ module.exports = function( app )
 
 	controller.index = function( req, res )
 	{
-		var _username = 'Login';
-		var _link     = '#/auth/';
-		var _menu     = false;
-
+		
 		if( req.user )
 		{
-			_username = req.user.name;
-			_link     = '/auth/logout/';
-			_menu     = true;
+			if(req.user.type == 1)
+			{
+				res.render( 'index', { 
+					username: req.user.name,
+					image:    req.user.image,
+					logged:   req.user.type
+				});
+			}
+			else
+			{				
+				res.render( 'index', { 
+					username: req.user.name,
+					image:    req.user.image,
+					logged:   req.user.type
+				});
+			}
 		}
-		
-		res.render( 'index', { 
-			username: _username,
-			link: _link,
-			menu: _menu
-		});
+		else
+		{
+			res.render( 'index', { logged: false } );
+		}
 	};
 
 	return controller;

@@ -7,7 +7,7 @@
 									'angularUtils.directives.dirPagination'
 								 ])
 	
-	.config( [ '$routeProvider' , '$httpProvider' , 
+	.config( [ '$routeProvider' , '$httpProvider' ,
 
 		function ( $routeProvider , $httpProvider ) 
 		{
@@ -49,7 +49,12 @@
 					controller: 'ServiceController' })
 				.when('/service/', {
 					templateUrl: 'partials/services/service.html',
-					controller: 'ServiceController' })
+					controller: 'ServiceController' ,
+					acess:{
+						requiresLogin: true,
+            			requiredPermissions: ['Admin', 'UserManager']
+
+					}})
 
 /*routes auth*/
 
@@ -69,10 +74,12 @@
 				.when('/404', {
 					templateUrl: 'partials/404.html' })
 				.when('/', {
-					templateUrl: 'partials/teste.html',
-					controller: 'TesteController'
+					templateUrl: 'partials/home/home.html',
+					controller: 'HomeController'
 				})
 				.when('/_=_', {
+					templateUrl: 'partials/home/home.html',
+					controller: 'HomeController'
 				});
 
 			$routeProvider.otherwise({ redirectTo: '/404' });

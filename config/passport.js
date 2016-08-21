@@ -1,9 +1,9 @@
-var bcrypt           = require('bcrypt');
+var bcrypt           = require( 'bcrypt' );
 var passport         = require( 'passport' );
 var GitHubStrategy   = require( 'passport-github' ).Strategy;
 var FacebookStrategy = require( 'passport-facebook' ).Strategy;
-var GoogleStrategy   = require('passport-google-oauth20').Strategy;
-var LocalStrategy    = require('passport-local').Strategy;
+var GoogleStrategy   = require( 'passport-google-oauth20').Strategy;
+var LocalStrategy    = require( 'passport-local').Strategy;
 var mongoose         = require( 'mongoose' );
 
 module.exports = function (app) {
@@ -21,7 +21,10 @@ module.exports = function (app) {
 	    	"name":   profile.displayName,
 	    	"email":  profile.emails[0].value,
 	    	"url":    profile.profileUrl,
-	    	"provider": profile.provider
+	    	"provider": profile.provider,
+	    	"image": profile._json.avatar_url,
+	    	"type":  1,
+	    	"active" : true
 	    }, function ( err , user ) {
 			return done(err, user);
 	    });
@@ -38,7 +41,10 @@ module.exports = function (app) {
 	    	"name":   profile.displayName,
 	    	"email": profile.emails[0].value,
 	    	"url":    profile._json.url,
-	    	"provider": profile.provider
+	    	"provider": profile.provider,
+	    	"image": profile._json.image.url,
+	    	"type": 1,
+	    	"active" : true
 	    }, function (err, user) {
 	      return cb(err, user);
 	    });
@@ -48,7 +54,7 @@ module.exports = function (app) {
 		clientID: "1762091577382931",
 		clientSecret: "7e33489430de69aa1cb1fdc77ffd7416",
 		callbackURL: "http://localhost:8000/auth/facebook/callback",
-		profileFields: ['id', 'displayName', 'email']
+		profileFields: ['id', 'displayName', 'email','photos']
 	} ,
 	function(accessToken, refreshToken, profile, cb) { 
 	    User.findOrCreate({ 
@@ -56,7 +62,10 @@ module.exports = function (app) {
 	    	"name":   profile.displayName,
 	    	"email": profile.emails[0].value,
 	    	"url":    profile._json.url,
-	    	"provider": profile.provider
+	    	"provider": profile.provider,
+	    	"image": profile._json.picture.data.url,
+	    	"type": 1,
+	    	"active" : true
 	    }, function (err, user) {
 	      return cb(err, user);
 	    });
@@ -67,7 +76,7 @@ module.exports = function (app) {
           User.findOne({ 
           	login: username, 
           	active: true,
-          	professional: true 
+          	$or: [ {type: 3} , {type: 2} ] 
           }, function ( err, user) {
 
           		if( user )

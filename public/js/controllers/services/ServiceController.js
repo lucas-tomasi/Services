@@ -41,6 +41,7 @@
 					.error( 
 						function (err) 
 						{
+							console.log(err);
 				 			$scope.service =  {};
 						});
 			}

@@ -8,32 +8,32 @@
 		{	
 			var _getUsers = function () 
 			{
-				return $http.get('/users');
+				return $http.get('/admin/users');
 			};
 
 			var _getUser = function () 
 			{
-				return $http.get('/user/' + $routeParams.id );
+				return $http.get('/admin/user/' + $routeParams.id );
 			};
 
 			var _deleteUser = function ( id ) 
 			{
-				return $http.delete('/user/' + id );
+				return $http.delete('/admin/user/' + id );
 			};
 
 			var _storeUser = function ( category ) 
 			{
-				return $http.post( '/user/' , category );
+				return $http.post( '/admin/user/' , category );
 			};
 
 			var _getProfessionalsComposite = function () 
 			{
-				return $http.get( '/professionalsComposite/' );			 
+				return $http.get( '/admin/professionalsComposite/' );			 
 			};
 
 			var _genereteReport = function () 
 			{
-				return $http.get( '/userReport/' );			 
+				return $http.get( '/admin/userReport/' );			 
 			};
 
 			var _authenticate = function ( user ) 
@@ -42,7 +42,7 @@
 			};
 
 			var _getUserLogged = function () {
-				 return $http.get( '/userLogged' );
+				 return $http.get( '/public/userLogged' );
 			};
 
 			return {	

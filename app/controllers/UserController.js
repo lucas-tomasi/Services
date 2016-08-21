@@ -14,7 +14,7 @@ module.exports = function ( app )
 
 	UserController.getProfessionalsComposite = function( req, res )
 	{
-		User.find( { professional: true } ).exec(
+		User.find( { type: 2 } ).exec(
 			
 			function( err , professional ) 
 			{

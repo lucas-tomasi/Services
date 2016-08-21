@@ -8,12 +8,20 @@
 		{	
 			var interceptor = 
 			{
+				request: function ( req ) {
+					return req;	 
+				},
+				requestError: function ( req ) {
+					console.log('request error');
+					console.log( req );
+					return req;	 	 
+				},
 				responseError: function ( res ) {
 					 if( res.status == 401 )
 					 {
+					 	console.log('dasdsa');
 					 	$location.path('/auth');
 					 }
-
 					 return $q.reject( res );
 				}
 			};

@@ -13,6 +13,7 @@
 				getCities();
 			};
 
+			$scope.types = [ { id: 1 , text: 'User' } , { id: 2 , text: "Professional" } , { id: 3, text: "Admin" }  ];
 
 			function getCities() 
 			{

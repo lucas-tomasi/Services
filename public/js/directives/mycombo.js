@@ -27,7 +27,7 @@
 						{
 							$('[value="'+ scope.model +'"]').attr( 'selected' , 'selected' ).change();
 						}
-					}, 50 );
+					}, 150 );
 			}
 		};
 	

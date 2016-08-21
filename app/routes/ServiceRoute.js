@@ -1,27 +1,20 @@
-function verifyAuthenticate( req , res , next ) 
-{
-	 if ( req.isAuthenticated() ) 
-	 {
-	 	return next();
-	 } 
-	 else 
-	 {
-		res.status('401').render(401);	 	
-	 }
-}
-
 module.exports = function( app )
 {
+	var MyAuthenticate = require( '../utils/MyAuthenticate.js' )();
+
 	var controller = app.controllers.ServiceController;
 
-	app.route( '/services' )
-		.get( verifyAuthenticate, controller.list );
+	app.route( '/admin/services' )
+		.get( MyAuthenticate.verify, controller.list );
+		
+	app.route( '/public/services' )
+		.get( MyAuthenticate.verify, controller.getServicesHome );
 
-	app.route( '/service/:id' )
-		.get(    verifyAuthenticate , controller.get    )
-	    .delete( verifyAuthenticate , controller.delete );
+	app.route( '/admin/service/:id' )
+		.get(    MyAuthenticate.verify , controller.get    )
+	    .delete( MyAuthenticate.verify , controller.delete );
 
-	app.route( '/service/' )
-		.get( verifyAuthenticate , controller.get   )
-		.post(verifyAuthenticate , controller.store );
+	app.route( '/admin/service/' )
+		.get( MyAuthenticate.verify , controller.get   )
+		.post(MyAuthenticate.verify , controller.store );
 }

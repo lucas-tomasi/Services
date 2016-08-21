@@ -18,6 +18,7 @@
 						})
 					.error(
 						function ( data ) {
+							console.log( data );
 							Message.error('Login and/or Password invalids ')
 							window.location.href = '/#/auth/login/';
 						});

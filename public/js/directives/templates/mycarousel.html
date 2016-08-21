@@ -1,0 +1,25 @@
+<div id="#mycarousel" style="width:{{width}}px;height:{{height}}px;" class="carousel slide" data-ride="carousel">
+ 
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#mycarousel" data-ng-repeat="item in data track by $index" data-ng-class="{ 'active' : $index == 0  }" data-slide-to="{{$index}}" data-ng-click="goTo($index);" ></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+      <div data-ng-class="{'item' : $index == 0 , 'item active' : $index != 0}"  data-ng-repeat="i in data">
+        <img  style="width:{{width}}px;height:{{height}}px;background-repeat:no-repeat;background-image:url({{i.image}});background-size: contain;background-position:center;background-color:black">
+      </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" data-ng-click="prev()" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" data-ng-click="next()" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+</div>

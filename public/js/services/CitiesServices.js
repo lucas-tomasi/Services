@@ -8,17 +8,17 @@
 		{	
 			var _getCities = function () 
 			{
-				return $http.get('/cities');
+				return $http.get( '/admin/cities' );
 			};
 
 			var _getCity = function () 
 			{
-				return $http.get('/city/' + $routeParams.id );
+				return $http.get( '/admin/city/' + $routeParams.id );
 			};
 
 			var  _getCitiesComposite = function()
 			{
-				return $http.get('/citiesComposite/');
+				return $http.get( '/admin/citiesComposite/');
 			};
 
 			return {	

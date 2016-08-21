@@ -7,10 +7,10 @@ module.exports = function ()
 {
 	var schema = mongoose.Schema({
 	 	status: {
-	 		type: 'Number', 
+	 		type: 'String', 
 	 		index: true,
 	 		required: [ true, 'Status is required' ],
-	 		default: 0 
+	 		default: 'A' 
 	 	},
 	 	ref_service: {
 	 		type: 'ObjectId',
