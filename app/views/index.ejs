@@ -111,7 +111,7 @@
 
             </nav>
         </div>
-        <% if( logged != 1 ){ %> 
+        <% if( logged != 1 && logged ){ %> 
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bs-menu"><div data-ng-include="'partials/menu.html'"></div></div>   
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" data-ng-view></div>
         <%}else{%>
