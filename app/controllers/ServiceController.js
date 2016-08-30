@@ -25,7 +25,7 @@ module.exports = function ( app )
 
 	ServiceController.get = function( req , res ) {
 		var _id = sanitize(req.params.id);
-
+		
 		if( req.params.id !== 'undefined'  ) {
 			
 			Service.findOne( { _id: _id } )

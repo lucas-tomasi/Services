@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular.module( 'services' , [  'frapontillo.bootstrap-switch' , 
-									'ngRoute' , 'jkuri.datepicker' ,
+									'ngRoute' , 'ngCookies' , 'jkuri.datepicker' ,
 									'angularUtils.directives.dirPagination'
 								 ])
 	
@@ -80,35 +80,53 @@
 				.when('/404', {
 					templateUrl: 'partials/404.html',
 					authorize: false })
+
+/*routes home*/
 				.when('/', {
 					templateUrl: 'partials/home/home.html',
 					controller: 'HomeController',
 					auhtorize: false })
+				.when('/reserve/:id', {
+					templateUrl: 'partials/home/reserveService.html',
+					controller: 'ReserveController',
+					authorize: false })
 				.when('/_=_', {
-					templateUrl: 'partials/home/home.html',
-					controller: 'HomeController',
-					redirectTo: '/',
+					redirectTo: '/'
+				})
+				.when('/teste/asd/', {
+					controller: 'TesteController',
+					templateUrl: 'partials/teste.html',
 					authorize: false
 				});
 
 			$routeProvider.otherwise({ redirectTo: '/404' });
 		}])
-		.run([ '$rootScope', '$location', "UsersServices", function ( $rootScope  , $location, User ) 
+
+		.run([ '$rootScope', '$location', 'UsersServices', '$cookieStore' , function ( $rootScope  , $location, User, Cookies ) 
 		{
+			var getUrl = function ( route ) {
+					var url = route.originalPath;
+					url = url.replace( /(?:([^\/]+))$/ , route.params.id );		 
+					return url;
+			};
+
     		var history = [];
 			
 			$rootScope.$on( "$routeChangeStart" , function( event, next, curr ) 
-			{
+			{			
 				if( curr && curr.scope )
-				{
-					history.push( curr.originalPath );
+				{	
+					console.log( curr );
+					history.push( getUrl( curr ) );
 				}
 
 				if( next )
 				{
 					if( next.authorize )
-					{	
+					{
+
 						User.getUserLogged().success( function( user ){ 
+					
 							if( next.authorize.indexOf( user.type ) != -1 )
 							{
 								$location.path( $location.$$path );
@@ -116,8 +134,17 @@
 							else
 							{
 								var url = history.length > 1 ? history[ history.length - 1 ] : "/";
-								$location.path( url );
-								Message.error( 'Permission Denied!' );
+								
+								if( next.authorize.indexOf(1) != -1 )
+								{
+									Message.alert( 'Please login' );
+									$location.path( '/auth/' );
+								}
+								else 
+								{
+									$location.path( url );
+									Message.error( 'Permission Denied!' );
+								} 
 							}
 						});
 					}

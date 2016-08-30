@@ -21,8 +21,9 @@ module.exports = function ()
 	});
 
 	var commentSchema = mongoose.Schema({
-		comment: 'String',
+		comment:  'String',
 		username: 'String',
+		stars: 'String',
 		date: {
 			type: Date,
 			default: new Date()

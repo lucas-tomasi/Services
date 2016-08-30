@@ -7,9 +7,6 @@ module.exports = function( app )
 	app.route( '/admin/services' )
 		.get( MyAuthenticate.verify, controller.list );
 		
-	app.route( '/public/services' )
-		.get( MyAuthenticate.verify, controller.getServicesHome );
-
 	app.route( '/admin/service/:id' )
 		.get(    MyAuthenticate.verify , controller.get    )
 	    .delete( MyAuthenticate.verify , controller.delete );
@@ -17,4 +14,10 @@ module.exports = function( app )
 	app.route( '/admin/service/' )
 		.get( MyAuthenticate.verify , controller.get   )
 		.post(MyAuthenticate.verify , controller.store );
+	
+	app.route( '/public/services' )
+		.get( MyAuthenticate.verify, controller.getServicesHome );
+
+	app.route( '/public/service/:id' )
+		.get( MyAuthenticate.verify, controller.get );
 }

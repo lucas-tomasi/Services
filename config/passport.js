@@ -19,7 +19,7 @@ module.exports = function (app) {
 	    User.findOrCreate({ 
 	    	"login":  profile.username, 
 	    	"name":   profile.displayName,
-	    	"email":  profile.emails[0].value,
+	    	"email":  profile._json.email,
 	    	"url":    profile.profileUrl,
 	    	"provider": profile.provider,
 	    	"image": profile._json.avatar_url,

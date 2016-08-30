@@ -46,5 +46,5 @@ module.exports = function ()
 
 	//schema.plugin(uniqueValidator, { message: 'Title: {VALUE} already exstis in categories' } );
 	
-	return mongoose.model( 'UserService', schema );
+	return mongoose.model( 'Reserve', schema );
 }

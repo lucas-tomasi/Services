@@ -26,6 +26,7 @@
         <script type="text/javascript" src="/vendor/bootstrap-switch/dist/js/bootstrap-switch.js">             </script>
         <script type="text/javascript" src="/vendor/angular/angular.js">                                       </script>
         <script type="text/javascript" src="/vendor/angular-route/angular-route.js">                           </script>
+        <script type="text/javascript" src="/vendor/angular-cookies/angular-cookies.js">                       </script>
         <script type="text/javascript" src="/vendor/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
         <script type="text/javascript" src="/vendor/angularUtils-pagination/dirPagination.js">                 </script>
         <script type="text/javascript" src="/vendor/select2/dist/js/select2.full.js">                          </script>
@@ -60,6 +61,7 @@
         <script type="text/javascript" src="/js/services/UsersServices.js">                                    </script>
         <script type="text/javascript" src="/js/services/CitiesServices.js">                                   </script>
         <script type="text/javascript" src="/js/services/ServicesServices.js">                                 </script>
+        <script type="text/javascript" src="/js/services/ReservationsServices.js">                             </script>
         
         <script type="text/javascript" src="/js/controllers/categories/CategoriesController.js">               </script>
         <script type="text/javascript" src="/js/controllers/categories/CategoryController.js">                 </script>        
@@ -68,7 +70,8 @@
         <script type="text/javascript" src="/js/controllers/auth/LoginController.js">                          </script>        
         <script type="text/javascript" src="/js/controllers/services/ServiceController.js">                    </script>        
         <script type="text/javascript" src="/js/controllers/services/ServicesController.js">                   </script>        
-        <script type="text/javascript" src="/js/controllers/HomeController.js">                                </script>        
+        <script type="text/javascript" src="/js/controllers/homes/HomeController.js">                          </script>        
+        <script type="text/javascript" src="/js/controllers/reservations/ReserveController.js">                </script>        
         <script type="text/javascript" src="/js/controllers/TesteController.js">                               </script>        
 
         <script type="text/javascript" src="/js/controllers/users/UserReportController.js">                    </script>
@@ -86,7 +89,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <% if( logged ){ %> 
                         <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=username%>&nbsp;&nbsp;&nbsp;<img src="<%=image%>" style="border-radius:15px;"height="30px" width="30px"></a>
+                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=username%>&nbsp;&nbsp;&nbsp;<img src="<%=image%>" class="myimage" style="border-radius:15px;"height="30px" width="30px"></a>
 
                             <ul class="dropdown-menu">
                             
@@ -112,7 +115,7 @@
             </nav>
         </div>
         <% if( logged != 1 && logged ){ %> 
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bs-menu"><div data-ng-include="'partials/menu.html'"></div></div>   
+            <% include menu %>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" data-ng-view></div>
         <%}else{%>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-view></div>

@@ -21,6 +21,11 @@
 				return $http.get('/admin/service/' + $routeParams.id );
 			};
 
+			var _getServicePublic = function () 
+			{
+				return $http.get('/public/service/' + $routeParams.id );
+			};
+
 			var _deleteService = function ( id ) 
 			{
 				return $http.delete('/admin/service/' + id );
@@ -34,6 +39,7 @@
 			return {	
 				getServices: _getServices,
 				getService:   _getService,
+				getServicePublic:   _getServicePublic,
 				storeService: _storeService,
 				deleteService: _deleteService,
 				getServicesPublic: _getServicesPublic

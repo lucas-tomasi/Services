@@ -4,12 +4,13 @@
 
 	angular.module('services')
 
-	.controller( 'HomeController' , [ '$scope' , 'CategoriesServices' , 'ServicesServices' ,
+	.controller( 'HomeController' , [ '$scope' , 'CategoriesServices' , 'ServicesServices' , '$cookieStore' ,
 
-		function( $scope, Categories, Services )
+		function( $scope, Categories, Services ,$cookieStore )
 		{			
 			$scope.init = function()
 			{
+				console.log( $cookieStore.get('teste') );
 				getServices();
 			};			
 
@@ -25,7 +26,7 @@
 							$scope.services = [];  
 						});	 
 			}
-
+			
 			$scope.init();				
 	}]);
 
