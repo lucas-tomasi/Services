@@ -10,7 +10,6 @@
 		{			
 			$scope.init = function()
 			{
-				console.log( $cookieStore.get('teste') );
 				getServices();
 			};			
 

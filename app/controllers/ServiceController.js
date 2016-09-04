@@ -9,6 +9,27 @@ module.exports = function ( app )
 
 	var ServiceController = new MyController( Service , defaultModel );
 
+	ServiceController.saveComment = function ( req, res ) 
+	{
+		var _id      = sanitize(req.body.service);
+		var comment = req.body;
+		delete comment.service;	
+		Service.findOne( { _id: _id } )
+			.exec(
+			function( err, item ) {
+				
+			    item.comments.push( comment );
+
+			    item.save( function ( err ){
+			    	if( err ){
+			    		res.status(500).json( err );
+			    	} else {
+			    		res.status(200).json( item );
+			    	}
+			    });
+		});
+	}
+
 	ServiceController.getServicesHome = function ( req, res ) 
 	{
 		Service.find( { active: true , $or: [ { dt_end:{ $eq : null } } , {dt_end: { $lte: new Date().toISOString() } } ] } )
@@ -18,6 +39,9 @@ module.exports = function ( app )
 			if( err ) {
 		    	res.status(500).json( err );
 		  	} else {
+		  		for (i in itens ) {
+		  			itens[i].price = itens[i].price.value.toFixed(2);
+		  		}
 		    	res.status(200).json( itens );
 		  	}
 		});
@@ -36,6 +60,7 @@ module.exports = function ( app )
 				if( err ) {
 			    	res.status(500).json( err );
 			  	} else {
+			  		item.price = item.price.value.toFixed(2); 
 			    	res.status(200).json( item );
 			  	}
 			});

@@ -14,6 +14,9 @@ module.exports = function( app )
 	app.route( '/admin/service/' )
 		.get( MyAuthenticate.verify , controller.get   )
 		.post(MyAuthenticate.verify , controller.store );
+
+	app.route ( '/protected/service/comment/' )
+	    .post( MyAuthenticate.verify , controller.saveComment );
 	
 	app.route( '/public/services' )
 		.get( MyAuthenticate.verify, controller.getServicesHome );

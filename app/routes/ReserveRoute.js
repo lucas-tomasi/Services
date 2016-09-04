@@ -9,4 +9,7 @@ module.exports = function( app )
 
 	app.route( '/public/reservations/user/:id' )
 		.get( MyAuthenticate.verify, controller.getReserveByUser );
+
+	app.route( '/protected/reserve/store' )
+		.post( MyAuthenticate.verify, controller.store );
 }

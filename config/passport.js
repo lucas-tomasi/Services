@@ -61,7 +61,7 @@ module.exports = function (app) {
 	    	"login":  profile.id, 
 	    	"name":   profile.displayName,
 	    	"email": profile.emails[0].value,
-	    	"url":    profile._json.url,
+	    	"url":    profile.profileUrl,
 	    	"provider": profile.provider,
 	    	"image": profile._json.picture.data.url,
 	    	"type": 1,

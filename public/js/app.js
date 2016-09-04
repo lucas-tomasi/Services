@@ -2,7 +2,7 @@
 	
 	'use strict';
 
-	angular.module( 'services' , [  'frapontillo.bootstrap-switch' , 
+	angular.module( 'services' , [  'frapontillo.bootstrap-switch' , 'ngSanitize',
 									'ngRoute' , 'ngCookies' , 'jkuri.datepicker' ,
 									'angularUtils.directives.dirPagination'
 								 ])
@@ -102,53 +102,80 @@
 			$routeProvider.otherwise({ redirectTo: '/404' });
 		}])
 
-		.run([ '$rootScope', '$location', 'UsersServices', '$cookieStore' , function ( $rootScope  , $location, User, Cookies ) 
+		.run([ '$rootScope', '$location', 'UsersServices', '$cookieStore' , function ( $rootScope  , $location, User, $cookies ) 
 		{
-			var getUrl = function ( route ) {
+			var getUrl = function ( route ) 
+			{
 					var url = route.originalPath;
-					url = url.replace( /(?:([^\/]+))$/ , route.params.id );		 
+					url     = url.replace( /(?:([^\/]+))$/ , route.params.id );		 
 					return url;
 			};
+
+			var hasAccess = function ( next , user ) 
+			{
+				if( next.authorize.indexOf( user.type ) != -1 )
+				{
+					$location.path( $location.$$path );
+				}
+				else
+				{
+					var url = history.length > 1 ? history[ history.length - 1 ] : "/";
+					
+					if( next.authorize.indexOf(1) != -1 )
+					{
+						Message.alert( 'Please login' );
+						$location.path( '/auth/' );
+					}
+					else 
+					{
+						$location.path( url );
+						Message.error( 'Permission Denied!' );
+					} 
+				}
+			}
 
     		var history = [];
 			
 			$rootScope.$on( "$routeChangeStart" , function( event, next, curr ) 
-			{			
+			{
+				var old = $cookies.get('urlOld');
+				
+				if( old && ( !curr || !/auth/.test( curr.originalPath ) ) )
+				{
+					$cookies.remove('urlOld');
+					$location.path( old );
+				}	
+
 				if( curr && curr.scope )
 				{	
-					console.log( curr );
 					history.push( getUrl( curr ) );
+					
+					if( next.originalPath == '/auth/' )
+					{
+						$cookies.put( 'urlOld' , history[ history.length - 1 ] );
+					}
 				}
 
 				if( next )
 				{
 					if( next.authorize )
 					{
-
-						User.getUserLogged().success( function( user ){ 
-					
-							if( next.authorize.indexOf( user.type ) != -1 )
-							{
-								$location.path( $location.$$path );
-							}
-							else
-							{
-								var url = history.length > 1 ? history[ history.length - 1 ] : "/";
-								
-								if( next.authorize.indexOf(1) != -1 )
-								{
-									Message.alert( 'Please login' );
-									$location.path( '/auth/' );
-								}
-								else 
-								{
-									$location.path( url );
-									Message.error( 'Permission Denied!' );
-								} 
-							}
-						});
+						var user = $cookies.get('user');
+						
+						if( user )
+						{
+							hasAccess( next , user );
+						}
+						else
+						{
+							User.getUserLogged().success( function( user ){ 
+								$cookies.put( 'user' , user );
+								hasAccess( next , user );
+							});
+						}
 					}
 				}
+
     		});
 
 		}]);

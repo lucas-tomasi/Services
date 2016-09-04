@@ -16,9 +16,15 @@
 				return $http.get('/public/reservations/user/' + $routeParams.id );
 			};
 
+			var _store = function ( reserve ) 
+			{
+				return $http.post('/protected/reserve/store/' + reserve );	
+			}
+
 			return {	
 				getReservationsByUser: _getReservationsByUser,
-				getReservationsByService: _getReservationsByService
+				getReservationsByService: _getReservationsByService,
+				store: _store
 			};
 		}]);
 })();

@@ -15,11 +15,14 @@
 				name: '@',
 				model: '=',
 				width: '=',
-				height: '='
+				height: '=',
+				interval: '@'
 			},
 			link: function ( scope, element, attributes, form ) {
 
 				scope.form = form;
+
+				var interval = ( scope.interval )? scope.interval : 2 ;
 
 				setTimeout(
 					function () {
@@ -35,24 +38,31 @@
 							selectHelper: true,
 							select: function(start, end) {
 								
-								if( start._d < moment().add(2,'d')._d )
+								if( start._d < moment().add( interval ,'d')._d )
 								{
-									Message.alert('Selecione uma data com dois dias de itervalo');
+									Message.alert('Select a larger date ' + moment( moment().add( interval ,'d')._d ).format('DD MMMM YYYY HH:mm:ss') );
 								}
 								else
 								{
-									var eventData = {
-										userid:   scope.user._id,
-										username: scope.user.name,
-										title:    scope.user.name + ' (' + scope.user.email + ')',
-										start:    start,
-										end:      end,
-										editable: true
-									};
-									scope.data.push( eventData );
-									scope.$apply();
-									$(element).fullCalendar('renderEvent', eventData, true); // stick? = true
-									$(element).fullCalendar('unselect');
+									if( scope.user )
+									{
+										var eventData = {
+											userid:   scope.user._id,
+											username: scope.user.name,
+											title:    scope.user.name + ' (' + scope.user.email + ')',
+											start:    start,
+											end:      end,
+											editable: true
+										};
+										scope.data.push( eventData );
+										scope.$apply();
+										$(element).fullCalendar('renderEvent', eventData, true); // stick? = true
+										$(element).fullCalendar('unselect');
+									}
+									else
+									{
+										Message.alert(  'Please login' );
+									}
 								}
 							},
 							eventBorderColor: '#459c50',
@@ -73,7 +83,6 @@
 
 							        	scope.$apply();
 										$(element).fullCalendar('removeEvents', [calEvent._id]);
-							        	
 						        	});
 							    }
 						    }

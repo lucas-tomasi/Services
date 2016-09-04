@@ -36,13 +36,19 @@
 				return $http.post( '/admin/service/' , service );
 			};
 
+			var _storeCommentService = function ( comment ) 
+			{
+				return $http.post( '/protected/service/comment' , comment );
+			};
+
 			return {	
 				getServices: _getServices,
 				getService:   _getService,
 				getServicePublic:   _getServicePublic,
 				storeService: _storeService,
 				deleteService: _deleteService,
-				getServicesPublic: _getServicesPublic
+				getServicesPublic: _getServicesPublic,
+				storeCommentService: _storeCommentService
 			};
 		}]);
 })();

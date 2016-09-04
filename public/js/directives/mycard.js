@@ -16,9 +16,6 @@
 				{
 					scope.data.description = scope.data.description.substr(0,220) + '...';	
 				}
-
-				scope.data.price = scope.data.price.toFixed(2);
-
 			}
 		};
 	
