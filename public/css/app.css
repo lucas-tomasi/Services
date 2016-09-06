@@ -3,7 +3,11 @@
 	background-color: #459c50 !important;
 	font-family: -webkit-pictograph !important;
 }
-
+.page-selected {
+	color: black;
+	opacity: 0.6;
+	cursor: auto;
+}
 .menu-navbar{
 	color: black !important;
 	font-weight: bold;

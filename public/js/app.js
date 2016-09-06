@@ -90,6 +90,16 @@
 					templateUrl: 'partials/home/reserveService.html',
 					controller: 'ReserveController',
 					authorize: false })
+				.when('/confirm/reserve/', {
+					templateUrl: 'partials/home/confirm.html',
+					controller: 'ConfirmReserveController',
+					authorize: [1,2,3]
+				})
+				.when('/confirm/myaccount/', {
+					templateUrl: 'partials/home/confirm.html',
+					controller: 'ConfirmReserveController',
+					authorize: [1,2,3]
+				})
 				.when('/_=_', {
 					redirectTo: '/'
 				})

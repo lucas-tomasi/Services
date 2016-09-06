@@ -1,0 +1,44 @@
+<br>
+<ul class="container breadcrumb">
+	<li class="btn green"><i class="fa fa-home"></i>&nbsp;Home</li>
+	<li data-ng-click="onPage(1);" class="btn" data-ng-class="{'page-selected' : page == 1 , 'green' : page != 1}"><i class="fa fa-user"></i>&nbsp;My account</li>
+	<li data-ng-click="onPage(2);" class="btn" data-ng-class="{'page-selected' : page == 2 , 'green' : page != 2}"><i class="fa fa-map-marker"></i>&nbsp;My address</li>
+	<li data-ng-click="onPage(3);" class="btn" data-ng-class="{'page-selected' : page == 3 , 'green' : page != 3}"><i class="fa fa-shopping-basket"></i>&nbsp;My resevations</li>
+</ul>
+<myform   formname="confirmReserveForm" funcsubmit="store()">
+	<div id="tab1" ng-show="page == 1">
+		<mytext model="user.name" name="name" label="Name" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.name" name="name" label="Name" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.name" name="name" label="Name" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.name" name="name" label="Name" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.name" name="name" label="Name" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.name" name="name" label="Name" form="confirmReserveForm" required="true" ></mytext>
+	</div>
+	<div id="tab2" ng-show="page == 2">
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+	</div>
+	<div id="tab3" ng-show="page == 3">
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+		<mytext model="user.email" name="email" label="Email" form="confirmReserveForm" required="true" ></mytext>
+	</div>
+</myform>
+<br>
+<hr>
+<br>
+<div>{{ reservations }}</div>
+<br>
+<hr>
+<br>
+<div>{{ user }}</div>
+<br>
+<hr>
+<br>

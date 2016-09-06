@@ -4,13 +4,13 @@
 
 	angular.module('services')
 
-	.controller( 'ReserveController' , [ '$scope' , 'CategoriesServices' , 'ServicesServices' , 'UsersServices', 'ReservationsServices' ,
+	.controller( 'ReserveController' , [ '$location' , '$cookieStore', '$scope' , 'CategoriesServices' , 'ServicesServices' , 'UsersServices', 'ReservationsServices' ,
 
-		function( $scope, Categories, Services, Users, Reservations )
+		function( $location, $cookies, $scope, Categories, Services, Users, Reservations )
 		{	
-			$scope.new_comment = '';
-			$scope.cont        = 0;
-
+			$scope.new_comment      = '';
+			$scope.cont             = 0;
+			$scope.new_reservations = [];
 			$scope.init = function()
 			{
 				getServices();
@@ -84,10 +84,13 @@
 				}
 			};
 
-			$scope.makeReservation = function () {
-				for( i in $scope.services_reservations ) {
-					var reserve = $scope.services_reservations;
-				}
+			$scope.makeReservetions = function () 
+			{	
+				console.log( $scope.new_reservations );
+
+				$cookies.put( 'reservations' , $scope.new_reservations[0] );
+
+				$location.path( '/confirm/reserve/' );
 			}
 
 			$scope.init();				

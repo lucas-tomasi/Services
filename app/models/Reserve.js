@@ -34,17 +34,16 @@ module.exports = function ()
 	 	dt_end: {
 	 		type: Date
 	 	},
-	 	ranting: {
-	 		type: 'Number',
-	 		max: 10,
-	 		min: 0,
-	 		required: [ true , 'Ranking is required' ], 
-	 		default: 5
+	 	message: {
+	 		type: 'String',
+	 		required: [ true, 'Enter a message for professional' ]
 	 	},
+		details: {
+			type: 'String',
+			required: [ true , 'Enter a detail to service' ]
+		},
 	 	response: 'String'
 	});
-
-	//schema.plugin(uniqueValidator, { message: 'Title: {VALUE} already exstis in categories' } );
 	
 	return mongoose.model( 'Reserve', schema );
 }

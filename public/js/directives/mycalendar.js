@@ -46,18 +46,26 @@
 								{
 									if( scope.user )
 									{
-										var eventData = {
-											userid:   scope.user._id,
-											username: scope.user.name,
-											title:    scope.user.name + ' (' + scope.user.email + ')',
-											start:    start,
-											end:      end,
-											editable: true
+								
+										var saveReserve = function ( param ) 
+										{
+											var message = param.replace( /\r\n|\r|\n/g	, "<br>" );
+											var eventData = {
+												userid:   scope.user._id,
+												username: scope.user.name,
+												title:    scope.user.name + ' (' + scope.user.email + ')',
+												start:    start,
+												message:   message,
+												end:      end,
+												editable: true
+											};
+											scope.model.push( eventData );
+											scope.$apply();
+											$(element).fullCalendar('renderEvent', eventData, true); // stick? = true
+											$(element).fullCalendar('unselect');
 										};
-										scope.data.push( eventData );
-										scope.$apply();
-										$(element).fullCalendar('renderEvent', eventData, true); // stick? = true
-										$(element).fullCalendar('unselect');
+
+										Message.text( 'Please, write a message for professional' , saveReserve );
 									}
 									else
 									{

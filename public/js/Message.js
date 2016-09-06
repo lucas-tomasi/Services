@@ -36,7 +36,8 @@
         swal("Success!", message , "success");
     };    
     
-    Message.confirm = function ( message , callback ) {
+    Message.confirm = function ( message , callback ) 
+    {
         swal({   
             title: "Are you sure?",   
             text: message,   
@@ -50,6 +51,47 @@
         });
     };
 
+    Message.prompt = function ( message ) 
+    {
+        swal({   
+            title: message,   
+            type: "input",   
+            showCancelButton: true,   
+            closeOnConfirm: false,   
+            animation: "slide-from-top",   
+            inputPlaceholder: "..." 
+        }, function(inputValue) {   
+            if (inputValue === false) return false;      
+            if (inputValue === "") {     
+                swal.showInputError("Please, " + message + "!" );     
+                return false;   
+            }      
+            swal("Success!", "", "success"); 
+        });
+    };
+
+    Message.text = function ( message, function_eval ) 
+    {
+        swal({   
+            title: message,   
+            text: "<textarea id='mytextareaalert' col='10' rows='4'></textarea>",   
+            showCancelButton: true,   
+            closeOnConfirm: false,   
+            animation: "slide-from-top",   
+            inputPlaceholder: "..." ,
+            html: true
+        }, function() {
+            var text = $('#mytextareaalert');
+
+            if (text.val() === false) return false;      
+            if (text.val() === "") {
+                $( '#mytextareaalert' ).after( '<div id="myerror" class="sa-error-container show"><div class="icon">!</div><p> Please, '+ message +'!</p></div>' );
+                return false;   
+            }
+            eval( function_eval( text.val() ) );      
+            swal("Success!", text.val() , "success"); 
+        });
+    };
     return Message;
 
  }));
