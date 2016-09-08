@@ -26,7 +26,6 @@
 			});
 
 			$rootScope.$on( 'removeReserve' , function ( event, reserve ) {
-				console.log('ssss');
 				var reservations = MySession.get( 'reservations' );				
 
 				reservations = reservations.filter( function ( value ) {
