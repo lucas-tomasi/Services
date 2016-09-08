@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular.module( 'services' , [  'frapontillo.bootstrap-switch' , 'ngSanitize',
-									'ngRoute' , 'ngCookies' , 'jkuri.datepicker' ,
+									'ngRoute' , 'jkuri.datepicker' ,
 									'angularUtils.directives.dirPagination'
 								 ])
 	
@@ -103,16 +103,13 @@
 				.when('/_=_', {
 					redirectTo: '/'
 				})
-				.when('/teste/asd/', {
-					controller: 'TesteController',
-					templateUrl: 'partials/teste.html',
-					authorize: false
-				});
+
+				.when('/logout', {});
 
 			$routeProvider.otherwise({ redirectTo: '/404' });
 		}])
 
-		.run([ '$rootScope', '$location', 'UsersServices', '$cookieStore' , function ( $rootScope  , $location, User, $cookies ) 
+		.run([ '$rootScope', '$location', 'UsersServices', function ( $rootScope  , $location, User ) 
 		{
 			var getUrl = function ( route ) 
 			{
@@ -148,11 +145,12 @@
 			
 			$rootScope.$on( "$routeChangeStart" , function( event, next, curr ) 
 			{
-				var old = $cookies.get('urlOld');
+				var old = MySession.get('urlOld');
 				
 				if( old && ( !curr || !/auth/.test( curr.originalPath ) ) )
 				{
-					$cookies.remove('urlOld');
+					MySession.clear();
+					MySession.remove('urlOld');
 					$location.path( old );
 				}	
 
@@ -162,7 +160,7 @@
 					
 					if( next.originalPath == '/auth/' )
 					{
-						$cookies.put( 'urlOld' , history[ history.length - 1 ] );
+						MySession.set( 'urlOld' , history[ history.length - 1 ] );
 					}
 				}
 
@@ -170,18 +168,23 @@
 				{
 					if( next.authorize )
 					{
-						var user = $cookies.get('user');
-						
-						if( user )
+						if( !MySession.get( 'user' ) )
 						{
-							hasAccess( next , user );
+							User.getUserLogged().success( function( user ){ 
+								hasAccess( next , user );
+								
+								var userLogged = {};
+								
+								userLogged._id  = user._id;
+								userLogged.name = user.name;
+								userLogged.type = user.type;
+
+								MySession.set( 'user' , userLogged );
+							});
 						}
 						else
 						{
-							User.getUserLogged().success( function( user ){ 
-								$cookies.put( 'user' , user );
-								hasAccess( next , user );
-							});
+							hasAccess( next , MySession.get( 'user' ) );
 						}
 					}
 				}

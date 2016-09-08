@@ -8,23 +8,23 @@ module.exports = function( app )
 	
 	app.get('/auth/github/callback' , 
 		passport.authenticate('github',{
-			successRedirect: '/'
+			successRedirect: '/#/login'
 	}));
 	app.get('/auth/facebook/callback' , 
 		passport.authenticate('facebook',{
-		    successRedirect: '/'
+		    successRedirect: '/#/login'
 	}));
 	app.get('/auth/google/callback' , 
 		passport.authenticate('google',{
-		    successRedirect: '/'
+		    successRedirect: '/#/login'
 	}));
 	app.post('/login',
   		passport.authenticate('local', {
-		    successRedirect: '/',
+		    successRedirect: '/#/login',
 		    faliureRedirect: '/#/auth/login'
   	}));
 	app.get( '/auth/logout' , function ( req , res ) {
 		req.logOut();
-		res.redirect('/'); 
+		res.redirect('/#/logout'); 
 	});	
 }
