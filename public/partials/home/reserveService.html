@@ -2,7 +2,7 @@
     <div class="col-sm-12 col-lg-6 col-md-6"><br>
         <form style="display:table;">
             <div class="thumbnail">                
-                <mycalendar style="widht:80%" data="services_reservations" user='user' name='services_reservations'  model='new_reservations' width='500' height='425' ></mycalendar>
+                <mycalendar style="widht:80%" service="service" data="services_reservations" user='user' name='services_reservations'  model='new_reservations' width='500' height='425' ></mycalendar>
             </div>
         </form>
     </div>
@@ -18,7 +18,8 @@
         </div>
         <div style="float:right">
             <button class="btn btn-success" data-ng-click="makeReservetions();" data-ng-disabled="(!user || new_reservations.length == 0)" ><i class="fa fa-check-square-o"></i>  Make reservation</button>
-            <a data-ng-href="/#/" style="color:white !important;" class="btn btn-info"><i class="fa fa-hand-o-left"></i>  Back to main page</a data-ng-href="/#/">
+            <!-- <button class="btn btn-default" data-ng-click="addToCart();" data-ng-disabled="(!user || new_reservations.length == 0)" ><i class="fa fa-opencart"></i>  Add to cart</button> -->
+            <a data-ng-href="/#/" style="color:white !important;" class="btn btn-primary"><i class="fa fa-hand-o-left"></i>  Back</a>
         </div>
     </div>
 </div>

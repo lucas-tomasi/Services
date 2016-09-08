@@ -3,6 +3,15 @@
 	background-color: #459c50 !important;
 	font-family: -webkit-pictograph !important;
 }
+
+.badge {
+	transition: opacity 3s easy-out;
+}
+
+.btn-primary {
+	background-color:  #2e6da4 !important;
+}
+
 .page-selected {
 	color: black;
 	opacity: 0.6;
@@ -156,12 +165,17 @@
 	color: #459c50;
 }
 
+a:hover {
+    text-decoration: blink !important;
+}
+
 a {
 	color: #333 !important;
 }
 
 body {
 	padding-top: 50px;
+	background: #eeeeee !important;
 	margin:		 0; 
 	height: 	 100%;
 	font-family: -webkit-pictograph !important;

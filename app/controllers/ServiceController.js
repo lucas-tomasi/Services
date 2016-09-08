@@ -39,9 +39,6 @@ module.exports = function ( app )
 			if( err ) {
 		    	res.status(500).json( err );
 		  	} else {
-		  		for (i in itens ) {
-		  			itens[i].price = itens[i].price.value.toFixed(2);
-		  		}
 		    	res.status(200).json( itens );
 		  	}
 		});
@@ -60,7 +57,7 @@ module.exports = function ( app )
 				if( err ) {
 			    	res.status(500).json( err );
 			  	} else {
-			  		item.price = item.price.value.toFixed(2); 
+			  		item.price = parseFloat(item.price.value).toFixed(2); 
 			    	res.status(200).json( item );
 			  	}
 			});

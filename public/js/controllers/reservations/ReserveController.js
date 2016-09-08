@@ -4,28 +4,23 @@
 
 	angular.module('services')
 
-	.controller( 'ReserveController' , [ '$location' , '$cookieStore', '$scope' , 'CategoriesServices' , 'ServicesServices' , 'UsersServices', 'ReservationsServices' ,
+	.controller( 'ReserveController' , [ '$rootScope' , '$location', '$scope' , 'CategoriesServices' , 'ServicesServices' , 'UsersServices', 'ReservationsServices' ,
 
-		function( $location, $cookies, $scope, Categories, Services, Users, Reservations )
+		function( $rootScope, $location, $scope, Categories, Services, Users, Reservations )
 		{	
 			$scope.new_comment      = '';
 			$scope.cont             = 0;
 			$scope.new_reservations = [];
+			
 			$scope.init = function()
 			{
-				getServices();
 				getUserLogged();
-				getReserves();
+				getServices();
 			};			
 
 			function getUserLogged( )
 			{
 				Users.getUserLogged().then( user => $scope.user = user.data );
-			}
-
-			function getReserves() 
-			{
-				Reservations.getReservationsByService().then( reservations => $scope.services_reservations = reservations.data );
 			}
 
 			function getServices () 
@@ -40,6 +35,16 @@
 							for( var i in $scope.service.comments ){
 								$scope.service.comments[i].date = moment( $scope.service.comments[i].date ).format('DD MMMM YYYY HH:mm:ss');
 							}
+							Reservations.getReservationsByService().success( function ( data ) {
+								$scope.services_reservations = (data)? data : [];
+								var reservations = MySession.get( 'reservations' );
+								if( reservations ) {
+									for( var i in reservations ){
+										if( reservations[ i ].service == $scope.service._id )
+										$scope.services_reservations.push( reservations[ i ] );
+									}
+								}
+							});
 						})
 					.error(
 						function ( err ) {
@@ -47,14 +52,16 @@
 						});	 
 			}
 			
-			$scope.paintYellow = function ( star ) {
+			$scope.paintYellow = function ( star ) 
+			{
 				if( !$scope.starClicked )
 				{
 					$scope.cont = star;
 				}
 			};
 
-			$scope.clickStar = function ( star ) {
+			$scope.clickStar = function ( star ) 
+			{
 				$scope.starClicked = !$scope.starClicked;
 			};
 
@@ -84,12 +91,45 @@
 				}
 			};
 
+			$scope.addToCart =  function () 
+			{
+				var reservations = MySession.get( 'reservations' );
+				
+
+				if( reservations )
+				{
+					reservations = reservations.filter( function ( value ) {
+						 return value.service != $scope.service._id;
+					});
+					
+					if( $scope.new_reservations )
+					{
+						for( var i in $scope.new_reservations )
+						{						 
+							reservations.push( $scope.new_reservations[ i ] );
+						}
+
+						for( var i in $scope.services_reservations )
+						{						 
+							if( $scope.services_reservations[ i ].editable )
+							{
+								reservations.push( $scope.services_reservations[ i ] );
+							}
+						}
+					}
+				}
+				else
+				{
+					reservations = $scope.new_reservations;
+				}
+
+				$rootScope.$broadcast( 'updateCart', reservations );
+			};
+
 			$scope.makeReservetions = function () 
 			{	
-				console.log( $scope.new_reservations );
-
-				$cookies.put( 'reservations' , $scope.new_reservations[0] );
-
+				//$scope.addToCart();
+				
 				$location.path( '/confirm/reserve/' );
 			}
 

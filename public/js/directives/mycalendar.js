@@ -2,7 +2,7 @@
 
 	'use strict';
 
- 	angular.module('services').directive( 'mycalendar', [function () {
+ 	angular.module('services').directive( 'mycalendar', [ '$rootScope' , function ( $rootScope ) {
 	
 		return {
 			restrict: 'E',
@@ -16,6 +16,7 @@
 				model: '=',
 				width: '=',
 				height: '=',
+				service: '=',
 				interval: '@'
 			},
 			link: function ( scope, element, attributes, form ) {
@@ -38,7 +39,7 @@
 							selectHelper: true,
 							select: function(start, end) {
 								
-								if( start._d < moment().add( interval ,'d')._d )
+								if( start < moment().add( interval ,'d') )
 								{
 									Message.alert('Select a larger date ' + moment( moment().add( interval ,'d')._d ).format('DD MMMM YYYY HH:mm:ss') );
 								}
@@ -46,21 +47,29 @@
 								{
 									if( scope.user )
 									{
-								
 										var saveReserve = function ( param ) 
 										{
 											var message = param.replace( /\r\n|\r|\n/g	, "<br>" );
 											var eventData = {
-												userid:   scope.user._id,
-												username: scope.user.name,
-												title:    scope.user.name + ' (' + scope.user.email + ')',
-												start:    start,
-												message:   message,
-												end:      end,
-												editable: true
+												userid:           scope.user._id,
+												username:         scope.user.name,
+												title:            scope.user.name + ' (' + scope.user.email + ')',
+												start:            start,
+												message:          message,
+												end:              end,
+												service:          scope.service._id,
+												servicename:      scope.service.name,
+												professionalname: scope.service.professionalname,
+												price:            scope.service.price,
+												editable:         true
 											};
+
 											scope.model.push( eventData );
+						
+											$rootScope.$broadcast( 'addReserve' , eventData );
+						
 											scope.$apply();
+
 											$(element).fullCalendar('renderEvent', eventData, true); // stick? = true
 											$(element).fullCalendar('unselect');
 										};
@@ -82,15 +91,20 @@
 						        if( calEvent.editable )
 						        {
 							        Message.confirm( 'confirms exclusion?' , function() {
+							        
 							        	e.remove();
+							        	
+							        	$rootScope.$broadcast( 'removeReserve' , calEvent );
+
 							        	scope.data = scope.data.filter( function (a) {
-							        		return a.start.toString() != calEvent.start.toString() && 
-							        			   a.end.toString()   != calEvent.end.toString()   &&
-							        			   a.userid           != calEvent.userid         ;
+							        		return a.start  != calEvent.start && 
+								        		   a.end    != calEvent.end   &&
+								        		   a.userid != calEvent.userid           &&
+								        		   a.service!= calEvent.service;
 							        	});
 
 							        	scope.$apply();
-										$(element).fullCalendar('removeEvents', [calEvent._id]);
+										$(element).fullCalendar( 'removeEvents', [calEvent._id]);
 						        	});
 							    }
 						    }

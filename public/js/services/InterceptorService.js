@@ -17,6 +17,7 @@
 					return req;	 	 
 				},
 				responseError: function ( res ) {
+					 console.log( res.status );
 					 if( res.status == 401 )
 					 {
 					 	console.log('dasdsa');
