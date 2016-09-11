@@ -106,7 +106,7 @@
 
 				.when('/logout', {});
 
-			$routeProvider.otherwise({ redirectTo: '/404' });
+			$routeProvider.otherwise({ redirectTo: '/' });
 		}])
 
 		.run([ '$rootScope', '$location', 'UsersServices', function ( $rootScope  , $location, User ) 
@@ -145,12 +145,17 @@
 			
 			$rootScope.$on( "$routeChangeStart" , function( event, next, curr ) 
 			{
+				if( next && /logout/.test( next.originalPath ) )
+				{
+					MySession.clear();
+					$location.path( '/' );	
+				}
+
 				var old = MySession.get('urlOld');
 				
 				if( old && ( !curr || !/auth/.test( curr.originalPath ) ) )
 				{
 					MySession.clear();
-					MySession.remove('urlOld');
 					$location.path( old );
 				}	
 

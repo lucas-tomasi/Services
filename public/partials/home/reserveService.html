@@ -17,8 +17,7 @@
             </div>
         </div>
         <div style="float:right">
-            <button class="btn btn-success" data-ng-click="makeReservetions();" data-ng-disabled="(!user || new_reservations.length == 0)" ><i class="fa fa-check-square-o"></i>  Make reservation</button>
-            <!-- <button class="btn btn-default" data-ng-click="addToCart();" data-ng-disabled="(!user || new_reservations.length == 0)" ><i class="fa fa-opencart"></i>  Add to cart</button> -->
+             <button class="btn btn-success" data-ng-click="makeReservetions();" data-ng-disabled="hasMake()" ><i class="fa fa-check-square-o"></i>  Make reservation</button>
             <a data-ng-href="/#/" style="color:white !important;" class="btn btn-primary"><i class="fa fa-hand-o-left"></i>  Back</a>
         </div>
     </div>

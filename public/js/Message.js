@@ -51,6 +51,23 @@
         });
     };
 
+    Message.question = function ( message , callback, title, message_confirm ) 
+    {
+        var m = (message_confirm)? message_confirm : 'Yes, do it!';
+        var t = (title)? title : 'Are you sure?';
+        swal({   
+            title: t,   
+            text: message,   
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#459c50",   
+            confirmButtonText: message_confirm,   
+            closeOnConfirm: true 
+            }, function(){   
+                eval( callback() );
+        });
+    };
+
     Message.prompt = function ( message ) 
     {
         swal({   

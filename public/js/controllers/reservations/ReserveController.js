@@ -11,12 +11,16 @@
 			$scope.new_comment      = '';
 			$scope.cont             = 0;
 			$scope.new_reservations = [];
-			
+			delete $scope.reservations;
 			$scope.init = function()
 			{
 				getUserLogged();
 				getServices();
 			};			
+
+			$scope.hasMake = function () {
+				 return  ( !$scope.user || ( !MySession.get('reservations') || MySession.get('reservations').length == 0 ) );
+			}
 
 			function getUserLogged( )
 			{
@@ -39,9 +43,11 @@
 								$scope.services_reservations = (data)? data : [];
 								var reservations = MySession.get( 'reservations' );
 								if( reservations ) {
+									$scope.reservations = reservations;
 									for( var i in reservations ){
-										if( reservations[ i ].service == $scope.service._id )
-										$scope.services_reservations.push( reservations[ i ] );
+										if( reservations[ i ].service == $scope.service._id ){
+											$scope.services_reservations.push( reservations[ i ] );
+										}
 									}
 								}
 							});

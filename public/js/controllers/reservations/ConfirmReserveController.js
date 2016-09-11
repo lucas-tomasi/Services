@@ -5,26 +5,50 @@
 
 	angular.module('services')
 
-	.controller( 'ConfirmReserveController' , [ '$scope' , 'CategoriesServices' , 'ServicesServices' , 'UsersServices', 'ReservationsServices' ,
+	.controller( 'ConfirmReserveController' , [ '$location' , '$scope' , 'CategoriesServices' , 'ServicesServices' , 'UsersServices', 'ReservationsServices' ,
 
-		function( $scope, Categories, Services, Users, Reservations )
+		function( $location, $scope, Categories, Services, Users, Reservations )
 		{	
 			$scope.init = function()
 			{
-				$scope.service = {};
 				$scope.page = 1;
-				// $scope.user             = $cookies.get( 'user' )
-				// $scope.reservations     = $cookies.get( 'reservations' );
-				// $scope.service._id      = $cookies.get( 'service' );
-				// $scope.service.name     = $cookies.get( 'servicename' );
-				// $scope.professionalname = $cookies.get( 'professionalname' );
-				// $scope.service.price    = $cookies.get( 'price' );
+				$scope.user         = MySession.get( 'user' )
+				$scope.reservations = MySession.get( 'reservations' );
+				$scope.count        = 0;
+				$scope.total        = 0;
+				for( var i in $scope.reservations ) {
+					var hours = hoursBetween( new Date( $scope.reservations[ i ].start ) , new Date( $scope.reservations[ i ].end ) );
+					var total = parseFloat( hours * ( $scope.reservations[ i ].price / 60 ) ).toFixed( 2 );
+					var end   = moment( $scope.reservations[ i ].start ).add( 3, 'hours' ).format('DD/MM/YYYY HH:mm');
+					var start = moment( $scope.reservations[ i ].end ).add( 3, 'hours' ).format('DD/MM/YYYY HH:mm');
+					
+					$scope.reservations[ i ].hours    = ( hours / 60 );
+					$scope.reservations[ i ].total    = total;
+					$scope.reservations[ i ].start    = end;
+					$scope.reservations[ i ].end      = start;
+					$scope.reservations[ i ].approved = true;
+				};					
+				
+				$scope.updateTotals();
+			};
 
-				for( var i in  $scope.reservations )
-				{
-					$scope.reservations[i].price        = (( hoursBetween( new Date($scope.reservations[i].start) , new Date($scope.reservations[i].end) ) * $scope.service.price )/ 60 ).toFixed(2);
-					$scope.reservations[i].professional = $scope.professionalname;
-				}
+
+			$scope.updateTotals = function () {
+				$scope.total = 0;
+				$scope.count = 0;
+				$scope.reservations.forEach( function( reserve, index) {
+					
+					if( reserve.approved ) {
+						$scope.total +=  parseFloat( reserve.total );
+						$scope.count ++;
+					}
+				});
+				
+				$scope.total = '$ ' + $scope.total.toFixed(2);
+			};
+
+			$scope.goHome = function () {
+				$location.path( '/' );
 			};
 
 			$scope.onPage = function ( page ) 

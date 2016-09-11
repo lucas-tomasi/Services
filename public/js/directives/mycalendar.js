@@ -33,7 +33,7 @@
 								center: 'title',
 								right: 'month,agendaWeek,agendaDay'
 							},
-							timezone: 'local',
+							timezone: 'UTC-03:00',
 							defaultDate: new Date(),
 							selectable: true,
 							selectHelper: true,
@@ -58,8 +58,8 @@
 												message:          message,
 												end:              end,
 												service:          scope.service._id,
-												servicename:      scope.service.name,
-												professionalname: scope.service.professionalname,
+												servicename:      scope.service.title,
+												professionalname: scope.service.professional.name,
 												price:            scope.service.price,
 												editable:         true
 											};
@@ -88,9 +88,13 @@
 							events: scope.data,
 							eventClick: function(calEvent, jsEvent, view) {
 								var e = $(this);
+								console.log( calEvent );
+								console.log( jsEvent );
+								console.log( view );
 						        if( calEvent.editable )
 						        {
-							        Message.confirm( 'confirms exclusion?' , function() {
+						        	var message = calEvent.message + "\n" + calEvent.start.format('DD/MM/YYYY HH:mm') + " at " + calEvent.end.format('DD/MM/YYYY HH:mm');
+							        Message.question( message , function() {
 							        
 							        	e.remove();
 							        	
@@ -101,11 +105,11 @@
 								        		   a.end    != calEvent.end   &&
 								        		   a.userid != calEvent.userid           &&
 								        		   a.service!= calEvent.service;
-							        	});
+							        	} );
 
 							        	scope.$apply();
 										$(element).fullCalendar( 'removeEvents', [calEvent._id]);
-						        	});
+						        	}, calEvent.username , 'Delete');
 							    }
 						    }
 						});

@@ -1,28 +1,54 @@
 <br>
-<ul class="container breadcrumb">
-	<li class="btn green"><i class="fa fa-home"></i>&nbsp;Go home</li>
+<div class="container">
+<ul class="breadcrumb">
+	<li data-ng-click="goHome();"  class="btn green"><i class="fa fa-home"></i>&nbsp;Go home</li>
 	<li data-ng-click="onPage(1);" class="btn" data-ng-class="{'page-selected' : page == 1 , 'green' : page != 1}"><i class="fa fa-map-marker"></i>&nbsp;My address</li>
 	<li data-ng-click="onPage(2);" class="btn" data-ng-class="{'page-selected' : page == 2 , 'green' : page != 2}"><i class="fa fa-shopping-basket"></i>&nbsp;My resevations</li>
 </ul>
 
 <myform   formname="confirmReserveForm" funcsubmit="store()">
+	
 	<div id="tab1" ng-show="page == 1">
 		<mytext model="user.address.city"     name="name" label="Cidade"   form="confirmReserveForm" required="true" ></mytext>
 		<mytext model="user.address.district" name="name" label="District" form="confirmReserveForm" required="true" ></mytext>
 		<mytext model="user.number"           name="name" label="Number"   form="confirmReserveForm" required="true" ></mytext>
 		<mytext model="user.street"           name="name" label="Street"   form="confirmReserveForm" required="true" ></mytext>
 	</div>
+	
 	<div id="tab2" ng-show="page == 2">
-		<div data-ng-repeat="reserve in reservations">
+		<div data-ng-repeat="( key , reserve ) in reservations track by $index">
 			<div class="panel panel-default">
-				<div class="panel-heading">{{ reserve.start }} - {{ reserve.end }}</div>
-				<div class="panel-body">Price {{ reserve.price }}</div>
+				<div data-ng-class="{'canceled panel-heading':!reserve.approved , 'panel-heading title-default' : reserve.approved}">
+					<span style="cursor:pointer;" data-ng-click="clicked = !clicked">
+						<i data-ng-class="{ 'fa fa-minus' :  clicked , 'fa fa-plus' :  !clicked}"></i>&nbsp;&nbsp;{{ reserve.servicename }}
+					</span>
+					<input  class="navbar-right" type="checkbox" data-ng-model="reserve.approved" data-ng-click="updateTotals()">
+					<span class="navbar-right" style="padding-right:10px">$ {{ reserve.total }}</span>
+				</div>
+				<div class="container" data-ng-show="clicked">
+					<br>
+					<div class="form-group"><span class="myrow">Price/Hour  </span><span> $ {{ reserve.price }}               </span></div>
+					<div class="form-group"><span class="myrow">Hours       </span><span> {{ reserve.hours }}                 </span></div>
+					<div class="form-group"><span class="myrow">Professional</span><span> {{ reserve.professionalname }}      </span></div>
+					<div class="form-group"><span class="myrow">Start time  </span><span> {{ reserve.start }}                 </span></div>
+					<div class="form-group"><span class="myrow">End time    </span><span> {{ reserve.end }}                   </span></div>
+					<div class="form-group"><span class="myrow">Message     </span><span  style="float:left;"data-ng-bind-html="reserve.message"></span></div>
+				</div>
+							
 			</div>
 		</div>
-		<button class="btn">Continuar a comprar</button>
-		<button class="btn">Efeturar reservas</button>
+			<div class="panel panel-default">
+				<div class=" panel-heading">
+					<span>Services: {{ count }}</span>
+					<span class="navbar-right" style="padding-right:10px">Total: {{ total }}</span>
+				</div>
+			</div>
+			<button class="btn btn-danger"><i class="fa fa-ban"></i>  Cancel</button>
+			<button class="btn btn-success"><i class="fa fa-save"></i>  Reserve</button>
 	</div>
+
 </myform>
 <br>
 <hr>
 <br>
+</div>
