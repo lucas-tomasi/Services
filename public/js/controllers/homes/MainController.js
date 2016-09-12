@@ -38,6 +38,13 @@
 				
 			});
 
+			
+			$rootScope.$on( 'clearReservations' , function ( event, obj ) {
+				MySession.remove('reservations');
+				$scope.qtde = null;
+			});
+
+
 			$scope.init();
 
 		}]);

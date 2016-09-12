@@ -27,16 +27,12 @@ module.exports = function ()
 	 		required: [ true, 'Price is required' ],
 	 		default: 0.00  
 	 	},
-	 	dt_start: {
+	 	start: {
 	 		type: Date,
 	 		required: [ true, 'Enter a start date' ] 
 	 	},
-	 	dt_end: {
+	 	end: {
 	 		type: Date
-	 	},
-	 	message: {
-	 		type: 'String',
-	 		required: [ true, 'Enter a message for professional' ]
 	 	},
 		details: {
 			type: 'String',

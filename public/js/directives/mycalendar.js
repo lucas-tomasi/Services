@@ -35,6 +35,7 @@
 							},
 							timezone: 'UTC-03:00',
 							defaultDate: new Date(),
+							defaultView: 'agendaWeek',
 							selectable: true,
 							selectHelper: true,
 							select: function(start, end) {
@@ -51,16 +52,19 @@
 										{
 											var message = param.replace( /\r\n|\r|\n/g	, "<br>" );
 											var eventData = {
-												userid:           scope.user._id,
+												ref_user:         scope.user._id,
 												username:         scope.user.name,
 												title:            scope.user.name + ' (' + scope.user.email + ')',
 												start:            start,
-												message:          message,
+												details:          message,
 												end:              end,
-												service:          scope.service._id,
+												ref_service:      scope.service._id,
 												servicename:      scope.service.title,
 												professionalname: scope.service.professional.name,
+												emailprofessional:scope.service.professional.email,
+												emailuser:        scope.user.email,
 												price:            scope.service.price,
+												status:           'A',
 												editable:         true
 											};
 
@@ -74,7 +78,7 @@
 											$(element).fullCalendar('unselect');
 										};
 
-										Message.text( 'Please, write a message for professional' , saveReserve );
+										Message.text( 'Please, write details the reserve' , saveReserve );
 									}
 									else
 									{
@@ -88,10 +92,7 @@
 							events: scope.data,
 							eventClick: function(calEvent, jsEvent, view) {
 								var e = $(this);
-								console.log( calEvent );
-								console.log( jsEvent );
-								console.log( view );
-						        if( calEvent.editable )
+								if( calEvent.editable )
 						        {
 						        	var message = calEvent.message + "\n" + calEvent.start.format('DD/MM/YYYY HH:mm') + " at " + calEvent.end.format('DD/MM/YYYY HH:mm');
 							        Message.question( message , function() {

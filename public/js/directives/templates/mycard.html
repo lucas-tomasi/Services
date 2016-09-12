@@ -6,17 +6,17 @@
                 <h4 class="pull-right">R$ {{data.price}}</h4>
                 <h4><b><i class="fa fa-gears" style="font-size:12px;"></i></b>  {{data.title}} </h4>
                 <h5><b><i class="fa fa-user"  style="font-size:12px;"></i></b>  {{data.professional.name}} </h5>
-                <p style="height:100px">{{data.description}}</p>
+                <p style="height:100px" data-ng-bind-html="data.description"></p>
             </div>
         </a>
         <div class="ratings">
-            <p class="pull-right">15 reviews</p>
+            <p class="pull-right">{{ count }} reviews</p>
             <p>
-                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 0 }" ng-mouseover="pintaAmarelo(1);"></span>
-                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 1 }" ng-mouseover="pintaAmarelo(2);"></span>
-                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 2 }" ng-mouseover="pintaAmarelo(3);"></span>
-                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 3 }" ng-mouseover="pintaAmarelo(4);"></span>
-                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : cont > 4 }" ng-mouseover="pintaAmarelo(5);"></span>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : stars > 0 }"></span>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : stars > 1 }"></span>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : stars > 2 }"></span>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : stars > 3 }"></span>
+                <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : stars > 4 }"></span>
             </p>
         </div>
     </div>

@@ -12,15 +12,11 @@
 					return req;	 
 				},
 				requestError: function ( req ) {
-					console.log('request error');
-					console.log( req );
 					return req;	 	 
 				},
 				responseError: function ( res ) {
-					 console.log( res.status );
-					 if( res.status == 401 )
-					 {
-					 	console.log('dasdsa');
+					 if( res.status == 401 ) {
+					 	Message.alert( 'Access Denied' );
 					 	$location.path('/auth');
 					 }
 					 return $q.reject( res );

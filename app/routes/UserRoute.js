@@ -20,7 +20,9 @@ module.exports = function( app )
 		.get(    MyAuthenticate.verify , controller.get    )
 	    .delete( MyAuthenticate.verify , controller.delete );
 
-	app.route( '/admin/user/' )
-		.get( MyAuthenticate.verify , controller.get   )
+	app.route( '/protected/user/' )
 		.post(MyAuthenticate.verify , controller.store );
+
+	app.route( '/admin/user/' )
+		.get( MyAuthenticate.verify , controller.get   );
 }

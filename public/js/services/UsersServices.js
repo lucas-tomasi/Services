@@ -21,9 +21,9 @@
 				return $http.delete('/admin/user/' + id );
 			};
 
-			var _storeUser = function ( category ) 
+			var _storeUser = function ( user ) 
 			{
-				return $http.post( '/admin/user/' , category );
+				return $http.post( '/protected/user/' , user );
 			};
 
 			var _getProfessionalsComposite = function () 

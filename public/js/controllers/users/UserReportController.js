@@ -8,11 +8,18 @@
 		
 		function( $scope , UsersServices ){
 			
-			$scope.init = function () {
-
-			};
-
-			$scope.init();
+			$scope.genereteReport = function () {
+				 UsersServices.genereteReport()
+				 	.success(
+				 		function ( data ) {
+				 			console.log( data );
+				 		})
+				 	.error(
+				 		function ( err ) {
+				 			 console.log( err );
+				 		}
+				 	);
+			}
 	}]);
 
 })();

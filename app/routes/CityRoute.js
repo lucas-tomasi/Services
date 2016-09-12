@@ -7,7 +7,7 @@ module.exports = function( app )
 	app.route( '/admin/cities' )
 		.get( MyAuthenticate.verify, controller.list );
 
-	app.route( '/admin/citiesComposite' )
+	app.route( '/protected/citiesComposite' )
 		.get( MyAuthenticate.verify, controller.citiesComposite );
 
 	app.route( '/admin/city/:id' )

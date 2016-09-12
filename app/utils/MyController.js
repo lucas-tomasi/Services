@@ -55,6 +55,7 @@ module.exports = function ( model , defaultModel ) {
 		    	if(err) {
 		    		res.status(500).json( err );
 		    	} else {
+		    		
 		      		res.status(200).json( item );
 		    	}
 		  	});

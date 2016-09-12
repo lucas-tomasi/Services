@@ -5,17 +5,20 @@
 
 	angular.module('services')
 
-	.controller( 'ConfirmReserveController' , [ '$location' , '$scope' , 'CategoriesServices' , 'ServicesServices' , 'UsersServices', 'ReservationsServices' ,
+	.controller( 'ConfirmReserveController' , [ '$rootScope' , '$location' , '$scope' , 'CitiesServices', 'ReservationsServices' , 'UsersServices' ,
 
-		function( $location, $scope, Categories, Services, Users, Reservations )
+		function( $rootScope,  $location, $scope, Cities, Reservations, User )
 		{	
 			$scope.init = function()
 			{
 				$scope.page = 1;
-				$scope.user         = MySession.get( 'user' )
 				$scope.reservations = MySession.get( 'reservations' );
 				$scope.count        = 0;
 				$scope.total        = 0;
+				
+				getCities();
+				getUser();
+
 				for( var i in $scope.reservations ) {
 					var hours = hoursBetween( new Date( $scope.reservations[ i ].start ) , new Date( $scope.reservations[ i ].end ) );
 					var total = parseFloat( hours * ( $scope.reservations[ i ].price / 60 ) ).toFixed( 2 );
@@ -24,27 +27,41 @@
 					
 					$scope.reservations[ i ].hours    = ( hours / 60 );
 					$scope.reservations[ i ].total    = total;
-					$scope.reservations[ i ].start    = end;
-					$scope.reservations[ i ].end      = start;
+					$scope.reservations[ i ].dt_start = end;
+					$scope.reservations[ i ].dt_end   = start;
 					$scope.reservations[ i ].approved = true;
 				};					
 				
 				$scope.updateTotals();
 			};
 
+			var getCities = function(){
+				Cities.getCitiesComposite().success( function( data ){
+					$scope.cities = data;
+				});
+			};
+
+			var getUser = function() {
+				User.getUserLogged().success( function( user ){
+					$scope.user = user;
+				});
+			};
+
 
 			$scope.updateTotals = function () {
 				$scope.total = 0;
 				$scope.count = 0;
-				$scope.reservations.forEach( function( reserve, index) {
+				if( $scope.reservations ){
+					$scope.reservations.forEach( function( reserve, index) {
+						
+						if( reserve.approved ) {
+							$scope.total +=  parseFloat( reserve.total );
+							$scope.count ++;
+						}
+					});
 					
-					if( reserve.approved ) {
-						$scope.total +=  parseFloat( reserve.total );
-						$scope.count ++;
-					}
-				});
-				
-				$scope.total = '$ ' + $scope.total.toFixed(2);
+					$scope.total = '$ ' + $scope.total.toFixed(2);
+				}
 			};
 
 			$scope.goHome = function () {
@@ -55,6 +72,41 @@
 			{
 				$scope.page = page;
 			};
+
+		
+			$scope.reserve = function( ) 
+			{
+				if( $scope.count > 0 ){
+					User.storeUser( $scope.user ).success(  function ( data ) {
+						$scope.reservations.forEach( function( reserve, i ) {
+							if( reserve.approved ) {
+								reserve.end   = new Date( reserve.end.toString()   );
+								reserve.start = new Date( reserve.start.toString() );
+								Reservations.store( reserve ).success( function( data ){
+									Message.success('');
+									$rootScope.$broadcast( 'clearReservations' );
+								})
+								.error( function( err ){
+									Message.error( 'Error saving reserve' );
+								});
+							}
+						});
+					})
+					.error( function( err ){
+						Message.error( 'Error saving users' );
+					});
+				} else {
+					Message.alert( "You don't have reservations" );
+				}
+				$location.path( '/' );
+			};
+
+			$scope.cancel = function()
+			{
+				MySession.clear();
+				$location.path('/');	
+			};
+
 
 			var hoursBetween = function( data1, data2 )
 		    { 

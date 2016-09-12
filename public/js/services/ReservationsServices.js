@@ -18,7 +18,7 @@
 
 			var _store = function ( reserve ) 
 			{
-				return $http.post('/protected/reserve/store/' + reserve );	
+				return $http.post('/protected/reserve/store/' , reserve );	
 			}
 
 			return {	

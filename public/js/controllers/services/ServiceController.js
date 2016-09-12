@@ -27,6 +27,7 @@
 				 						$scope.service    = data;	
 				 						$scope.service.professional = user._id;			
 				 						$scope.service.professionalname = user.name;			
+				 						$scope.service.description = $scope.service.description.replace( /<br>/g , "\n" );
 				 					});
 				 			}
 				 			else
@@ -36,12 +37,12 @@
 				 				$scope.service    = data;	
 				 				$scope.service.professional     = _id;	
 				 				$scope.service.professionalname = name;
+				 				$scope.service.description = $scope.service.description.replace( /<br>/g , "\n" );
 				 			}
 						})
 					.error( 
 						function (err) 
 						{
-							console.log(err);
 				 			$scope.service =  {};
 						});
 			}
@@ -63,6 +64,7 @@
 			}
 
 			$scope.store = function () {
+				$scope.service.description = $scope.service.description.replace( /\r\n|\r|\n/g	, "<br>" );
 				ServicesServices.storeService( $scope.service )
 					.success(
 						function ( data ) 

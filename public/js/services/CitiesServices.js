@@ -18,7 +18,7 @@
 
 			var  _getCitiesComposite = function()
 			{
-				return $http.get( '/admin/citiesComposite/');
+				return $http.get( '/protected/citiesComposite/');
 			};
 
 			return {	
