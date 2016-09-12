@@ -2,7 +2,7 @@
 /node_modules/*
 /dist/*
 ./tmp/*
-
+/config/*
 /tmp/*
 /teste.js
 /public/js/controllers/TesteController.js
