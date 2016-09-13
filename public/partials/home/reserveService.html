@@ -13,7 +13,7 @@
             <div class="caption">
                 <h4 class="pull-right" >R$ {{ service.price }}</h4>
                 <h4><b>{{ service.title }}</b></h4>
-                <p>{{ service.description }}</p>
+                <p data-ng-bind-html="service.description">{{  }}</p>
             </div>
         </div>
         <div style="float:right">

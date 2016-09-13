@@ -77,7 +77,7 @@
 			$scope.reserve = function( ) 
 			{
 				if( $scope.count > 0 ){
-					User.storeUser( $scope.user ).success(  function ( data ) {
+					User.saveAddress( $scope.user ).success(  function ( data ) {
 						$scope.reservations.forEach( function( reserve, i ) {
 							if( reserve.approved ) {
 								reserve.end   = new Date( reserve.end.toString()   );

@@ -80,7 +80,18 @@
 				.when('/404', {
 					templateUrl: 'partials/404.html',
 					authorize: false })
-
+/*routes perfil*/
+				.when('/myrequests', {
+					templateUrl: 'partials/users/myrequests.html',
+					controller: 'MyRequestsController',
+					authorize: [1,2,3]
+				})
+				.when('/myaccount', {
+					templateUrl: 'partials/users/myaccount.html',
+					controller: 'MyAccountController',
+					// authorize: false
+					authorize: [1,2,3]
+				})
 /*routes home*/
 				.when('/', {
 					templateUrl: 'partials/home/home.html',
@@ -91,11 +102,6 @@
 					controller: 'ReserveController',
 					authorize: false })
 				.when('/confirm/reserve/', {
-					templateUrl: 'partials/home/confirm.html',
-					controller: 'ConfirmReserveController',
-					authorize: [1,2,3]
-				})
-				.when('/confirm/myaccount/', {
 					templateUrl: 'partials/home/confirm.html',
 					controller: 'ConfirmReserveController',
 					authorize: [1,2,3]

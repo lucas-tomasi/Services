@@ -45,6 +45,10 @@
 				 return $http.get( '/public/userLogged' );
 			};
 
+			var _saveAddress = function ( address ) {
+				 return $http.post( '/protected/user/address' , address );
+			};
+			
 			return {	
 				getUsers:   _getUsers,
 				getUser:    _getUser,
@@ -53,7 +57,8 @@
 				authenticate: _authenticate,
 				getUserLogged: _getUserLogged,
 				genereteReport: _genereteReport,
-				getProfessionalsComposite : _getProfessionalsComposite
+				getProfessionalsComposite : _getProfessionalsComposite,
+				saveAddress: _saveAddress
 			};
 		}]);
 })();

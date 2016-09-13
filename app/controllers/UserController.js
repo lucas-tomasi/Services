@@ -12,6 +12,19 @@ module.exports = function ( app )
 		res.status(200).json(req.user);
 	}
 
+	UserController.saveAddress = function( req, res )
+	{		
+		User.update( { email: req.body.email }, { $set: { phone: req.body.phone, address: req.body.address } }, { multi: true }, 
+			
+		function( err , item ) {
+	    	if ( err ) {
+	      		res.status(500).json( err );
+	    	} else {
+	      		res.status( 200 ).json( {} );
+	    	}
+	  	});
+	}
+
 	UserController.getProfessionalsComposite = function( req, res )
 	{
 		User.find( { type: 2 } ).exec(
