@@ -23,6 +23,9 @@ module.exports = function( app )
 	app.route( '/protected/user/' )
 		.post(MyAuthenticate.verify , controller.store );
 
+	app.route( '/protected/user/address' )
+		.post(MyAuthenticate.verify , controller.saveAddress );
+
 	app.route( '/admin/user/' )
 		.get( MyAuthenticate.verify , controller.get   );
 }

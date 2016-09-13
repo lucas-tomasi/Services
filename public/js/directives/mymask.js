@@ -42,20 +42,27 @@
 		      		}
 		      		else
 		      		{
-			      		for (var i = 0; i < value.length; i++) 
-			      		{
-			      			var partialMask  = scope.mymask.substr(i,1);
-			      			var partialValue = value.substr(i,1);
-			      			
-			      			if( partialMask === '#')
-			      			{
-								newValue += partialValue.replace(/[^0-9]/, "");
-			      			}
-			      			else
-			      			{
-			      				newValue += partialMask;
-			      			}
-			      		}
+		      			if( value.length <= scope.mymask.length )
+		      			{
+				      		for (var i = 0; i < value.length; i++) 
+				      		{
+				      			var partialMask  = scope.mymask.substr(i,1);
+				      			var partialValue = value.substr(i,1);
+				      			
+				      			if( partialMask === '#')
+				      			{
+									newValue += partialValue.replace(/[^0-9]/, "");
+				      			}
+				      			else
+				      			{
+				      				newValue += partialMask + partialValue.replace(/[^0-9]/, "");
+				      			}
+				      		}
+				      	}
+				      	else
+				      	{
+				      		newValue = value.substr( 0 , scope.mymask.length + 1 );
+				      	}
 					}
 	      		
 	      			return newValue;

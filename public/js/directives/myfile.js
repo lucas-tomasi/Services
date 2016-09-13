@@ -21,6 +21,12 @@
 				setTimeout(function () {
 					if( scope.model )
 					{
+						if( !angular.isArray( scope.model ) ) {
+							var files = [];
+							var file = { bas64: scope.model, name: 'undefined.jpg' , type: 'image' };
+							files.push(file);
+							scope.model = files;
+						}
 						for (var i = 0 ; i < scope.model.length ; i++ ) {
 							var e     = {};
 							e.target  = { result : scope.model[i].bas64  };
