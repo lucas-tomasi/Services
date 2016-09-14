@@ -148,7 +148,7 @@
 			}
 
     		var history = [];
-			
+		
 			$rootScope.$on( "$routeChangeStart" , function( event, next, curr ) 
 			{
 				if( next && /logout/.test( next.originalPath ) )

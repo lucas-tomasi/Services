@@ -13,6 +13,9 @@
 				$scope.qtde = ( MySession.get('reservations') )? MySession.get('reservations').length : null;
 			}
 
+			$rootScope.$on( 'onLoad' , function (event , load ) {
+				$scope.load = load;	 
+			});
 
 			$rootScope.$on( 'addReserve'    , function (event, reserve ) 
 			{

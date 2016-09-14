@@ -82,15 +82,17 @@
         <!-- endbuild -->
 
     </head>
-    
     <body>
+        <div class="preload" data-ng-show="load" data-ng-controller="MainController as Spinner">
+            <div class="fa fa-spinner fa-pulse fa-3x fa-fw myspinner"></div>
+        </div>
         <div>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
 
                     <a class="navbar-brand title" href="#/">Services</a>    
                     <% if( logged ){ %> 
-                    <ul class="nav navbar-nav navbar-right" data-ng-controller="MainController">
+                    <ul class="nav navbar-nav navbar-right" data-ng-controller="MainController as  Main">
                         <li class="dropdown">
                           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i style="font-size:25px;" class="fa fa-shopping-cart"></i><span style="margin-top: -30px;color:#a94442;background-color:#dca7a7" class="badge">{{ qtde }}</span></a>
                             <ul class="dropdown-menu">

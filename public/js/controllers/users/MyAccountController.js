@@ -31,7 +31,7 @@
 			}
 
 			$scope.store = function() {
-				User.saveAddress( $scope.user ).success( function( data ) {
+				Users.saveAddress( $scope.user ).success( function( data ) {
 					Message.success('');
 				}).error( function( err ){
 					Message.success('Error saving user');
