@@ -32,7 +32,6 @@
 				var reservations = MySession.get( 'reservations' );				
 
 				reservations = reservations.filter( function ( value ) {
-					console.log( (value.service != reserve.service && value.start != reserve.start && value.end != reserve.end) );
 					return value.service != reserve.service && value.start != reserve.start && value.end != reserve.end;
 				});
 

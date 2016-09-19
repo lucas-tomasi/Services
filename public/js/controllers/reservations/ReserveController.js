@@ -36,19 +36,27 @@
 							$scope.service.comments.sort( function ( one , two ) {
 								 return two.date > one.date;
 							});
-							for( var i in $scope.service.comments ){
-								$scope.service.comments[i].date = moment( $scope.service.comments[i].date ).format('DD MMMM YYYY HH:mm:ss');
-							}
+							
+							$scope.service.comments = $scope.service.comments.map( function( comment ){
+								comment.date = moment( comment.date ).format('DD MMMM YYYY HH:mm:ss');
+								return comment;
+							});
+
 							Reservations.getReservationsByService().success( function ( data ) {
 								$scope.services_reservations = (data)? data : [];
+								$scope.services_reservations = $scope.services_reservations.map( function( service ){
+									service.editable = false;
+									return service;
+								});
 								var reservations = MySession.get( 'reservations' );
 								if( reservations ) {
-									$scope.reservations = reservations;
-									for( var i in reservations ){
-										if( reservations[ i ].service == $scope.service._id ){
-											$scope.services_reservations.push( reservations[ i ] );
+									reservations.map( function( service ){										
+										if( service.ref_service == $scope.service._id ){
+											$scope.services_reservations.push( service );
+											console.log(1);
 										}
-									}
+										return service;
+									});
 								}
 							});
 						})

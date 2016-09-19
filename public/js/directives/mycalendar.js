@@ -48,7 +48,7 @@
 								{
 									if( scope.user )
 									{
-										var saveReserve = function ( param ) 
+										Message.text( 'Please, write details the reserve' ,  function ( param ) 
 										{
 											var message = param.replace( /\r\n|\r|\n/g	, "<br>" );
 											var eventData = {
@@ -68,17 +68,14 @@
 												editable:         true
 											};
 
+											$rootScope.$emit( 'addReserve' , eventData );
 											scope.model.push( eventData );
-						
-											$rootScope.$broadcast( 'addReserve' , eventData );
 						
 											scope.$apply();
 
 											$(element).fullCalendar('renderEvent', eventData, true); // stick? = true
 											$(element).fullCalendar('unselect');
-										};
-
-										Message.text( 'Please, write details the reserve' , saveReserve );
+										});
 									}
 									else
 									{

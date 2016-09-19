@@ -22,7 +22,12 @@
 	float:left;
 	font-weight:bold;	
 }
-
+.panel{
+	background: #eeeeee !important;
+}
+.nav-tabs > li.active > a{
+	background: #eeeeee !important;
+}
 .badge {
 	transition: opacity 3s easy-out;
 }

@@ -186,9 +186,10 @@
 								
 								var userLogged = {};
 								
-								userLogged._id  = user._id;
-								userLogged.name = user.name;
-								userLogged.type = user.type;
+								userLogged._id   = user._id;
+								userLogged.email = user.email;
+								userLogged.name  = user.name;
+								userLogged.type  = user.type;
 
 								MySession.set( 'user' , userLogged );
 							});

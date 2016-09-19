@@ -83,14 +83,19 @@ module.exports = function ( app )
 
 	ReserveController.getReserveByUser = function ( req, res ) 
 	{
-		Reserve.find( { ref_user : req.params.id } )
-			.exec(
-				function ( err, items ) {
-					if( err ) {
-						res.status( 500 ).json( err );
-					} else {
-						res.status( 200 ).json( items );
-					}
+		Reserve.find( {} )
+			.populate('ref_user')
+			.exec( function ( err, items ) {
+				if( err ) {
+					res.status( 500 ).json( err );
+				} else {
+					var newItens  = items.filter( function( reserve ){
+						if( reserve.ref_user.email == req.params.id ){
+							return reserve;
+						}
+					});
+					res.status( 200 ).json( newItens );
+				}
 		});	
 	}
 

@@ -11,9 +11,9 @@
 				return $http.get('/public/reservations/service/' + $routeParams.id );
 			};
 
-			var _getReservationsByUser = function () 
+			var _getReservationsByUser = function ( email ) 
 			{
-				return $http.get('/public/reservations/user/' + $routeParams.id );
+				return $http.get('/public/reservations/user/' + email );
 			};
 
 			var _store = function ( reserve ) 
