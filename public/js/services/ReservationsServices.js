@@ -26,11 +26,17 @@
 				return $http.post('/protected/reserve/store/' , reserve );	
 			}
 
+			var _analyze = function ( reserve ) 
+			{
+				return $http.post('/protected/reserve/analyze/' , reserve );	
+			}
+
 			return {	
 				getReservationsByUser: _getReservationsByUser,
 				getReservationsByProfessional: _getReservationsByProfessional,
 				getReservationsByService: _getReservationsByService,
-				store: _store
+				store: _store,
+				analyze: _analyze
 			};
 		}]);
 })();

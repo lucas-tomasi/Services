@@ -36,7 +36,7 @@
         swal("Success!", message , "success");
     };    
     
-    Message.confirm = function ( message , callback ) 
+    Message.confirm = function ( message , callback, param ) 
     {
         swal({   
             title: "Are you sure?",   
@@ -46,8 +46,10 @@
             confirmButtonColor: "#459c50",   
             confirmButtonText: "Yes, do it!",   
             closeOnConfirm: true 
-            }, function(){   
-                eval( callback() );
+        }, function( isConfirm ){   
+            if( isConfirm ) {
+                eval( callback( param ) );
+            }
         });
     };
 

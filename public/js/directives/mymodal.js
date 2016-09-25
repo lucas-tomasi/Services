@@ -12,9 +12,13 @@
 			},
 			scope: {
 			 	title: '@',
-			 	name: '@'
+			 	name: '@',
+			 	height: '@'
+			},
+			link: function( scope, element, attributes ) {
+				scope.height = ( scope.height )? scope.height : 100;
 			}
+
 		};
 	}]);
 })();
-

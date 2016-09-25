@@ -166,7 +166,7 @@
 				
 				if( old && ( !curr || !/auth/.test( curr.originalPath ) ) )
 				{
-					MySession.clear();
+					MySession.remove('urlOld');
 					$location.path( old );
 				}	
 
@@ -187,14 +187,15 @@
 						if( !MySession.get( 'user' ) )
 						{
 							User.getUserLogged().success( function( user ){ 
+								
 								hasAccess( next , user );
 								
-								var userLogged = {};
-								
-								userLogged._id   = user._id;
-								userLogged.email = user.email;
-								userLogged.name  = user.name;
-								userLogged.type  = user.type;
+								var userLogged = {
+									_id   : user._id,
+									email : user.email,
+									name  : user.name,
+									type  : user.type
+								};
 
 								MySession.set( 'user' , userLogged );
 							});

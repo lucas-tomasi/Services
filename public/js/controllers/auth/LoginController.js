@@ -11,16 +11,22 @@
 			$scope.store = function () {
 				UsersServices.authenticate( $scope.user )
 					.success(
-						function ( user ) 
+						function ( data ) 
 						{
-							var userLogged = {};
-							userLogged._id   = user._id;
-							userLogged.email = user.email;
-							userLogged.name  = user.name;
-							userLogged.type  = user.type;
+							UsersServices.getUserLogged().success(function(user){
 
-							MySession.set( 'user' , userLogged );
-							window.location.href = 'http://localhost:8000/';				
+								var userLogged = {
+									_id   : user._id,
+									email : user.email,
+									name  : user.name,
+									type  : user.type
+								};
+
+								MySession.set( 'user' , userLogged );
+								
+							});
+
+							window.location.href = 'http://localhost:8000/';
 						})
 					.error(
 						function ( data ) {

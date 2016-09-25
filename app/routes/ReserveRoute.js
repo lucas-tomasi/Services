@@ -15,4 +15,7 @@ module.exports = function( app )
 	
 	app.route( '/protected/reserve/store' )
 		.post( MyAuthenticate.verify, controller.store );
+
+	app.route( '/protected/reserve/analyze' )
+		.post( MyAuthenticate.verify, controller.store );
 }
