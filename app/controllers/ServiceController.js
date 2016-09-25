@@ -30,6 +30,17 @@ module.exports = function ( app )
 		});
 	}
 
+	ServiceController.list = function( req, res ) {
+		var filter = ( req.user.type == 2 )? { professional : req.user._id } : {};
+		Service.find( filter ).exec( function( err , items ) {
+	    	if( err ) {
+	        	res.status(500).json( err );
+	      	} else {
+				res.status(200).json( items );
+	      	}
+	    });
+	};
+
 	ServiceController.getServicesHome = function ( req, res ) 
 	{
 		Service.find( { active: true , $or: [ { dt_end:{ $eq : null } } , {dt_end: { $lte: new Date().toISOString() } } ] } )

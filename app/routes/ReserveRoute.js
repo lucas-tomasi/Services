@@ -7,9 +7,12 @@ module.exports = function( app )
 	app.route( '/public/reservations/service/:id' )
 		.get( MyAuthenticate.verify, controller.getReserveByService );
 
-	app.route( '/public/reservations/user/:id' )
+	app.route( '/protected/reservations/user/:id' )
 		.get( MyAuthenticate.verify, controller.getReserveByUser );
-
+	
+	app.route( '/protected/reservations/professional/:id' )
+		.get( MyAuthenticate.verify, controller.getReserveByProfessional );
+	
 	app.route( '/protected/reserve/store' )
 		.post( MyAuthenticate.verify, controller.store );
 }

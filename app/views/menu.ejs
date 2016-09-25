@@ -25,6 +25,17 @@
 		</a>
 	</div>
 
+	<% if(  logged == 2 ){ %>
+		<div data-toggle="collapse" data-target=".actions" class="bs-menu-title">Actions</div>
+
+		<div class="collapse bs-menu-item actions">
+
+			<a class="btn btn-block left" href= <%= "#/actions/reservations/" + user %> >
+				<i class="fa fa-calendar text-green"></i>&nbsp;&nbsp;<b>Reservations</b>
+			</a>
+		</div>
+	<% } %>
+
 	<div data-toggle="collapse" data-target=".reports" class="bs-menu-title">Reports</div>
 
 	<div class="collapse bs-menu-item reports">

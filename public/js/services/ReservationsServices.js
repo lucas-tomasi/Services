@@ -13,7 +13,12 @@
 
 			var _getReservationsByUser = function ( email ) 
 			{
-				return $http.get('/public/reservations/user/' + email );
+				return $http.get('/protected/reservations/user/' + email );
+			};
+
+			var _getReservationsByProfessional = function ( email ) 
+			{
+				return $http.get('/protected/reservations/professional/' + email );
 			};
 
 			var _store = function ( reserve ) 
@@ -23,6 +28,7 @@
 
 			return {	
 				getReservationsByUser: _getReservationsByUser,
+				getReservationsByProfessional: _getReservationsByProfessional,
 				getReservationsByService: _getReservationsByService,
 				store: _store
 			};

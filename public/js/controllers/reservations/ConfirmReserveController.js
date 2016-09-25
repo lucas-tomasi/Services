@@ -20,10 +20,10 @@
 				getUser();
 
 				for( var i in $scope.reservations ) {
-					var hours = hoursBetween( new Date( $scope.reservations[ i ].start ) , new Date( $scope.reservations[ i ].end ) );
+					var hours = Util.hoursBetween( new Date( $scope.reservations[ i ].start ) , new Date( $scope.reservations[ i ].end ) );
 					var total = parseFloat( hours * ( $scope.reservations[ i ].price / 60 ) ).toFixed( 2 );
-					var end   = moment( $scope.reservations[ i ].start ).add( 3, 'hours' ).format('DD/MM/YYYY HH:mm');
-					var start = moment( $scope.reservations[ i ].end ).add( 3, 'hours' ).format('DD/MM/YYYY HH:mm');
+					var end   = Util.formatDateToBR( $scope.reservations[ i ].start );
+					var start = Util.formatDateToBR( $scope.reservations[ i ].end );
 					
 					$scope.reservations[ i ].hours    = ( hours / 60 );
 					$scope.reservations[ i ].total    = total;
@@ -73,7 +73,6 @@
 				$scope.page = page;
 			};
 
-		
 			$scope.reserve = function( ) 
 			{
 				if( $scope.count > 0 ){
@@ -106,16 +105,6 @@
 				MySession.clear();
 				$location.path('/');	
 			};
-
-
-			var hoursBetween = function( data1, data2 )
-		    { 
-		        var hours=1000*60;
-		        var date1_ms = data1.getTime(); 
-		        var date2_ms = data2.getTime(); 
-		        var difference_ms = date2_ms - date1_ms; 
-		        return Math.round(difference_ms/hours); 
-		    };
 
 			$scope.init();			
     

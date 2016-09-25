@@ -11,6 +11,7 @@ module.exports = function( app )
 			{
 				res.render( 'index', { 
 					username: req.user.name,
+					user:     req.user._id,
 					image:    req.user.image,
 					logged:   req.user.type
 				});
@@ -19,6 +20,7 @@ module.exports = function( app )
 			{				
 				res.render( 'index', { 
 					username: req.user.name,
+					user:     req.user._id,
 					image:    req.user.image,
 					logged:   req.user.type
 				});

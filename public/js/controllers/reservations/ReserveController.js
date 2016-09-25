@@ -53,7 +53,6 @@
 									reservations.map( function( service ){										
 										if( service.ref_service == $scope.service._id ){
 											$scope.services_reservations.push( service );
-											console.log(1);
 										}
 										return service;
 									});

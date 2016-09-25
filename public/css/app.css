@@ -1,3 +1,10 @@
+.mypanel {
+	padding: 25px 10px 10px 10px;
+}
+.alert alert-ban{
+	background-color: #ddd;
+	color: black;
+}
 .canceled {
 	color: #a94442 !important;
     background-color: #f2dede !important;

@@ -58,6 +58,12 @@
 					templateUrl: 'partials/services/service.html',
 					controller: 'ServiceController',
 					authorize: [2,3] })
+/*route services professionals*/
+				.when('/actions/reservations/:id', {
+					templateUrl: 'partials/actions/reservationsProfessional.html',
+					controller: 'ReservationsProfessionalController',
+					authorize: [2]
+				})
 
 /*routes auth*/
 
@@ -89,7 +95,6 @@
 				.when('/myaccount', {
 					templateUrl: 'partials/users/myaccount.html',
 					controller: 'MyAccountController',
-					// authorize: false
 					authorize: [1,2,3]
 				})
 /*routes home*/

@@ -85,12 +85,38 @@ module.exports = function ( app )
 	{
 		Reserve.find( {} )
 			.populate('ref_user')
+			.populate('ref_service')
+			.populate({ path: 'ref_service', populate: { path: 'professional' , model: 'User' } })
+			.sort({start: -1})
 			.exec( function ( err, items ) {
 				if( err ) {
 					res.status( 500 ).json( err );
 				} else {
 					var newItens  = items.filter( function( reserve ){
 						if( reserve.ref_user.email == req.params.id ){
+							return reserve;
+						}
+					});
+					res.status( 200 ).json( newItens );
+				}
+		});	
+	}
+
+	ReserveController.getReserveByProfessional = function ( req, res ) 
+	{
+		Reserve.find( {} )
+			.populate('ref_user')
+			.populate({ path: 'ref_user', populate: { path: 'address.city' , model: 'City' } })
+			.populate('ref_service')
+			.populate({ path: 'ref_service', populate: { path: 'professional' , model: 'User' } })
+			.populate({ path: 'ref_service', populate: { path: 'ref_category' , model: 'Category' } })
+			.sort({start: -1})
+			.exec( function ( err, items ) {
+				if( err ) {
+					res.status( 500 ).json( err );
+				} else {
+					var newItens  = items.filter( function( reserve ){
+						if( reserve.ref_service.professional._id == req.params.id ){
 							return reserve;
 						}
 					});

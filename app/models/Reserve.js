@@ -10,7 +10,7 @@ module.exports = function ()
 	 		type: 'String', 
 	 		index: true,
 	 		required: [ true, 'Status is required' ],
-	 		default: 'A' 
+	 		default: 'A' // A - aguardando aprovação, E - aguardanco execução, C - cancelada, X - Concluida, Z - Não efetuada 
 	 	},
 	 	ref_service: {
 	 		type: 'ObjectId',
