@@ -6,7 +6,6 @@
 	<li data-ng-click="onPage(2);" class="btn" data-ng-class="{'page-selected' : page == 2 , 'green' : page != 2}"><i class="fa fa-map-marker"></i>&nbsp;My address</li>
 </ul>
 
-<myform   formname="confirmReserveForm" funcsubmit="reserve()">
 	
 	
 	<div id="tab1" ng-show="page == 1">
@@ -39,19 +38,18 @@
 			<button  data-ng-click="onPage(2)" class="btn btn-default"><i class="fa fa-chevron-right"></i> Next</button>
 	</div>
 	<div id="tab2" ng-show="page == 2">
-		<myselect2 model="user.address.city"     name="city"     label="Cidade"   form="confirmReserveForm" required="true" data="cities"></myselect2>
-		<mytext    model="user.address.district" name="district" label="District" form="confirmReserveForm" required="true" ></mytext>
-		<mytext    model="user.address.number"   name="number"   label="Number"   form="confirmReserveForm" required="true" ></mytext>
-		<mytext    model="user.address.street"   name="street"   label="Street"   form="confirmReserveForm" required="true" ></mytext>
-		<mytext    model="user.phone"            name="phone"    label="Phone"    form="userForm"			required="true" mask="(##) ####-#####" ></mytext>
+		<myform   formname="confirmReserveForm" funcsubmit="reserve()">
+			<myselect2 model="user.address.city"     name="city"     label="Cidade"   form="confirmReserveForm" required="true" data="cities"></myselect2>
+			<mytext    model="user.address.district" name="district" label="District" form="confirmReserveForm" required="true" ></mytext>
+			<mytext    model="user.address.number"   name="number"   label="Number"   form="confirmReserveForm" required="true" ></mytext>
+			<mytext    model="user.address.street"   name="street"   label="Street"   form="confirmReserveForm" required="true" ></mytext>
+			<mytext    model="user.phone"            name="phone"    label="Phone"    form="userForm"			required="true" mask="(##) ####-#####" ></mytext>
 
 			<button  data-ng-click="onPage(1)" class="btn btn-default"><i class="fa fa-chevron-left"></i> Prev</button>
 			<button  data-ng-click="cancel()"  class="btn btn-danger" ><i class="fa fa-ban"></i>  Cancel</button>
 			<button type='submit' class="btn btn-success"><i class="fa fa-save"></i>  Reserve</button>
-
+		</myform>
 	</div>
-
-</myform>
 <br>
 <hr>
 <br>
