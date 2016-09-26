@@ -13,8 +13,14 @@ module.exports = function ( app )
 	}
 
 	UserController.saveAddress = function( req, res )
-	{		
-		User.update( { email: req.body.email }, { $set: { phone: req.body.phone, address: req.body.address } }, { multi: true }, 
+	{	
+		var objUpdate = { phone: req.body.phone, address: req.body.address }
+		
+		if( req.body.image[0] ) {
+			objUpdate.image = req.body.image[0].bas64;
+		}
+		
+		User.update( { email: req.body.email }, { $set: objUpdate }, { multi: true }, 
 			
 		function( err , item ) {
 	    	if ( err ) {

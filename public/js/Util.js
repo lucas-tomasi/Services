@@ -32,6 +32,10 @@
         return Math.round(difference_ms/hours); 
     };
 
+    Util.scapeToHtml = function( param ) {
+        return param.replace( /\r\n|\r|\n/g , "<br>" );
+    };
+
     Util.formatDateToBR = function( date ) {
     	
         return moment( date ).add( 3, 'hours' ).format('DD/MM/YYYY HH:mm');

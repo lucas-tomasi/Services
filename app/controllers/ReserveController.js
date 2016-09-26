@@ -20,7 +20,16 @@ module.exports = function ( app )
 
 	var sendEmailAnalyze = function( reserve )
 	{
-		var state   = ( reserve.status == 'E' )? '<font color="green">Accpted</font>' : '<font color="red">Rejected</font>' ; 
+		var state = '';
+
+		if( reserve.status == 'E' ) {
+			state = '<font color="#31708f">Accpted</font>';
+		} else if ( reserve.status == 'C' ) {
+			state = '<font color="#a94442">Rejected</font>';
+		} else if ( reserve.status == 'X' ) {
+			state = '<font color="#3c763d">Completed</font>';
+		}
+
 		var content = "Your reservation for <b>" + reserve.ref_service.title + "</b> on the "+ reserve.dt_start +" to "+ reserve.dt_end +" was "+  state +"<br><br>Details:<br>"+ reserve.response;
 		var mail    = new MyMail();
 
@@ -68,7 +77,7 @@ module.exports = function ( app )
 						res.status( 200 ).json( items );
 					}
 		});
-	}
+	};
 
 	ReserveController.getReserveByUser = function ( req, res ) 
 	{
@@ -82,14 +91,14 @@ module.exports = function ( app )
 					res.status( 500 ).json( err );
 				} else {
 					var newItens  = items.filter( function( reserve ){
-						if( reserve.ref_user.email == req.params.id ){
+						if( reserve.ref_user && reserve.ref_user.email == req.params.id ){
 							return reserve;
 						}
 					});
 					res.status( 200 ).json( newItens );
 				}
 		});	
-	}
+	};
 
 	ReserveController.getReserveByProfessional = function ( req, res ) 
 	{
@@ -112,7 +121,7 @@ module.exports = function ( app )
 					res.status( 200 ).json( newItens );
 				}
 		});	
-	}
+	};
 
 	return ReserveController;
 };

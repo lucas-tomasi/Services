@@ -50,7 +50,7 @@
 									{
 										Message.text( 'Please, write details the reserve' ,  function ( param ) 
 										{
-											var message = param.replace( /\r\n|\r|\n/g	, "<br>" );
+											var message = Util.scapeToHtml( param );
 											var eventData = {
 												ref_user:         scope.user._id,
 												username:         scope.user.name,

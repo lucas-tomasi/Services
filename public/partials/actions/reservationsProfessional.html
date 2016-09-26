@@ -18,11 +18,11 @@
 		
 			<mytabs style="background:white !important">
 
-				<mytabcontent title="Answer" >
+				<mytabcontent title="Answer" data-ng-if="reserve.status != 'E' ">
 					<textarea data-ng-model="reserve.response" class="form-control" style="width:90%;margin-left:5%;" rows="5" placehoder="asd"></textarea>
 				</mytabcontent>
 
-				<mytabcontent title="Service">
+				<mytabcontent title="Service" data-ng-if="true" >
 					<div class="row left">
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>Category</b>&emsp;{{ reserve.ref_service.ref_category.name }}</div>
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>Date</b>&emsp;{{ reserve.dt_start }} - {{ reserve.dt_end }}</div>
@@ -32,7 +32,7 @@
 					</div>
 				</mytabcontent>
 			
-				<mytabcontent title="User">
+				<mytabcontent title="User" data-ng-if="true">
 					<div class="row left">
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>User</b>&emsp;{{ reserve.ref_user.name }}</div>
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>Phone</b>&emsp;{{ reserve.ref_user.phone }}</div>
@@ -48,9 +48,10 @@
 
 		<mymodalfooter>
 
-			<button  class="btn btn-danger"  data-dismiss="modal" data-ng-click="reject(reserve);"><i class="fa fa-thumbs-down"></i>&nbsp;Reject</button> 
-			<button  class="btn btn-success" data-dismiss="modal" data-ng-click="accept(reserve);"><i class="fa fa-thumbs-up">  </i>&nbsp;Accept</button> 
-			<button  class="btn btn-default" data-dismiss="modal" ><i class="fa fa-close">      </i>&nbsp;Close </button>
+				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-danger"  data-dismiss="modal" data-ng-click="reject(reserve);"><i class="fa fa-thumbs-down"></i>&nbsp;Reject</button> 
+				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-success" data-dismiss="modal" data-ng-click="accept(reserve);"><i class="fa fa-thumbs-up">  </i>&nbsp;Accept</button> 
+				<button data-ng-if="reserve.status == 'E'" class="btn btn-primary" data-dismiss="modal" data-ng-click="conclude(reserve);"><i class="fa fa-check-square-o"></i>&nbsp;Colnclude</button> 
+				<button  class="btn btn-default" data-dismiss="modal" ><i class="fa fa-close">      </i>&nbsp;Close </button>
 
 		</mymodalfooter>
 
