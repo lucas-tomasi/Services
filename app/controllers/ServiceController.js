@@ -45,12 +45,17 @@ module.exports = function ( app )
 	{
 		Service.find( { active: true , $or: [ { dt_end:{ $eq : null } } , {dt_end: { $lte: new Date().toISOString() } } ] } )
 			.populate( 'professional' )
+			.populate( 'ref_category' )
 			.exec(
-		function( err, itens ) {
+		function( err, items ) {
 			if( err ) {
 		    	res.status(500).json( err );
 		  	} else {
-		    	res.status(200).json( itens );
+		  		var newItems = items.map( function( item ){
+				    item.price = parseFloat(item.price.value).toFixed(2);
+				    return item;
+		    	});
+			    res.status(200).json( newItems );
 		  	}
 		});
 	}
@@ -62,6 +67,7 @@ module.exports = function ( app )
 			
 			Service.findOne( { _id: _id } )
 			.populate( 'professional' )
+			.populate( 'ref_category' )
 			.exec(
 
 			function( err, item ) {

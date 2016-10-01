@@ -1,3 +1,34 @@
+.search-open {
+    font-size: 20px;
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 99999999;
+}
+
+.search-close {
+    font-size: 20px;
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 99999999;
+}
+
+.hide {
+	background: transparent;
+    margin-left: 20px;
+	transition: background 5s;
+}
+
+.block {
+	padding-top: 10px;
+    margin-left: 20px;
+	display: block;
+	transition: display 5s;
+}
+
 .mypanel {
 	padding: 25px 10px 10px 10px;
 }

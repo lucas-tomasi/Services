@@ -1,4 +1,16 @@
-<br  class="row">
-<div data-ng-repeat="i in services">
+<div class="nav nav-bar" style="padding: 7px">
+	<a title="filter" data-ng-click="hidden()"><i data-ng-class="{ 'fa fa-search search-open': !hide, 'fa fa-search search-close' : hide }" style="float:left;font-size:20px;padding-right:20px"></i></a>
+	<div class="form-group form-inline" data-ng-class="{ 'hide' : !hide , 'block' : hide }">
+		<form>
+			<input type="text" placeholder="Title"       class="form-control col-xs-6 col-sm-4 col-md-4 col-lg-2" data-ng-model="fTitle">
+			<input type="text" placeholder="Description" class="form-control col-xs-6 col-sm-4 col-md-4 col-lg-2" data-ng-model="fDescription">
+			<input type="text" placeholder="Category"    class="form-control col-xs-6 col-sm-4 col-md-4 col-lg-2" data-ng-model="fCategory">
+			<select data-ng-options="item.order as item.text for item in filters track by item.id"  class="form-control col-xs-6 col-sm-4 col-md-4 col-lg-2" data-ng-model="order"></select>
+		</form>
+	</div>
+</div>
+
+<div data-ng-repeat="i in services | filter : { title: fTitle , description: fDescription, ref_category: { name: fCategory } } | orderBy: order : true  ">
     <mycard data="i"></mycard>
 </div>
+<div style="min-height:80px; position:inherit" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>

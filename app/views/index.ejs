@@ -108,11 +108,10 @@
                     <a class="navbar-brand title" href="#/">Services</a>    
                     <% if( logged ){ %> 
                     <ul class="nav navbar-nav navbar-right" data-ng-controller="MainController as  Main">
-                        <li class="dropdown">
+                        <li class="dropdown" data-ng-if="qtde > 0">
                           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i style="font-size:25px;" class="fa fa-shopping-cart"></i><span style="margin-top: -30px;color:#a94442;background-color:#dca7a7" class="badge">{{ qtde }}</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="menu-navbar" data-ng-href="/#/orders"><i class="fa fa-history"></i> See all</a></li>
-                                <li><a class="menu-navbar" data-ng-href="/#/orders"><i class="fa fa-history"></i> Clear all</a></li>
+                                <li><a class="menu-navbar"><i class="fa fa-cart-plus"></i> See cart</a></li>
                             </ul>
                         </li>
                     </ul>

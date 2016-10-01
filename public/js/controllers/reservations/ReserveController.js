@@ -104,48 +104,11 @@
 				}
 			};
 
-			$scope.addToCart =  function () 
-			{
-				var reservations = MySession.get( 'reservations' );
-				
-
-				if( reservations )
-				{
-					reservations = reservations.filter( function ( value ) {
-						 return value.service != $scope.service._id;
-					});
-					
-					if( $scope.new_reservations )
-					{
-						for( var i in $scope.new_reservations )
-						{						 
-							reservations.push( $scope.new_reservations[ i ] );
-						}
-
-						for( var i in $scope.services_reservations )
-						{						 
-							if( $scope.services_reservations[ i ].editable )
-							{
-								reservations.push( $scope.services_reservations[ i ] );
-							}
-						}
-					}
-				}
-				else
-				{
-					reservations = $scope.new_reservations;
-				}
-
-				$rootScope.$broadcast( 'updateCart', reservations );
-			};
-
 			$scope.makeReservetions = function () 
 			{	
-				//$scope.addToCart();
-				
 				$location.path( '/confirm/reserve/' );
 			}
-
+			
 			$scope.init();				
 	}]);
 

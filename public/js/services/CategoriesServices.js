@@ -28,7 +28,7 @@
 
 			var _getCategoriesComposite = function () 
 			{
-				return $http.get( '/admin/categoriesComposite/' );		 
+				return $http.get( '/public/categoriesComposite/' );		 
 			}
 
 			return {	

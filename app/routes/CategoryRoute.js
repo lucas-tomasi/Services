@@ -7,7 +7,7 @@ module.exports = function( app )
 	app.route( '/admin/categories' )
 		.get( MyAuthenticate.verify, controller.list );
 
-	app.route( '/admin/categoriesComposite' )
+	app.route( '/public/categoriesComposite' )
 		.get( MyAuthenticate.verify, controller.getCategoriesComposite );
 
 	app.route( '/admin/category/:id' )
