@@ -25,11 +25,6 @@
 					scope.stars = parseInt( (stars / count) );
 					scope.count = count;
 				}
-				
-				if ( scope.data.description.length > 223 )
-				{
-					scope.data.description = scope.data.description.substr(0,220) + '...';	
-				}
 			}
 		};
 	

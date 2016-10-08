@@ -21,9 +21,11 @@
 					{ id: 1 , order:'price*-1'          , text: 'Min Price'    }, 
 					{ id: 2 , order:'stars*1'           , text: 'Max Star'     }, 
 					{ id: 3 , order:'stars*-1'          , text: 'Min Star'     }, 
-					{ id: 4 , order:'count_comments*1'  , text: 'Max comments' },
-					{ id: 5 , order:'count_comments*-1' , text: 'Min comments' }, 	
+					{ id: 4 , order:'count_comments*1'  , text: 'Max reviews'  },
+					{ id: 5 , order:'count_comments*-1' , text: 'Min reviews'  }, 	
 				];
+
+				$scope.order = 2;
 			};			
 
 			function getServices () 

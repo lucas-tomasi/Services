@@ -16,10 +16,11 @@ module.exports = function ( app )
 	{	
 		var objUpdate = { phone: req.body.phone, address: req.body.address }
 		
-		if( req.body.image[0] ) {
+		if( req.body.image && req.body.image[0] ) {
 			objUpdate.image = req.body.image[0].bas64;
 		}
-		
+		console.log( req.body.image );
+		console.log( objUpdate );
 		User.update( { email: req.body.email }, { $set: objUpdate }, { multi: true }, 
 			
 		function( err , item ) {

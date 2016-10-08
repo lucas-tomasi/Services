@@ -16,17 +16,13 @@
     z-index: 99999999;
 }
 
-.hide {
-	background: transparent;
-    margin-left: 20px;
-	transition: background 5s;
+.card {
+	height: 100px ;
+    overflow: hidden;
 }
 
-.block {
-	padding-top: 10px;
-    margin-left: 20px;
-	display: block;
-	transition: display 5s;
+.filter {
+	margin: 10px 5px 0px 10px;
 }
 
 .mypanel {

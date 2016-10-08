@@ -21,6 +21,9 @@ module.exports = function( app )
 	app.route( '/public/services' )
 		.get( MyAuthenticate.verify, controller.getServicesHome );
 
+	app.route( '/admin/servicesCategoriesDrilldown' )
+		.get( MyAuthenticate.verify, controller.getServicesCategoriesDrilldown );
+
 	app.route( '/public/service/:id' )
 		.get( MyAuthenticate.verify, controller.get );
 }

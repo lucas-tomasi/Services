@@ -24,19 +24,31 @@
 			var _store = function ( reserve ) 
 			{
 				return $http.post('/protected/reserve/store/' , reserve );	
-			}
+			};
 
 			var _analyze = function ( reserve ) 
 			{
 				return $http.post('/protected/reserve/analyze/' , reserve );	
-			}
+			};
+
+			var _getReserationsServicesDrilldown = function()
+			{
+				return $http.get( '/admin/reserationsServicesDrilldown' );
+			};
+
+			var _getStatusReservationsDrilldown = function()
+			{
+				return $http.get( '/admin/statusReservationsDrilldown' );
+			};
 
 			return {	
 				getReservationsByUser: _getReservationsByUser,
 				getReservationsByProfessional: _getReservationsByProfessional,
 				getReservationsByService: _getReservationsByService,
 				store: _store,
-				analyze: _analyze
+				analyze: _analyze,
+				getReserationsServicesDrilldown: _getReserationsServicesDrilldown,
+				getStatusReservationsDrilldown: _getStatusReservationsDrilldown
 			};
 		}]);
 })();

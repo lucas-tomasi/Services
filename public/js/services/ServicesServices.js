@@ -41,6 +41,11 @@
 				return $http.post( '/protected/service/comment' , comment );
 			};
 
+			var _getServicesCategoriesDrilldown = function()
+			{
+				return $http.get( '/admin/servicesCategoriesDrilldown' );
+			}
+
 			return {	
 				getServices: _getServices,
 				getService:   _getService,
@@ -48,7 +53,8 @@
 				storeService: _storeService,
 				deleteService: _deleteService,
 				getServicesPublic: _getServicesPublic,
-				storeCommentService: _storeCommentService
+				storeCommentService: _storeCommentService,
+				getServicesCategoriesDrilldown: _getServicesCategoriesDrilldown
 			};
 		}]);
 })();

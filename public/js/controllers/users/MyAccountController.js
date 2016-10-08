@@ -34,7 +34,7 @@
 				Users.saveAddress( $scope.user ).success( function( data ) {
 					Message.success('');
 				}).error( function( err ){
-					Message.success('Error saving user');
+					Message.error('Error saving user');
 				});
 			};
 

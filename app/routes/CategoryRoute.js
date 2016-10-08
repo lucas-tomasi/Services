@@ -9,7 +9,7 @@ module.exports = function( app )
 
 	app.route( '/public/categoriesComposite' )
 		.get( MyAuthenticate.verify, controller.getCategoriesComposite );
-
+		
 	app.route( '/admin/category/:id' )
 		.get(    MyAuthenticate.verify , controller.get    )
 	    .delete( MyAuthenticate.verify , controller.delete );

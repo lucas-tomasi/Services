@@ -9,8 +9,7 @@ module.exports = function ( app )
 
 	var ServiceController = new MyController( Service , defaultModel );
 
-	ServiceController.saveComment = function ( req, res ) 
-	{
+	ServiceController.saveComment = function ( req, res ) {
 		var _id      = sanitize(req.body.service);
 		var comment = req.body;
 		delete comment.service;	
@@ -41,8 +40,7 @@ module.exports = function ( app )
 	    });
 	};
 
-	ServiceController.getServicesHome = function ( req, res ) 
-	{
+	ServiceController.getServicesHome = function ( req, res ) {
 		Service.find( { active: true , $or: [ { dt_end:{ $eq : null } } , {dt_end: { $lte: new Date().toISOString() } } ] } )
 			.populate( 'professional' )
 			.populate( 'ref_category' )
@@ -58,7 +56,7 @@ module.exports = function ( app )
 			    res.status(200).json( newItems );
 		  	}
 		});
-	}
+	};
 
 	ServiceController.get = function( req , res ) {
 		var _id = sanitize(req.params.id);
@@ -81,7 +79,7 @@ module.exports = function ( app )
 		} else   {
 			res.status(200).json( defaultModel );
 		}
-	}
+	};
 
 	ServiceController.store = function( req , res ) {
 		if( !req.body._id )	{
@@ -110,7 +108,29 @@ module.exports = function ( app )
 		    	}
 		  	});
 		}
-	}
+	};
+
+	// count de services por categoria
+	ServiceController.getServicesCategoriesDrilldown = function( req, res ) 
+	{	
+		Service.aggregate().group( { _id:'$ref_category', count: { $sum: 1 } } ).exec( function( err, items ){
+			
+			Service.populate( items, { path: "_id", model: "Category" } , function( err, items ) {
+
+				var results = items.map( function( item ){
+				
+					if( !item._id ) return false;
+				
+					return { color:'#9dc7f1',name: item._id.name, y: item.count, drilldown: item._id._id };
+				
+				}).filter( function( item ) { 
+					return item !== false; 
+				});
+				
+				res.status( 200 ).json( results );
+			});
+		});
+	};
 
 	return ServiceController;
 };

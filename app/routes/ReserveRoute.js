@@ -18,4 +18,11 @@ module.exports = function( app )
 
 	app.route( '/protected/reserve/analyze' )
 		.post( MyAuthenticate.verify, controller.store );
+
+	app.route( '/admin/reserationsServicesDrilldown' )
+		.get( MyAuthenticate.verify, controller.getReserationsServicesDrilldown );
+
+	app.route( '/admin/statusReservationsDrilldown' )
+		.get( MyAuthenticate.verify, controller.getStatusReservationsDrilldown );
+
 }

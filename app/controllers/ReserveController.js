@@ -1,5 +1,6 @@
 var MyController = require( '../utils/MyController.js' );
 var MyMail       = require( '../utils/MyMail.js'       );
+var async = require('async');
 module.exports = function ( app ) 
 {
 	var Reserve = app.models.Reserve;
@@ -122,6 +123,64 @@ module.exports = function ( app )
 				}
 		});	
 	};
+
+	ReserveController.getReserationsServicesDrilldown = function( req, res )
+	{
+		Reserve.aggregate().group( { _id:'$ref_service', count: { $sum: 1 } } ).exec( function( err, items ){
+			
+			Reserve.populate( items, { path: "_id", model: "Service" } , function( err, items ) {
+
+				var results = items.map( function( item ){
+				
+					if( !item._id ) return false;
+				
+					return { id: item._id.ref_category, color:'#459c50',name: item._id.title, y: item.count, drilldown: item._id._id };
+				
+				}).filter( function( item ) { 
+					return item !== false; 
+				});
+
+				res.status( 200 ).json( results );
+			});
+		});
+	};
+
+	ReserveController.getStatusReservationsDrilldown = function( req, res )
+	{
+		// A - aguardando aprovação, E - aguardanco execução, C - cancelada, X - Concluida, Z - Não efetuada 
+		var states = {
+			A: { color: "#eb9316", name: "Waiting Accept" },
+			E: { color: "#5bc0de", name: "Waiting Realization" },
+			C: { color: "#c12e2a", name: "Rejected" },
+			X: { color: "#5cb85c", name: "Completed" },
+			Z: { color: "#ddd"   , name: "Unrealized" }
+		};
+
+
+		async.series( [ function( callback ){
+
+			Reserve.aggregate().group( { _id: { status: '$status' , ref_service: '$ref_service' },  count: { $sum: 1 } } ).exec( function( err, items ){
+				
+				var results = items.map( function( item ){
+				
+					if( !item._id ) return false;
+
+					return { id: item._id.ref_service , color:states[item._id.status].color ,name: states[item._id.status].name, y: item.count };
+				
+				}).filter( function( item ) { 
+
+					return item !== false; 
+				});
+				
+				callback( null, results );					
+			});
+
+		}] , function( err , results ){
+			if( err ) return false;		
+			res.status( 200 ).json( results[0] );
+
+		});
+	};	
 
 	return ReserveController;
 };

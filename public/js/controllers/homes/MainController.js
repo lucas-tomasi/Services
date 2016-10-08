@@ -28,6 +28,11 @@
 				$scope.qtde = ( reservations )? reservations.length : null; 			
 			});
 
+			$rootScope.$on( 'clearReservations' , function ( event, obj ) {		
+  				MySession.remove('reservations');		
+  				$scope.qtde = null;		
+  			});
+
 			$rootScope.$on( 'removeReserve' , function ( event, reserve ) {
 				var reservations = MySession.get( 'reservations' );				
 

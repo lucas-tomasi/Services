@@ -76,6 +76,7 @@
 			$scope.reserve = function( ) 
 			{
 				if( $scope.count > 0 ){
+					delete $scope.user.image;
 					User.saveAddress( $scope.user ).success(  function ( data ) {
 						$scope.reservations.forEach( function( reserve, i ) {
 							if( reserve.approved ) {

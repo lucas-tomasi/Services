@@ -16,6 +16,7 @@
         <link rel="stylesheet"  type="text/css" href="/vendor/fullcalendar/dist/fullcalendar.css">
         <link rel="stylesheet"  type="text/css" href="/vendor/fullcalendar/dist/fullcalendar.print.css" media="print">
         <link rel="stylesheet"  type="text/css" href="/vendor/datatables.net-bs/css/dataTables.bootstrap.css">
+        <link rel="stylesheet"  type="text/css" href="/vendor/highcharts/css/highcharts.css">
         <!-- endbuild -->
         <!-- build:js js/index.min.js -->
         <script type="text/javascript" src="/vendor/jquery/dist/jquery.js">                                     </script>
@@ -31,6 +32,8 @@
         <script type="text/javascript" src="/vendor/ngDatepicker/src/js/ngDatepicker.js">                       </script>
         <script type="text/javascript" src="/vendor/fullcalendar/dist/fullcalendar.js">                         </script>
         <script type="text/javascript" src="/vendor/sweetalert/dist/sweetalert.min.js">                         </script>
+        <script type="text/javascript" src="/vendor/highcharts/highcharts.js">                               </script>
+        <script type="text/javascript" src="/vendor/highcharts/modules/drilldown.js">                        </script>
 
         <script type="text/javascript" src="/vendor/datatables.net/js/jquery.dataTables.js">                    </script>        
         <script type="text/javascript" src="/vendor/datatables.net-bs/js/dataTables.bootstrap.js">              </script>        
@@ -91,9 +94,10 @@
         <script type="text/javascript" src="/js/controllers/reservations/ReservationsProfessionalController.js"></script>        
         <script type="text/javascript" src="/js/controllers/users/MyAccountController.js">                      </script>        
         <script type="text/javascript" src="/js/controllers/users/MyRequestsController.js">                     </script>        
+        <script type="text/javascript" src="/js/controllers/reports/ReportStatistcsController.js">              </script>        
         <script type="text/javascript" src="/js/controllers/TesteController.js">                                </script>        
 
-        <script type="text/javascript" src="/js/controllers/users/UserReportController.js">                    </script>
+        <script type="text/javascript" src="/js/controllers/users/UserReportController.js">                     </script>
         <!-- endbuild -->
 
     </head>
@@ -108,11 +112,8 @@
                     <a class="navbar-brand title" href="#/">Services</a>    
                     <% if( logged ){ %> 
                     <ul class="nav navbar-nav navbar-right" data-ng-controller="MainController as  Main">
-                        <li class="dropdown" data-ng-if="qtde > 0">
+                        <li class="dropdown" style="cursor:default" data-ng-if="qtde > 0">
                           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i style="font-size:25px;" class="fa fa-shopping-cart"></i><span style="margin-top: -30px;color:#a94442;background-color:#dca7a7" class="badge">{{ qtde }}</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="menu-navbar"><i class="fa fa-cart-plus"></i> See cart</a></li>
-                            </ul>
                         </li>
                     </ul>
                     

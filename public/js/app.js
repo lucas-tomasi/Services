@@ -80,6 +80,11 @@
 					templateUrl: 'partials/reports/users.html',
 					controller: 'UserReportController',
 					authorize: [2,3] })
+				.when('/reports/statistics', {
+					templateUrl: 'partials/reports/statistics.html',
+					controller: 'ReportStatistcsController',
+					authorize: [3]
+				})
 		
 /*routes defaults*/
 		
