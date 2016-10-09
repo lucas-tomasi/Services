@@ -112,57 +112,57 @@
 
     Util.generateTable = function( _id, _title ) {
 
-        if( jQuery('#' + _id ).attr( 'type_table' ) != 'my_data_tables' ){
-        
-            jQuery(document).ready(function(){
-                jQuery('#'+ _id +' tfoot th').each( function () {
-                    var title = jQuery(this).text();
-                    jQuery(this).html( '<input type="text" style="width:100%;" class="form-control" placeholder="'+title+'" />' );
-                });
-
-
-                var table = jQuery('#' + _id ).DataTable({
-                    columnDefs: [],
-                    processing: true,
-                    dom: 'Bfrtip',
-                    caption: { p : 'dasd' },
-                    buttons: [
-                        {
-                            extend: 'pdf',
-                            text: '<i class="fa fa-file-pdf-o"></i>&nbsp;PDF',
-                            title: _title,
-                            className: 'btn btn-default'
-                        },
-                        {
-                            extend: 'excel',
-                            text: '<i class="fa fa-file-excel-o"></i>&nbsp;Excel',
-                            title: _title,
-                            className: 'btn btn-default'
-                        },
-                        {
-                            extend: 'print',
-                            text: '<i class="fa fa-print"></i>&nbsp;Print',
-                            title: _title,
-                            className: 'btn btn-default'
-                        } 
-                    ]
-                });
-
-                table.columns().every( function () {
-                    var that = this;
-                    jQuery( 'input', this.footer() ).on( 'keyup change', function () {
-                        if ( that.search() !== this.value ) {
-                            that.search( this.value ).draw();
-                        }
-                    } );
-                } );
-
-                jQuery(".dataTables_filter").remove();
-                jQuery("div.dt-buttons").append('<span class="btn" style="float:right;font-size:18px;"><b>'+_title+'</b></span>');
-
-                jQuery('#' + _id ).attr( 'type_table' , 'my_data_tables' );
-            });
+        if( jQuery('#' + _id ).attr( 'type_table' ) == 'my_data_tables' ){
+            jQuery('#' + _id ).DataTable().destroy();
         }
+        
+        jQuery(document).ready(function(){
+            jQuery('#'+ _id +' tfoot th').each( function () {
+                var title = jQuery(this).text();
+                jQuery(this).html( '<input type="text" style="width:100%;" class="form-control" placeholder="'+title+'" />' );
+            });
+
+            var table = jQuery('#' + _id ).DataTable({
+                columnDefs: [],
+                processing: true,
+                dom: 'Bfrtip',
+                caption: { p : 'dasd' },
+                buttons: [
+                    {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>&nbsp;PDF',
+                        title: _title,
+                        className: 'btn btn-default'
+                    },
+                    {
+                        extend: 'excel',
+                        text: '<i class="fa fa-file-excel-o"></i>&nbsp;Excel',
+                        title: _title,
+                        className: 'btn btn-default'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>&nbsp;Print',
+                        title: _title,
+                        className: 'btn btn-default'
+                    } 
+                ]
+            });
+
+            table.columns().every( function () {
+                var that = this;
+                jQuery( 'input', this.footer() ).on( 'keyup change', function () {
+                    if ( that.search() !== this.value ) {
+                        that.search( this.value ).draw();
+                    }
+                } );
+            } );
+
+            jQuery(".dataTables_filter").remove();
+            jQuery("div.dt-buttons").append('<span class="btn" style="float:right;font-size:18px;"><b>'+_title+'</b></span>');
+
+            jQuery('#' + _id ).attr( 'type_table' , 'my_data_tables' );
+        });
     };
 
     return Util;
