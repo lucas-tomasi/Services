@@ -177,8 +177,9 @@ module.exports = function ( app )
 
 	ReserveController.getReservationsReportUser = function( req, res )
 	{
-		var states = Util.getStatesReservations()
-		  , filter = req.body;
+		var states     = Util.getStatesReservations()
+		  , filter     = req.body
+		  , nameRegExp = new RegExp( filter.name,"ig");
 		
 		async.series( [ function( callback ){
 			
@@ -211,8 +212,6 @@ module.exports = function ( app )
 						
 						if( !item ) return false; 
 						
-						var nameRegExp = new RegExp( filter.name,"ig");
-						
 						if( !nameRegExp.test(item.name) ) {
 							return false;
 						}
@@ -226,7 +225,6 @@ module.exports = function ( app )
 							return false;
 						}
 						if( filter.active && Boolean(parseInt(filter.active)) != Boolean(item.active) ){
-							console.log( 'das');
 							return false;
 						}
 						return true; 

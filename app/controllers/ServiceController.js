@@ -120,9 +120,7 @@ module.exports = function ( app )
 				count: { $sum: 1 } 
 
 			}).exec( function( err, items ){
-			
-			console.log( items );
-
+				
 			Service.populate( items, { path: "_id", model: "Category" } , function( err, items ) {
 
 				var results = items.map( function( item ){

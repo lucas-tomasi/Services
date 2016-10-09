@@ -43,7 +43,7 @@
 
 			var _getReservationsReportUser = function( filter ) 
 			{
-				return $http.post( '/public/reservationsReportUser', filter );
+				return $http.post( '/admin/reservationsReportUser', filter );
 			}
 
 			return {	
