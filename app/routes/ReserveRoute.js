@@ -25,4 +25,7 @@ module.exports = function( app )
 	app.route( '/admin/statusReservationsDrilldown' )
 		.get( MyAuthenticate.verify, controller.getStatusReservationsDrilldown );
 
+	app.route( '/public/reservationsReportUser' )
+		.post( MyAuthenticate.verify, controller.getReservationsReportUser );
+
 }

@@ -1,5 +1,4 @@
 var MyController = require( '../utils/MyController.js' );
-var MyReport     = require( '../utils/MyReport.js' );
 var sanitize     = require( 'mongo-sanitize' );
 var bcrypt       = require('bcrypt');
 module.exports = function ( app ) 
@@ -19,8 +18,7 @@ module.exports = function ( app )
 		if( req.body.image && req.body.image[0] ) {
 			objUpdate.image = req.body.image[0].bas64;
 		}
-		console.log( req.body.image );
-		console.log( objUpdate );
+		
 		User.update( { email: req.body.email }, { $set: objUpdate }, { multi: true }, 
 			
 		function( err , item ) {
@@ -115,13 +113,8 @@ module.exports = function ( app )
 		}
 	};
 
-	UserController.genereteReport = function ( req, res ) {
-		var UserReport = new MyReport('MyUserReport');
-
-		UserReport.setHeader('MyUserReport');
-
-		//UserReport.generete();
-
+	UserController.genereteReport = function ( req, res ) {		
+		
 		res.status(200).json( { status: 'success' } );
 
 	};

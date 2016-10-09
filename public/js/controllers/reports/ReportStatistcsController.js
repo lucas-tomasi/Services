@@ -9,21 +9,25 @@
 		function( $scope, Services, Reservations ) {
 			
 			$scope.init = function() {
-				getServicesCategoriesDrilldown();				
+				getReserationsServicesDrilldown();				
 			};
 
 			function getReserationsServicesDrilldown()
 			{
 				Reservations.getReserationsServicesDrilldown().success( function( data ){
 					$scope.reservationsServices = data;
-					getStatusReservationsDrilldown();
+					var services = new Set();
+					angular.forEach( data, function(obj){
+						services.add( obj.drilldown );
+					});
+					getServicesCategoriesDrilldown( Array.from(services) );
 				});
 			}
 
-			function getServicesCategoriesDrilldown( ) {
-				Services.getServicesCategoriesDrilldown().success( function( data ){
+			function getServicesCategoriesDrilldown( services ) {
+				Services.getServicesCategoriesDrilldown( services ).success( function( data ){
 					$scope.servicesCategories = data;
-					getReserationsServicesDrilldown();
+					getStatusReservationsDrilldown();
 				});			
 			}
 
@@ -66,13 +70,13 @@
 			// categories count(services) ->  services count(reserves) -> reserves count(status)
 		  	function loadChart()
 		  	{
-	            Highcharts.setOptions( { lang: { drillUpText: '◁ Voltar para {series.name}' } } );
+	            Highcharts.setOptions( { lang: { drillUpText: '<i class="fa fa-chevron-left"></i> Back to {series.name}' } } );
 		      	
 		        $('#container').highcharts(
 		        {
 		            chart: { type: 'column', backgroundColor: '#ECEFF1' },
 
-		            title: { text: 'Reservations Statistics' , style: { fontWeight: 'bold', color: "#459c50" } },
+		            title: { text: '<br>Reservations Statistics' , style: { fontWeight: 'bold', color: "#459c50" } },
 
 		            // subtitle: { text: 'Reservations', style: { color: "#459c50" }  },
 

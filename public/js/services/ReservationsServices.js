@@ -41,6 +41,11 @@
 				return $http.get( '/admin/statusReservationsDrilldown' );
 			};
 
+			var _getReservationsReportUser = function( filter ) 
+			{
+				return $http.post( '/public/reservationsReportUser', filter );
+			}
+
 			return {	
 				getReservationsByUser: _getReservationsByUser,
 				getReservationsByProfessional: _getReservationsByProfessional,
@@ -48,7 +53,8 @@
 				store: _store,
 				analyze: _analyze,
 				getReserationsServicesDrilldown: _getReserationsServicesDrilldown,
-				getStatusReservationsDrilldown: _getStatusReservationsDrilldown
+				getStatusReservationsDrilldown: _getStatusReservationsDrilldown,
+				getReservationsReportUser: _getReservationsReportUser
 			};
 		}]);
 })();

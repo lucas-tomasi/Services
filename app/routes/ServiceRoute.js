@@ -22,7 +22,7 @@ module.exports = function( app )
 		.get( MyAuthenticate.verify, controller.getServicesHome );
 
 	app.route( '/admin/servicesCategoriesDrilldown' )
-		.get( MyAuthenticate.verify, controller.getServicesCategoriesDrilldown );
+		.post( MyAuthenticate.verify, controller.getServicesCategoriesDrilldown );
 
 	app.route( '/public/service/:id' )
 		.get( MyAuthenticate.verify, controller.get );

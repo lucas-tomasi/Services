@@ -18,7 +18,7 @@ module.exports = function ( app )
 	      	} else {
 	      		var composite = [];
 	      		for( i in cities ) {
-	      			composite.push( { id: cities[i]._id , text: cities[i].city + '(' + cities[i].initials + ')'  } );
+	      			composite.push( { id: cities[i]._id , text: cities[i].city + ' (' + cities[i].initials + ')'  } );
 	      		}
 				res.status(200).json( composite );
 	      	}

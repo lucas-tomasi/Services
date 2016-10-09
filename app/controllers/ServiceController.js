@@ -1,4 +1,5 @@
 var sanitize = require( 'mongo-sanitize' );
+var Util     = require( '../utils/MyUtil.js' );
 module.exports = function ( app ) 
 {
 	var MyController = require( '../utils/MyController.js' );
@@ -110,11 +111,18 @@ module.exports = function ( app )
 		}
 	};
 
-	// count de services por categoria
 	ServiceController.getServicesCategoriesDrilldown = function( req, res ) 
 	{	
-		Service.aggregate().group( { _id:'$ref_category', count: { $sum: 1 } } ).exec( function( err, items ){
+		Service.aggregate()
+			.match({ _id: { "$in": Util.convertToObjectId( req.body ) } })
+			.group({ 
+				_id:'$ref_category', 
+				count: { $sum: 1 } 
+
+			}).exec( function( err, items ){
 			
+			console.log( items );
+
 			Service.populate( items, { path: "_id", model: "Category" } , function( err, items ) {
 
 				var results = items.map( function( item ){

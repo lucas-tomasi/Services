@@ -14,20 +14,16 @@
 				label: '@',
 				name: '@',
 				model: '=',
-				required: '@',
+				required: '@'
 			},
 			link: function ( scope, element, attributes, form ) {
 				scope.form = form;
-				
-				setTimeout(
-					function () {
-						var myselect = $(element).find('select');
-										
-						if(scope.model)
-						{
-							$('[value="'+ scope.model +'"]').attr( 'selected' , 'selected' ).change();
+				setTimeout( function () {
+						if(scope.model) {
+							var id = (scope.model._id)? scope.model._id : scope.model;
+							$('[value="'+ id +'"]').attr( 'selected' , 'selected' ).change();
 						}
-					}, 150 );
+				}, 150 );
 			}
 		};
 	

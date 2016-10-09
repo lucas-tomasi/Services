@@ -41,9 +41,9 @@
 				return $http.post( '/protected/service/comment' , comment );
 			};
 
-			var _getServicesCategoriesDrilldown = function()
+			var _getServicesCategoriesDrilldown = function( services )
 			{
-				return $http.get( '/admin/servicesCategoriesDrilldown' );
+				return $http.post( '/admin/servicesCategoriesDrilldown', services );
 			}
 
 			return {	
