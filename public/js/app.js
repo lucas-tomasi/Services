@@ -84,6 +84,12 @@
 					controller: 'ReportStatistcsController',
 					authorize: [3]
 				})
+				.when('/reports/services', {
+					templateUrl: 'partials/reports/services.html',
+					controller: 'ServicesReportController',
+					authorize: false
+					// authorize: [3]
+				})
 		
 /*routes defaults*/
 		

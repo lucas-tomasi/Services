@@ -8,13 +8,13 @@
 
 .report.open-form {
 	opacity: 1;
-	z-index: 999999;
+	z-index: 1;
 	transition: opacity 3s;
 }
 
 .report-form {
 	opacity: 1;
-	z-index: 99999;
+	z-index: 1;
 	transition: opacity 3s;
 }
 

@@ -6,6 +6,7 @@ var Util         = require( '../utils/MyUtil.js' );
 module.exports = function ( app ) 
 {
 	var Reserve = app.models.Reserve;
+	var Service = app.models.Service;
 	var ReserveController = new MyController( Reserve , { active: true } );
 
 	var sendEmailReserve = function( reserve )
@@ -70,7 +71,7 @@ module.exports = function ( app )
 
 	ReserveController.getReserveByService = function ( req, res ) 
 	{
-		Reserve.find( { ref_service : req.params.id } )
+		Reserve.find( { ref_service : req.params.id,  status: { $in: ['A','E'] } } )
 			.exec(
 				function ( err, items ) {
 					if( err ) {
@@ -181,63 +182,72 @@ module.exports = function ( app )
 		  , filter     = req.body
 		  , nameRegExp = new RegExp( filter.name,"ig");
 		
-		async.series( [ function( callback ){
+		async.waterfall( [ function( callback ){
 			
-			Reserve.aggregate().group( { _id: { status: '$status' , ref_user: '$ref_user' },  count: { $sum: 1 } } ).exec( function( err, items ){
+			Reserve.aggregate( { $match: { status : 'X' } } ).group( { _id: { ref_service: '$ref_service' },  count: { $sum: 1 } } ).exec( function( err, items ){
 				
-				Reserve.populate( items, { path: "_id.ref_user", model: "User", populate: { path:  "address.city", model: 'City' } } , function( err, items ) {
+				var results = items.map( function( item ) {
 
+					if( !item._id.ref_service ) return false;
 
-					var results = items.map( function( item ){
-
-
-						if( !item._id.ref_user ) return false;
-
-						return {
-							name : item._id.ref_user.name,
-							active : item._id.ref_user.active,
-							email : item._id.ref_user.email,
-							phone : item._id.ref_user.phone,
-							type : item._id.ref_user.type,
-							provider : item._id.ref_user.provider,
-							ref_city: item._id.ref_user.address.city._id,
-							city: item._id.ref_user.address.city.city,
-							state: item._id.ref_user.address.city.state,
-							status : states[item._id.status].name,
-							ref_status : item._id.status,
-							reservations : item.count
-						};
+					return { service: item._id.ref_service, count: item.count };
+				
+				}).filter( function( item ) {
 					
-					}).filter( function( item ) {
-						
-						if( !item ) return false; 
-						
-						if( !nameRegExp.test(item.name) ) {
-							return false;
-						}
-						if( filter.provider && filter.provider != item.provider ) {
-							return false;
-						}
-						if( filter.type && filter.type != item.type ) {
-							return false;
-						}
-						if( filter.city && filter.city != item.ref_city ) {
-							return false;
-						}
-						if( filter.active && Boolean(parseInt(filter.active)) != Boolean(item.active) ){
-							return false;
-						}
-						return true; 
-					});
+					if( !item ) return false; 
 					
-					callback( null, results );					
+					return true; 
 				});
 				
+				var r = new Array();
+
+				for( var i in results ) {
+					r[ results[i].service ] = results[i].count; 
+				}
+
+				callback( null, r );	
+			});
+
+		}, function( arg, callback ){
+
+			Service.find( req.body ).populate('ref_category').populate( 'professional' ).exec( function( err, data ){
+				
+				if( data ) {
+				
+					var result = data.map( function( item ){
+						
+						var performed = 0, stars = 0.0, comments = 0, stars_avg = 0, status = 0;
+						
+						for( var i in item.comments ) {
+							stars += parseFloat( item.comments[i].stars );
+						}
+
+						stars_avg = parseFloat(stars)/parseFloat(item.comments.length);
+						stars_avg = (stars_avg)? stars_avg : 0; 
+
+						status = (item.active)? 1:0; 
+						performed = (arg[ item._id ])?arg[ item._id ]:0;
+
+						return {
+							title : item.title,
+							professional : item.professional.name,
+							email : item.professional.email,
+							category : item.ref_category.name,
+							price : parseFloat(item.price.value).toFixed(2),
+							reviews : item.comments.length,
+							stars : stars_avg,
+							performed : performed,
+							status : status
+						};
+					});					
+					
+					callback( null, result );
+				}
 			});
 
 		}] , function( err, results ){
 			if( err ) res.status(500).json(err);
-			res.status(200).json( results[0] );
+			res.status(200).json( results );
 		});
 	};
 

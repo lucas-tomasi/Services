@@ -1,4 +1,4 @@
-<div class="report">
+<div class="report" style="margin-right: 20px;">
 	<table id="tableUserReports" class="table table-hover  table-condensed">
 		<thead>
 			<tr><th>Name</th><th>E-mail</th><th>Phone</th><th>Type</th><th>Provider</th><th>City</th><th>State</th><th>Status</th><th>Reservations</th></tr>
@@ -11,7 +11,7 @@
 				<td>{{ user.name }}        </td>
 				<td>{{ user.email }}       </td>
 				<td>{{ user.phone }}       </td>
-				<td>{{ types[user.type].text }} </td>
+				<td>{{ types[user.type-1].text }} </td>
 				<td>{{ user.provider }}    </td>
 				<td>{{ user.city }}        </td>
 				<td>{{ user.state }} 	   </td>
@@ -20,7 +20,7 @@
 			</tr>
 		</tbody>
 	</table>
-	<button class="btn btn-default" data-ng-click="back();">Back to form</button>
+	<button class="btn btn-default" data-ng-click="back();"><i class="fa fa-chevron-left"></i>&nbsp;Back to form</button>
 </div>
 <div class="report-form">
 	<myform formname="reportUserForm" class="report-form" funcsubmit="generate()">

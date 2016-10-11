@@ -22,8 +22,24 @@
 (this, function ($) 
 {
 	var Util = {};
-	
-	Util.hoursBetween = function( data1, data2 ) { 
+
+    Util.getStates = function() {
+        return [
+            {  id: '0' , text: 'Inative' },
+            {  id: '1' , text: 'Active' }
+        ];
+    };
+
+	Util.getProviders = function() {
+        return [
+            { id: 'facebook' , text: 'Facebook' },
+            { id: 'github'   , text: 'Github'   },
+            { id: 'google'   , text: 'Google'   },
+            { id: 'services' , text: 'Services' }
+        ];
+    };
+
+    Util.hoursBetween = function( data1, data2 ) { 
         var hours=1000*60;
         var date1_ms = data1.getTime(); 
         var date2_ms = data2.getTime(); 

@@ -1,0 +1,39 @@
+<div class="report" style="margin-right: 20px;">
+	<table id="tableUserReports" class="table table-hover  table-condensed">
+		<thead>
+			<tr><th>Title</th><th>Profesional</th><th>E-mail</th><th>Category</th><th>Price</th><th>Reviews</th><th>Stars</th><th>Performed</th><th>State</th></tr>
+		</thead>
+		<tfoot>
+			<tr><th>Title</th><th>Profesional</th><th>E-mail</th><th>Category</th><th>Price</th><th>Reviews</th><th>Stars</th><th>Performed</th><th>State</th></tr>
+		</tfoot>
+		<tbody>
+			<tr data-ng-repeat="( key , service ) in services track by $index">
+				<td>{{ service.title }}</td>
+				<td>{{ service.professional }}</td>
+				<td>{{ service.email }}</td>
+				<td>{{ service.category }}</td>
+				<td>{{ service.price }}</td>
+				<td>{{ service.reviews }}</td>
+				<td>{{ service.stars }}</td>
+				<td>{{ service.performed }}</td>
+				<td>{{ states[service.status].text }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-default" data-ng-click="back();"><i class="fa fa-chevron-left"></i>&nbsp;Back to form</button>
+</div>
+<div class="report-form">
+	<myform formname="reportServicesForm" class="report-form" funcsubmit="generate()">
+	<mypanel title="Services Reports">
+	    <mypanelbody>            
+	        <mytext     model="filter.title"        name="title"        label="Title"        form="reportServicesForm"                     ></mytext>
+	        <mycombo    model="filter.ref_category" name="ref_category" label="Category"     form="reportServicesForm" data="categories"   ></mycombo>
+	        <myselect2  model="filter.professional" name="professional" label="Professional" form="reportServicesForm" data="professionals"></myselect2>
+	        <mycombo    model="filter.active"       name="active"       label="State"        form="reportServicesForm" data="states"       ></mycombo>	        
+	    </mypanelbody>    
+	    <mypanelfooter>
+	        <button class="btn btn-default" type="submit"><i class='fa fa-cogs'></i>&nbsp;Generate</button>
+	    </mypanelfooter>
+	</mypanel>
+</myform>
+</div>

@@ -67,10 +67,9 @@
 				loadChart();
 			}
 
-			// categories count(services) ->  services count(reserves) -> reserves count(status)
 		  	function loadChart()
 		  	{
-	            Highcharts.setOptions( { lang: { drillUpText: '<i class="fa fa-chevron-left"></i> Back to {series.name}' } } );
+	            Highcharts.setOptions( { lang: { drillUpText: '◁ Back to {series.name}' } } );
 		      	
 		        $('#container').highcharts(
 		        {

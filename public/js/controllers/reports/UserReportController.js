@@ -9,37 +9,21 @@
 		function( $scope , Reservations, Cities ){
 		
 			$scope.init = function() {
-				$scope.filter = {};
+				$scope.filter    = {};
+				$scope.states    = Util.getStates();
+				$scope.providers = Util.getProviders();
 				getTypes();
-				getProviders();
 				getCities();
-				getStates();
-			};
-
-			var getStates = function() {
-				$scope.states = [
-					{  id: '1'  , text: 'Active' },
-					{  id: '0'  , text: 'Inative' }
-				];
 			};
 
 			var getTypes = function() {
 				$scope.types = [
 					{ id: '1' , text: 'Users' },
-					{ id: '3' , text: 'Admin' },
-					{ id: '2' , text: 'Professionals'}
+					{ id: '2' , text: 'Professionals'},
+					{ id: '3' , text: 'Admin' }
 				];
 			};			
-			
-			var getProviders = function() {
-				$scope.providers = [
-					{ id: 'facebook' , text: 'Facebook' },
-					{ id: 'github'   , text: 'Github'   },
-					{ id: 'google'   , text: 'Google'   },
-					{ id: 'services' , text: 'Services' }
-				];
-			};
-
+		
 			var getCities = function() {
 				Cities.getCitiesComposite().success( function( data ){
 					$scope.cities = data;
