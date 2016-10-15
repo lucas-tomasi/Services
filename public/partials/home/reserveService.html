@@ -2,7 +2,7 @@
     <div class="col-sm-12 col-lg-6 col-md-6"><br>
         <form style="display:table;">
             <div class="thumbnail">                
-                <mycalendar style="widht:80%" service="service" data="services_reservations" user='user' name='services_reservations'  model='new_reservations' width='500' height='425' ></mycalendar>
+                <mycalendar style="widht:80%" service="service" data="services_reservations" user='user' name='services_reservations'  model='new_reservations' width='500' height='425' lang="{{ lang }}"></mycalendar>
             </div>
         </form>
     </div>
@@ -11,26 +11,26 @@
         <div class="thumbnail" style=" height:370px;">
             <img src="{{ service.images[0].bas64 }}" style="width: 320px;height: 150px;"alt="">
             <div class="caption">
-                <h4 class="pull-right" >R$ {{ service.price }}</h4>
+                <h4 class="pull-right" >{{ 'MONEY' | translate }} {{ service.price }}</h4>
                 <h4><b>{{ service.title }} - {{ service.ref_category.name }}</b></h4>
-                <p data-ng-bind-html="service.description">{{  }}</p>
+                <p data-ng-bind-html="service.description"></p>
             </div>
         </div>
         <div style="float:right">
-             <button class="btn btn-success" data-ng-click="makeReservetions();" data-ng-disabled="hasMake()" ><i class="fa fa-check-square-o"></i>  Make reservation</button>
-            <a data-ng-href="/#/" style="color:white !important;" class="btn btn-primary"><i class="fa fa-hand-o-left"></i>  Back</a>
+             <button class="btn btn-success" data-ng-click="makeReservetions();" data-ng-disabled="hasMake()" ><i class="fa fa-check-square-o"></i>  {{ 'MAKE_RESERVATION' | translate }}</button>
+            <a data-ng-href="/#/" style="color:white !important;" class="btn btn-primary"><i class="fa fa-hand-o-left"></i>  {{ 'BACK' | translate }}</a>
         </div>
     </div>
 </div>
 
 <div class="row" style="padding: 0px 20% 0px 20%;">
     <div class="well">
-        <h4>Leave a Comment:</h4>
+        <h4>{{ 'LEAVE' | translate }} {{ 'A' | translate }} {{ 'COMMENT' | translate }}:</h4>
         <form role="form">
             <div class="form-group">
                 <textarea class="form-control" data-ng-model="new_comment" rows="3"></textarea>
             </div>
-                <button data-ng-click="comment();" data-ng-disabled="!new_comment" class="btn btn-primary">Comment</button>
+                <button data-ng-click="comment();" data-ng-disabled="!new_comment" class="btn btn-primary">{{ 'SUBMIT' | translate }}</button>
             <div class="ratings"  style="float: right">
             <p>
                 <span class="glyphicon glyphicon-star" style="opacity:0" ng-mouseover="paintYellow( -1 );"></span>
@@ -43,7 +43,7 @@
         </div>
         </form>
     </div>
-    <div><b>All comments:</b></div><hr>
+    <div><b>{{ 'ALL' | translate }} {{ 'COMMENTS' | translate }}:</b></div><hr>
     <div data-ng-repeat="comment in service.comments">
         <div class="media-body">
             <h4 class="media-heading">{{comment.username}}&emsp;<small>at {{ comment.date }}</small></h4>

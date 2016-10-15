@@ -3,7 +3,7 @@
         <a class="sbtn" style="text-align:left" data-ng-href="#/reserve/{{data._id}}">
             <img style="width:320px;height:150px;background-size: 320px 150px;background-repeat:no-repeat;background-image:url('{{data.images[0].bas64}}');">
             <div class="caption">
-                <h4 class="pull-right">R$ {{data.price}}</h4>
+                <h4 class="pull-right">{{ 'MONEY' | translate }} {{data.price}}</h4>
                 <h4><b><i class="fa fa-gears"    style="font-size:12px;"></i></b>  {{data.title}} </h4>
                 <h5><b><i class="fa fa-user"     style="font-size:12px;"></i></b>  {{data.professional.name}} </h5>
                 <h5><b><i class="fa fa-circle-o" style="font-size:12px;"></i></b>  {{data.ref_category.name}} </h5>
@@ -11,7 +11,7 @@
             </div>
         </a>
         <div class="ratings">
-            <p class="pull-right">{{ count }} reviews</p>
+            <p class="pull-right">{{ count }} {{ 'REVIEWS' | translate }}</p>
             <p>
                 <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : stars > 0 }"></span>
                 <span class="glyphicon glyphicon-star" data-ng-class="{ 'yellow' : stars > 1 }"></span>

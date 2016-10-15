@@ -1,19 +1,19 @@
 
 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bs-menu">
-	<div class="bs-menu-fix">Menu</div>
+	<div class="bs-menu-fix">{{ 'MENU' | translate }}</div>
 
-	<div data-toggle="collapse" data-target=".entries" class="bs-menu-title">Entries</div>
+	<div data-toggle="collapse" data-target=".entries" class="bs-menu-title">{{ 'ENTRIES' | translate }}</div>
 	
 	<% if( logged == 3 ){ %>
 		<div class="collapse bs-menu-item entries">
 			<a class="btn btn-block left" href="#/categories">
-				<i class="fa fa-circle-o text-green"></i>&nbsp;&nbsp;<b>Categories</b>
+				<i class="fa fa-circle-o text-green"></i>&nbsp;&nbsp;<b>{{ 'CATEGORIES' | translate }}</b>
 			</a>
 		</div>
 
 		<div class="collapse bs-menu-item entries">
 			<a class="btn btn-block left" href="#/users">
-				<i class="fa fa-users text-green"></i>&nbsp;&nbsp;<b>Users</b>
+				<i class="fa fa-users text-green"></i>&nbsp;&nbsp;<b>{{ 'USERS' | translate }}</b>
 			</a>
 		</div>
 
@@ -21,36 +21,36 @@
 
 	<div class="collapse bs-menu-item entries">
 		<a class="btn btn-block left" href="#/services">
-			<i class="fa fa-wrench text-green"></i>&nbsp;&nbsp;<b>Services</b>
+			<i class="fa fa-wrench text-green"></i>&nbsp;&nbsp;<b>{{ 'SERVICES' | translate }}</b>
 		</a>
 	</div>
 
 	<% if(  logged == 2 ){ %>
-		<div data-toggle="collapse" data-target=".actions" class="bs-menu-title">Actions</div>
+		<div data-toggle="collapse" data-target=".actions" class="bs-menu-title">{{ 'ACTIONS' | translate }}</div>
 
 		<div class="collapse bs-menu-item actions">
 
 			<a class="btn btn-block left" href= <%= "#/actions/reservations/" + user %> >
-				<i class="fa fa-calendar text-green"></i>&nbsp;&nbsp;<b>Reservations</b>
+				<i class="fa fa-calendar text-green"></i>&nbsp;&nbsp;<b>{{ 'RESERVATIONS' | translate }}</b>
 			</a>
 		</div>
 	<% } %>
 	<% if(  logged == 3 ){ %>
-	<div data-toggle="collapse" data-target=".reports" class="bs-menu-title">Reports</div>
+	<div data-toggle="collapse" data-target=".reports" class="bs-menu-title">{{ 'REPORTS' | translate }}</div>
 
 	<div class="collapse bs-menu-item reports">
 		<a class="btn btn-block left" href="#/reports/statistics">
-			<i class="fa fa-bar-chart text-green"></i>&nbsp;&nbsp;<b>Reservation Statistics</b>
+			<i class="fa fa-bar-chart text-green"></i>&nbsp;&nbsp;<b>{{ 'STATISTICS' | translate }} </b>
 		</a>
 	</div>
 	<div class="collapse bs-menu-item reports">
 		<a class="btn btn-block left" href="#/reports/users">
-			<i class="fa fa-user text-green"></i>&nbsp;&nbsp;<b>Users</b>
+			<i class="fa fa-user text-green"></i>&nbsp;&nbsp;<b>{{ 'USERS' | translate }}</b>
 		</a>
 	</div>
 	<div class="collapse bs-menu-item reports">
 		<a class="btn btn-block left" href="#/reports/services">
-			<i class="fa fa-wrench text-green"></i>&nbsp;&nbsp;<b>Services</b>
+			<i class="fa fa-wrench text-green"></i>&nbsp;&nbsp;<b>{{ 'SERVICES' | translate }}</b>
 		</a>
 	</div>
 	<%}%>

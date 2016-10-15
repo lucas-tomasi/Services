@@ -1,9 +1,9 @@
 <br>
 <div class="container">
 <ul class="breadcrumb">
-	<li data-ng-click="goHome();"  class="btn green"><i class="fa fa-home"></i>&nbsp;Go home</li>
-	<li data-ng-click="onPage(1);" class="btn" data-ng-class="{'page-selected' : page == 1 , 'green' : page != 1}"><i class="fa fa-shopping-basket"></i>&nbsp;My resevations</li>
-	<li data-ng-click="onPage(2);" class="btn" data-ng-class="{'page-selected' : page == 2 , 'green' : page != 2}"><i class="fa fa-map-marker"></i>&nbsp;My address</li>
+	<li data-ng-click="goHome();"  class="btn green"><i class="fa fa-home"></i>&nbsp;{{'GO_HOME' | translate }}</li>
+	<li data-ng-click="onPage(1);" class="btn" data-ng-class="{'page-selected' : page == 1 , 'green' : page != 1}"><i class="fa fa-shopping-basket"></i>&nbsp;{{ 'MY_AS' | translate }} {{ 'RESERVATIONS' | translate }}</li>
+	<li data-ng-click="onPage(2);" class="btn" data-ng-class="{'page-selected' : page == 2 , 'green' : page != 2}"><i class="fa fa-map-marker"></i>&nbsp;{{ 'MY_O' | translate }} {{ 'ADDRESS' | translate }}</li>
 </ul>
 
 	
@@ -16,38 +16,38 @@
 						<i data-ng-class="{ 'fa fa-minus' :  clicked , 'fa fa-plus' :  !clicked}"></i>&nbsp;&nbsp;{{ reserve.servicename }}
 					</span>
 					<input  class="navbar-right" type="checkbox" data-ng-model="reserve.approved" data-ng-click="updateTotals()">
-					<span   class="navbar-right" style="padding-right:10px">$ {{ reserve.total }}</span>
+					<span   class="navbar-right" style="padding-right:10px">{{ 'MONEY' | translate }} {{ reserve.total }}</span>
 				</div>
 				<div class="container" data-ng-show="clicked">
 					<br>
-					<div class="form-group"><span class="myrow">Price/Hour  </span><span> $ {{ reserve.price }}               </span></div>
-					<div class="form-group"><span class="myrow">Hours       </span><span> {{ reserve.hours }}                 </span></div>
-					<div class="form-group"><span class="myrow">Professional</span><span> {{ reserve.professionalname }}      </span></div>
-					<div class="form-group"><span class="myrow">Start time  </span><span> {{ reserve.dt_start }}              </span></div>
-					<div class="form-group"><span class="myrow">End time    </span><span> {{ reserve.dt_end }}                </span></div>
-					<div class="form-group"><span class="myrow">Details     </span><span  style="float:left;"data-ng-bind-html="reserve.details"></span></div>
+					<div class="form-group"><span class="myrow">{{ 'PRICE'        | translate }}/{{ 'HOUR' | translate }}</span><span> {{ 'MONEY' | translate }} {{ reserve.price }}</span></div>
+					<div class="form-group"><span class="myrow">{{ 'HOURS'        | translate }}</span><span> {{ reserve.hours }}                 </span></div>
+					<div class="form-group"><span class="myrow">{{ 'PROFESSIONAL' | translate }}</span><span> {{ reserve.professionalname }}      </span></div>
+					<div class="form-group"><span class="myrow">{{ 'START'        | translate }}</span><span> {{ reserve.dt_start }}              </span></div>
+					<div class="form-group"><span class="myrow">{{ 'END'          | translate }}</span><span> {{ reserve.dt_end }}                </span></div>
+					<div class="form-group"><span class="myrow">{{ 'DETAILS'      | translate }}</span><span  style="float:left;"data-ng-bind-html="reserve.details"></span></div>
 				</div>							
 			</div>
 		</div>
 			<div class="panel panel-default">
 				<div class=" panel-heading">
-					<span>Services: {{ count }}</span>
+					<span>{{ 'SERVICES' | translate }}: {{ count }}</span>
 					<span class="navbar-right" style="padding-right:10px">Total: {{ total }}</span>
 				</div>
 			</div>
-			<button  data-ng-click="onPage(2)" class="btn btn-default"><i class="fa fa-chevron-right"></i> Next</button>
+			<button  data-ng-click="onPage(2)" class="btn btn-default"><i class="fa fa-chevron-right"></i> {{'NEXT'| translate}}</button>
 	</div>
 	<div id="tab2" ng-show="page == 2">
 		<myform   formname="confirmReserveForm" funcsubmit="reserve()">
-			<myselect2 model="user.address.city"     name="city"     label="Cidade"   form="confirmReserveForm" required="true" data="cities"></myselect2>
-			<mytext    model="user.address.district" name="district" label="District" form="confirmReserveForm" required="true" ></mytext>
-			<mytext    model="user.address.number"   name="number"   label="Number"   form="confirmReserveForm" required="true" ></mytext>
-			<mytext    model="user.address.street"   name="street"   label="Street"   form="confirmReserveForm" required="true" ></mytext>
-			<mytext    model="user.phone"            name="phone"    label="Phone"    form="confirmReserveForm" required="true" mask="(##) ####-#####" ></mytext>
+			<myselect2 model="user.address.city"     name="city"     label="{{ 'CITY'     | translate  }}"   form="confirmReserveForm" required="true" data="cities"></myselect2>
+			<mytext    model="user.address.district" name="district" label="{{ 'DISTRICT' | translate  }}"   form="confirmReserveForm" required="true" ></mytext>
+			<mytext    model="user.address.number"   name="number"   label="{{ 'NUBER'    | translate  }}"   form="confirmReserveForm" required="true" ></mytext>
+			<mytext    model="user.address.street"   name="street"   label="{{ 'STREET'   | translate  }}"   form="confirmReserveForm" required="true" ></mytext>
+			<mytext    model="user.phone"            name="phone"    label="{{ 'PHONE'    | translate  }}"    form="confirmReserveForm" required="true" mask="(##) ####-#####" ></mytext>
 
-			<button  data-ng-click="onPage(1)" class="btn btn-default"><i class="fa fa-chevron-left"></i> Prev</button>
-			<button  data-ng-click="cancel()"  class="btn btn-danger" ><i class="fa fa-ban"></i>  Cancel</button>
-			<button type='submit' class="btn btn-success"><i class="fa fa-save"></i>  Reserve</button>
+			<button  data-ng-click="onPage(1)" class="btn btn-default"><i class="fa fa-chevron-left"></i> {{ 'PREV' | translate }}</button>
+			<button  data-ng-click="cancel()"  class="btn btn-danger" ><i class="fa fa-ban"></i>  {{ 'CANCEL' | translate }}</button>
+			<button type='submit' class="btn btn-success"><i class="fa fa-save"></i>  {{ 'RESERVE' | translate }}</button>
 		</myform>
 	</div>
 <br>

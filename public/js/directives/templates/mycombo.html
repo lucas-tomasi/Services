@@ -15,7 +15,7 @@
         </select>
         <input name="{{name}}" type="hidden"  data-ng-model="model" data-ng-required="required">
     
-        <span class="text-danger" data-ng-show="form[name].$error.required">{{ label }} is required</span>
+        <span class="text-danger" data-ng-show="form[name].$error.required">{{ label }} {{ 'IS' | translate }} {{ 'REQUIRED' | translate }}</span>
     
     </div>
 

@@ -1,31 +1,31 @@
 <myform formname="serviceForm" funcsubmit="store()">
 
-<mypanel title="Service #{{ service._id }}">
+<mypanel title="{{'SERVICE' | translate }} #{{ service._id }}">
     
     <mypanelbody>            
         <mytabs>
-            <mytabcontent title="Service">
+            <mytabcontent title="{{ 'SERVICE' | translate }}">
                 <myhidden   model="service._id"          name="_id" ></myhidden>
-                <mytext     model="service.title"        name="title"        label="Title"        form="serviceForm" minlength="6" required="true"></mytext>
-                <mytextarea model="service.description"  name="description"  label="Description"  form="serviceForm" height="80"  required="true"></mytextarea>
-                <mytext     model="service.price"        name="price"        label="Price (R$/Hour)"   form="serviceForm" mask="number_format('2','.','') " required="required"></mytext>
-                <mytext     model="service.professionalname" readonly="true" name="professionalname" label="Professional" form="serviceForm"  ></mytext>
-                <mycombo    model="service.ref_category" name="ref_category" label="Category"     form="serviceForm" required="required" data="categories"></mycombo>
+                <mytext     model="service.title"        name="title"        label="{{ 'TITLE' | translate }}"        form="serviceForm" minlength="6" required="true"></mytext>
+                <mytextarea model="service.description"  name="description"  label="{{ 'DESCRIPTION' | translate }}"  form="serviceForm" height="80"  required="true"></mytextarea>
+                <mytext     model="service.price"        name="price"        label="{{ 'PRICE' | translate }} ({{'MONEY' | translate }}/{{'HOUR'| translate}})"   form="serviceForm" mask="number_format('2','.','') " required="required"></mytext>
+                <mytext     model="service.professionalname" readonly="true" name="professionalname" label="{{ 'PROFESSIONAL' | translate }}" form="serviceForm"  ></mytext>
+                <mycombo    model="service.ref_category" name="ref_category" label="{{ 'CATEGORY' | translate }}"     form="serviceForm" required="required" data="categories"></mycombo>
             </mytabcontent>
-            <mytabcontent title="Info">
-                <mydate     model="service.dt_start"     name="dt_start"     label="Date Start"   form="serviceForm" mask="DD/MM/YYYY"required="true"></mydate>
-                <mydate     model="service.dt_end"       name="dt_end"       label="Date End"     form="serviceForm" mask="DD/MM/YYYY"></mydate>
-                <myfile     model="service.images"       name="images"       label="Images"       form="serviceForm" required="required"></myfile>
-                <mycheckbox model="service.active"       name="active"       label="Active"       form="serviceForm" ></mycheckbox>
+            <mytabcontent title="{{ 'INFO' | translate }}">
+                <mydate     model="service.dt_start"     name="dt_start"     label="{{ 'DATE' | translate }} {{ 'START' | translate }}"   form="serviceForm" mask="DD/MM/YYYY"required="true"></mydate>
+                <mydate     model="service.dt_end"       name="dt_end"       label="{{ 'DATE' | translate }} {{ 'END' | translate }}"     form="serviceForm" mask="DD/MM/YYYY"></mydate>
+                <myfile     model="service.images"       name="images"       label="{{ 'IMAGES' | translate }}"       form="serviceForm" required="required"></myfile>
+                <mycheckbox model="service.active"       name="active"       label="{{ 'ACTIVE' | translate }}"       form="serviceForm" ></mycheckbox>
             </mytabcontent>
 
         </mytabs>
     </mypanelbody>    
 
     <mypanelfooter>
-        <button class="btn btn-default" type="submit"><i class='fa fa-save'></i>&nbsp;Submit</button>
-        <a class="btn btn-default" data-ng-href="#/service"><i class='fa fa-plus-circle'></i>&nbsp;New</a>
-        <a class="btn btn-default" data-ng-href="#/services"><i class='fa fa-list'></i>&nbsp;Back to list</a>
+        <button class="btn btn-default" type="submit"><i class='fa fa-save'></i>&nbsp;{{ 'SUBMIT' | translate }}</button>
+        <a class="btn btn-default" data-ng-href="#/service"><i class='fa fa-plus-circle'></i>&nbsp;{{ 'NEW'  | translate }}</a>
+        <a class="btn btn-default" data-ng-href="#/services"><i class='fa fa-list'></i>&nbsp;{{ 'BACK_LIST' | translate }}</a>
     </mypanelfooter>
 </mypanel>
 

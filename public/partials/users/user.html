@@ -1,28 +1,28 @@
 <myform formname="userForm" funcsubmit="store()">
 
-<mypanel title="User #{{ user._id }}">
+<mypanel title="{{ 'USER' | translate }} #{{ user._id }}">
     
     <mypanelbody>            
 
     <mytabs> 
-        <mytabcontent title='User'>
+        <mytabcontent title="{{ 'USER' | translate }}">
             <myhidden   model="user._id"          name="_id" ></myhidden>
-            <mytext     model="user.name"         name="name"         label="Name"     form="userForm"  minlength="6" required="true"></mytext>
-            <mytext     model="user.login"        name="login"        label="Login"    form="userForm"  required="true"></mytext>
-            <mypassword model="user.password"     name="password"     label="Password" form="userForm"></mypassword>
-            <mytext     model="user.email"        name="email"        label="E-mail"   form="userForm"  required="true"></mytext>
-            <mytext     model="user.url"          name="url"          label="Url"      form="userForm"  ></mytext>
-            <mytext     model="user.provider"     name="provider"     label="Provider" form="userForm"  ></mytext>
-            <mycombo    model="user.type"         name="type"         label="Type"     form="userForm" required="true" data="types"  ></mycombo>
-            <mycheckbox model="user.active"       name="active"       label="Active"></mycheckbox>
+            <mytext     model="user.name"         name="name"         label="{{ 'NAME'   | translate }}" form="userForm"  minlength="6" required="true"></mytext>
+            <mytext     model="user.login"        name="login"        label="Login"                      form="userForm"  required="true"></mytext>
+            <mypassword model="user.password"     name="password"     label="{{ 'PASS'   | translate }}" form="userForm"></mypassword>
+            <mytext     model="user.email"        name="email"        label="E-mail"                     form="userForm"  required="true"></mytext>
+            <mytext     model="user.url"          name="url"          label="Url"                        form="userForm"  ></mytext>
+            <mytext     model="user.provider"     name="provider"     label="Provider"                   form="userForm"  ></mytext>
+            <mycombo    model="user.type"         name="type"         label="{{ 'TYPE'     | translate }}"     form="userForm" required="true" data="types"  ></mycombo>
+            <mycheckbox model="user.active"       name="active"       label="{{ 'ACTIVE'   | translate }}"></mycheckbox>
         </mytabcontent>
 
-        <mytabcontent title='Address'>
-            <myselect2 model="user.address.city"     name="city"     label="Cidade"   data="cities" form="userForm"> </myselect2> 
-            <mytext    model="user.address.district" name="district" label="Distrito" form="userForm"> </mytext>
-            <mytext    model="user.address.number"   name="number"   label="Number"   form="userForm"> </mytext>
-            <mytext    model="user.address.street"   name="street"   label="Street"   form="userForm"> </mytext>
-            <mytext    model="user.phone"            name="phone"    label="Phone"    form="userForm" mask="(##) ####-#####" ></mytext>
+        <mytabcontent title="{{ 'ADDRESS' | translate }}">
+            <myselect2 model="user.address.city"     name="city"     label="{{ 'CITY'     | translate }}"   data="cities" form="userForm"> </myselect2> 
+            <mytext    model="user.address.district" name="district" label="{{ 'DISTRICT' | translate }}"   form="userForm"> </mytext>
+            <mytext    model="user.address.number"   name="number"   label="{{ 'NUMBER'   | translate }}"   form="userForm"> </mytext>
+            <mytext    model="user.address.street"   name="street"   label="{{ 'STREET'   | translate }}"   form="userForm"> </mytext>
+            <mytext    model="user.phone"            name="phone"    label="{{ 'PHONE'    | translate }}"   form="userForm" mask="(##) ####-#####" ></mytext>
         </mytabcontent>
 
     </mytabs>        
@@ -30,9 +30,9 @@
     </mypanelbody>    
 
     <mypanelfooter>
-        <button class="btn btn-default" type="submit"><i class='fa fa-save'></i>&nbsp;Submit</button>
-        <a class="btn btn-default" data-ng-href="#/user"><i class='fa fa-plus-circle'></i>&nbsp;New</a>
-        <a class="btn btn-default" data-ng-href="#/users"><i class='fa fa-list'></i>&nbsp;Back to list</a>
+        <button class="btn btn-default" type="submit"><i class='fa fa-save'></i>&nbsp;{{ 'SUBMIT' | translate }}</button>
+        <a class="btn btn-default" data-ng-href="#/user"><i class='fa fa-plus-circle'></i>&nbsp;{{ 'NEW'  | translate }}</a>
+        <a class="btn btn-default" data-ng-href="#/users"><i class='fa fa-list'></i>&nbsp;{{ 'BACK_LIST' | translate }}</a>
     </mypanelfooter>
 </mypanel>
 

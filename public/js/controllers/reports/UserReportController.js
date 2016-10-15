@@ -34,6 +34,7 @@
 				Reservations.getReservationsReportUser( $scope.filter ).success( function ( data ) {
 		 			
 		 			$scope.users = data;
+		 			console.log( data );
 		 			Util.generateTable( 'tableUserReports' , 'Report User' );
 		 			
 		 			$('.report-form').addClass('close-form');

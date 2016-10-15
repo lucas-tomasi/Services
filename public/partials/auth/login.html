@@ -1,10 +1,10 @@
 <myform formname="loginForm" funcsubmit="store()">
 <mypanel title="Login">
 	<mypanelbody>
-	    	<mytext     model="user.username"     name="username"    label="Login"    form="loginForm"  required="true"></mytext>
-        	<mypassword model="user.password"  name="password" label="Password" form="loginForm"  required="true"></mypassword>
+	    	<mytext     model="user.username"     name="username"    label="{{ 'USER' | translate }}" form="loginForm"  required="true"></mytext>
+        	<mypassword model="user.password"     name="password"    label="{{ 'PASS' | translate }}" form="loginForm"  required="true"></mypassword>
         <div style="width: 58%; margin-left: 17%;">
-        	<button class="btn btn-submit" style="width:100%" type="submit"><i class='fa fa-key'></i>&nbsp;Login</button>
+        	<button class="btn btn-submit" style="width:100%" type="submit"><i class='fa fa-key'></i>&nbsp;{{ 'LOGIN' | translate }}</button>
         </div>
     </mypanelbody>
 </mypanel>

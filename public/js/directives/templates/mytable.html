@@ -36,7 +36,7 @@
 			<td ng-repeat="column in columns" data-ng-if="column.type === 'btn-delete'" class="bs-table-actions">
 
 				<button class="btn" data-ng-click="onDelete( item );" ><i class="fa fa-trash-o red" ></i></button>
-				<button class="btn text-red" data-ng-click="funcdel( {id : item[column.id]} )" ng-show="item.onDelete">Yes</button>
+				<button class="btn text-red" data-ng-click="funcdel( {id : item[column.id]} )" ng-show="item.onDelete">{{ 'YES' | translate }}</button>
 
 			</td>
 

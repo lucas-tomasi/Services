@@ -176,7 +176,7 @@ module.exports = function ( app )
 		});
 	};	
 
-	ReserveController.getReservationsReportUser = function( req, res )
+	ReserveController.getReservationsReportServices = function( req, res )
 	{
 		var states     = Util.getStatesReservations()
 		  , filter     = req.body
@@ -248,6 +248,68 @@ module.exports = function ( app )
 		}] , function( err, results ){
 			if( err ) res.status(500).json(err);
 			res.status(200).json( results );
+		});
+	};
+
+	ReserveController.getReservationsReportUser = function( req, res )
+	{
+		var states = Util.getStatesReservations()
+		  , filter = req.body;
+		
+		async.series( [ function( callback ){
+			
+			Reserve.aggregate().group( { _id: { status: '$status' , ref_user: '$ref_user' },  count: { $sum: 1 } } ).exec( function( err, items ){
+				
+				Reserve.populate( items, { path: "_id.ref_user", model: "User", populate: { path:  "address.city", model: 'City' } } , function( err, items ) {
+					var results = items.map( function( item ){
+						if( !item._id.ref_user ) return false;
+						return {
+							name : item._id.ref_user.name,
+							active : item._id.ref_user.active,
+							email : item._id.ref_user.email,
+							phone : item._id.ref_user.phone,
+							type : item._id.ref_user.type,
+							provider : item._id.ref_user.provider,
+							ref_city: item._id.ref_user.address.city._id,
+							city: item._id.ref_user.address.city.city,
+							state: item._id.ref_user.address.city.state,
+							status : states[item._id.status].name,
+							ref_status : item._id.status,
+							reservations : item.count
+						};
+					
+					}).filter( function( item ) {
+						
+						if( !item ) return false; 
+						
+						var nameRegExp = new RegExp( filter.name,"ig");
+						
+						if( !nameRegExp.test(item.name) ) {
+							return false;
+						}
+						if( filter.provider && filter.provider != item.provider ) {
+							return false;
+						}
+						if( filter.type && filter.type != item.type ) {
+							return false;
+						}
+						if( filter.city && filter.city != item.ref_city ) {
+							return false;
+						}
+						if( filter.active && Boolean(parseInt(filter.active)) != Boolean(item.active) ){
+							console.log( 'das');
+							return false;
+						}
+						return true; 
+					});
+					
+					callback( null, results );					      
+				});
+				
+			});
+		}] , function( err, results ){
+			if( err ) res.status(500).json(err);
+			res.status(200).json( results[0] );
 		});
 	};
 

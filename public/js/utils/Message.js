@@ -23,28 +23,28 @@
 
     Message.alert = function ( message ) 
     {
-      swal("Alert!", message, "warning");
+      swal( MyTranslate.get( 'ALERT' ), message, "warning");
     };
 
     Message.error = function ( message ) 
     {
-        swal("Error!", message , "error" );
+        swal( MyTranslate.get( 'ERROR' ) , message , "error" );
     };
 
     Message.success = function ( message ) 
     {
-        swal("Success!", message , "success");
+        swal( MyTranslate.get( 'SUCCESS' ) , message , "success");
     };    
     
     Message.confirm = function ( message , callback, param ) 
     {
         swal({   
-            title: "Are you sure?",   
+            title: MyTranslate.get( 'SURE' ) ,   
             text: message,   
             type: "warning",   
             showCancelButton: true,   
             confirmButtonColor: "#459c50",   
-            confirmButtonText: "Yes, do it!",   
+            confirmButtonText: MyTranslate.get( 'YES_DO_IT' ),   
             closeOnConfirm: true 
         }, function( isConfirm ){   
             if( isConfirm ) {
@@ -55,8 +55,8 @@
 
     Message.question = function ( message , callback, title, message_confirm ) 
     {
-        var m = (message_confirm)? message_confirm : 'Yes, do it!';
-        var t = (title)? title : 'Are you sure?';
+        var m = (message_confirm)? message_confirm : MyTranslate.get( 'YES_DO_IT' );
+        var t = (title)? title : MyTranslate.get( 'SURE' );;
         swal({   
             title: t,   
             text: message,   
@@ -82,10 +82,10 @@
         }, function(inputValue) {   
             if (inputValue === false) return false;      
             if (inputValue === "") {     
-                swal.showInputError("Please, " + message + "!" );     
+                swal.showInputError( MyTranslate.get( 'PLEASE' )  + ", " + message + "!" );     
                 return false;   
             }      
-            swal("Success!", "", "success"); 
+            swal( MyTranslate.get( 'SUCCESS' ) , "", "success"); 
         });
     };
 
@@ -104,11 +104,11 @@
 
             if (text.val() === false) return false;      
             if (text.val() === "") {
-                $( '#mytextareaalert' ).after( '<div id="myerror" class="sa-error-container show"><div class="icon">!</div><p> Please, '+ message +'!</p></div>' );
+                $( '#mytextareaalert' ).after( '<div id="myerror" class="sa-error-container show"><div class="icon">!</div><p>'+ MyTranslate.get( 'PLEASE' ) + ', '+ message +'!</p></div>' );
                 return false;   
             }
             eval( function_eval( text.val() ) );      
-            swal("Success!", text.val() , "success"); 
+            swal( MyTranslate.get( "SUCCESS" ), text.val() , "success"); 
         });
     };
     return Message;

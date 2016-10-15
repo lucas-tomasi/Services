@@ -3,15 +3,24 @@
 	'use strict';
 
 	angular.module( 'services' , [  'frapontillo.bootstrap-switch' , 'ngSanitize',
-									'ngRoute' , 'jkuri.datepicker' ,
+									'ngRoute' , 'jkuri.datepicker' , 'pascalprecht.translate',
 									'angularUtils.directives.dirPagination'
 								 ])
 	
-	.config( [ '$routeProvider' , '$httpProvider' ,
+	.config( [ '$routeProvider' , '$httpProvider' ,  '$translateProvider' ,
 
-		function ( $routeProvider , $httpProvider ) 
+		function ( $routeProvider , $httpProvider, $translateProvider ) 
 		{
+
+			$translateProvider
+			    .translations('en', MyTranslate.getTranslations( 'en' ) )
+			    .translations('pt', MyTranslate.getTranslations( 'pt' ) )
+			    .preferredLanguage('pt');
+			
+			if( !MySession.get('language') ) MySession.set( 'language', 'pt' );
+
 			$httpProvider.interceptors.push('Interceptor');
+		
 			$routeProvider
 
 /*routes categories*/

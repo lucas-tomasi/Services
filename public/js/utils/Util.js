@@ -25,8 +25,8 @@
 
     Util.getStates = function() {
         return [
-            {  id: '0' , text: 'Inative' },
-            {  id: '1' , text: 'Active' }
+            {  id: '0' , text: MyTranslate.get('INACTIVE') },
+            {  id: '1' , text: MyTranslate.get('ACTIVE') }
         ];
     };
 
@@ -53,75 +53,47 @@
     };
 
     Util.formatDateToBR = function( date ) {
-    	
         return moment( date ).add( 3, 'hours' ).format('DD/MM/YYYY HH:mm');
     };
 
     Util.getStatusReserve = function( state ) {
-        if( state == 'A' )
-        {
-            return "Waiting Accept";
-        }
-        else if( state == 'E' )
-        {
-            return "Waiting Realization";
-        }
-        else if( state == 'C' )
-        {
-            return "Rejected";
-        }
-        else if( state == 'X' )
-        {
-            return "Completed";
-        }
-        else if( state == 'Z' )
-        {
-            return "Unrealized";
+        if( state == 'A' ){
+            return MyTranslate.get( 'STATE_A' );
+        } else if( state == 'E' ) {
+            return MyTranslate.get( 'STATE_E' );
+        } else if( state == 'C' ) {
+            return MyTranslate.get( 'STATE_C' );
+        } else if( state == 'X' ) {
+            return MyTranslate.get( 'STATE_X' );
+        } else if( state == 'Z' ) {
+            return MyTranslate.get( 'STATE_Z' );
         }
     };
 
     Util.getIconReserve = function( state ) {
-        if( state == 'A' )
-        {
+        if( state == 'A' ) {
             return "fa fa-clock-o";
-        }
-        else if( state == 'E' )
-        {
+        } else if( state == 'E' ) {
             return "fa fa-cogs";
-        }
-        else if( state == 'C' )
-        {
+        } else if( state == 'C' ) {
             return "fa fa-remove";
-        }
-        else if( state == 'X' )
-        {
+        } else if( state == 'X' ) {
             return "fa fa-check";
-        }
-        else if( state == 'Z' )
-        {
+        } else if( state == 'Z' ) {
             return "fa fa-ban";
         }
     };
 
     Util.getClassReserve = function( state ){
-        if( state == 'A' )
-        {
+        if( state == 'A' ) {
             return "alert alert-warning";
-        }
-        else if( state == 'E' )
-        {
+        } else if( state == 'E' ) {
             return "alert alert-info";
-        }
-        else if( state == 'C' )
-        {
+        } else if( state == 'C' ) {
             return "alert alert-danger";
-        }
-        else if( state == 'X' )
-        {
+        } else if( state == 'X' ) {
             return "alert alert-success";
-        }
-        else if( state == 'Z' )
-        {
+        } else if( state == 'Z' ) {
             return "alert alert-ban";
         }
     };

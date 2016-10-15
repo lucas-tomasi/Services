@@ -1,10 +1,10 @@
 <div class="report" style="margin-right: 20px;">
 	<table id="tableUserReports" class="table table-hover  table-condensed">
 		<thead>
-			<tr><th>Name</th><th>E-mail</th><th>Phone</th><th>Type</th><th>Provider</th><th>City</th><th>State</th><th>Status</th><th>Reservations</th></tr>
+			<tr><th>{{ 'NAME' | translate }}</th><th>E-mail</th><th>{{ 'PHONE' | translate }}</th><th>{{ 'TYPE' | translate }}</th><th>Provider</th><th>{{ 'CITY' | translate }}</th><th>{{ 'STATE' | translate }}</th><th>{{ 'RESERVATIONS' | translate }}</th></tr>
 		</thead>
 		<tfoot>
-			<tr><th>Name</th><th>E-mail</th><th>Phone</th><th>Type</th><th>Provider</th><th>City</th><th>State</th><th>Status</th><th>Reservations</th></tr>
+			<tr><th>{{ 'NAME' | translate }}</th><th>E-mail</th><th>{{ 'PHONE' | translate }}</th><th>{{ 'TYPE' | translate }}</th><th>Provider</th><th>{{ 'CITY' | translate }}</th><th>{{ 'STATE' | translate }}</th><th>{{ 'RESERVATIONS' | translate }}</th></tr>
 		</tfoot>
 		<tbody>
 			<tr data-ng-repeat="( key , user ) in users track by $index">
@@ -15,27 +15,26 @@
 				<td>{{ user.provider }}    </td>
 				<td>{{ user.city }}        </td>
 				<td>{{ user.state }} 	   </td>
-				<td>{{ user.status }}      </td>
 				<td>{{ user.reservations }}</td>
 			</tr>
 		</tbody>
 	</table>
-	<button class="btn btn-default" data-ng-click="back();"><i class="fa fa-chevron-left"></i>&nbsp;Back to form</button>
+	<button class="btn btn-default" data-ng-click="back();"><i class="fa fa-chevron-left"></i>&nbsp;{{ 'BACK_FORM' | translate }}</button>
 </div>
 <div class="report-form">
 	<myform formname="reportUserForm" class="report-form" funcsubmit="generate()">
 	<mypanel title="Users Reports">
 	    <mypanelbody>            
 	        
-	        <mytext     model="filter.name"     name="name"     label="Name"     form="reportUserForm"                 ></mytext>
-	        <mycombo    model="filter.provider" name="provider" label="Provider" form="reportUserForm" data="providers"></mycombo>
-	        <mycombo    model="filter.type"     name="type"     label="Type"     form="reportUserForm" data="types"    ></mycombo>
-	        <myselect2  model="filter.city"     name="city"     label="Cidade"   form="reportUserForm" data="cities"   ></myselect2> 
-	        <mycombo    model="filter.active"   name="active"   label="State"    form="reportUserForm" data="states"   ></mycombo>
+	        <mytext     model="filter.name"     name="name"     label="{{ 'NAME' | translate }}"   form="reportUserForm"                 ></mytext>
+	        <mycombo    model="filter.provider" name="provider" label="Provider" 				   form="reportUserForm" data="providers"></mycombo>
+	        <mycombo    model="filter.type"     name="type"     label="{{ 'TYPE' | translate }}"   form="reportUserForm" data="types"    ></mycombo>
+	        <myselect2  model="filter.city"     name="city"     label="{{ 'CITY' | translate }}"   form="reportUserForm" data="cities"   ></myselect2> 
+	        <mycombo    model="filter.active"   name="active"   label="{{ 'STATE'| translate }}"   form="reportUserForm" data="states"   ></mycombo>
 	        
 	    </mypanelbody>    
 	    <mypanelfooter>
-	        <button class="btn btn-default" type="submit"><i class='fa fa-cogs'></i>&nbsp;Generate</button>
+	        <button class="btn btn-default" type="submit"><i class='fa fa-cogs'></i>&nbsp;{{ 'GENERATE' | translate }}</button>
 	    </mypanelfooter>
 	</mypanel>
 </myform>

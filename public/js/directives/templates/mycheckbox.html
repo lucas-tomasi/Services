@@ -6,6 +6,6 @@
         <input type="hidden" name="{{name}}" data-ng-model="model" >
         <span class="glyphicon form-control-feedback" data-ng-class="{ 'glyphicon-ok' : form[name].$modelValue != undefined , 'glyphicon-remove' : form[name].$modelValue == undefined }" aria-hidden="true"></span>
 
-        <div class="text-danger" data-ng-show="form[name].$modelValue == undefined">{{ label }} is required</div>
+        <span class="text-danger" data-ng-show="form[name].$error.required">{{ label }} {{ 'IS' | translate }} {{ 'REQUIRED' | translate }}</span>
     </div>
 </div>

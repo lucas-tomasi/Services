@@ -17,7 +17,8 @@
 				width: '=',
 				height: '=',
 				service: '=',
-				interval: '@'
+				interval: '@',
+				lang: "@"
 			},
 			link: function ( scope, element, attributes, form ) {
 
@@ -37,6 +38,7 @@
 							defaultDate: new Date(),
 							defaultView: 'agendaWeek',
 							selectable: true,
+							lang: scope.lang,
 							selectHelper: true,
 							select: function(start, end) {
 								

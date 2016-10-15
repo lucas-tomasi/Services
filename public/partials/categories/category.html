@@ -1,14 +1,14 @@
 <myform formname="categoryForm" funcsubmit="store()">
-<mypanel title="Category #{{ category._id }}">
+<mypanel title="{{ 'CATEGORY' | translate }} #{{ category._id }}">
     <mypanelbody>            
         <myhidden   model="category._id"    name="_id" ></myhidden>
-        <mytext     model="category.name"   name="name"   label="Name" form="categoryForm"  minlength="6" required="true"></mytext>
-        <mycheckbox model="category.active" name="active" label="Active"></mycheckbox>
+        <mytext     model="category.name"   name="name"   label="{{ 'NAME'   | translate }}" form="categoryForm"  minlength="6" required="true"></mytext>
+        <mycheckbox model="category.active" name="active" label="{{ 'ACTIVE' | translate }}"></mycheckbox>
     </mypanelbody>    
     <mypanelfooter>
-        <button class="btn btn-default" type="submit"><i class='fa fa-save'></i>&nbsp;Submit</button>
-        <a class="btn btn-default" data-ng-href="#/category"><i class='fa fa-plus-circle'></i>&nbsp;New</a>
-        <a class="btn btn-default" data-ng-href="#/categories"><i class='fa fa-list'></i>&nbsp;Back to list</a>
+        <button class="btn btn-default" type="submit"><i class='fa fa-save'></i>&nbsp;{{ 'SUBMIT' | translate }}</button>
+        <a class="btn btn-default" data-ng-href="#/category"><i class='fa fa-plus-circle'></i>&nbsp;{{ 'NEW'  | translate }}</a>
+        <a class="btn btn-default" data-ng-href="#/categories"><i class='fa fa-list'></i>&nbsp;{{ 'BACK_LIST' | translate }}</a>
     </mypanelfooter>
 </mypanel>
 </myform>

@@ -11,6 +11,7 @@
 			$scope.new_comment      = '';
 			$scope.cont             = 0;
 			$scope.new_reservations = [];
+			$scope.lang = MySession.get('language');
 			delete $scope.reservations;
 			$scope.init = function()
 			{

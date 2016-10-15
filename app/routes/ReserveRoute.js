@@ -28,4 +28,7 @@ module.exports = function( app )
 	app.route( '/admin/reservationsReportUser' )
 		.post( MyAuthenticate.verify, controller.getReservationsReportUser );
 
+	app.route( '/admin/reservationsReportServices' )
+		.post( MyAuthenticate.verify, controller.getReservationsReportServices );
+
 }

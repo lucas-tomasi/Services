@@ -1,10 +1,10 @@
 <div class="mypanel">
 	<table id="tableReservations" class="table table-hover  table-condensed">
 		<thead>
-			<tr><th>Service</th><th>User</th><th>Date</th><th>State</th></tr>
+			<tr><th>{{ 'SERVICE' | translate }}</th><th>{{ 'USER' | translate }}</th><th>{{ 'DATE'  | translate }}</th><th>{{ 'STATE' | translate }}</th></tr>
 		</thead>
 		<tfoot>
-			<tr><th>Service</th><th>User</th><th>Date</th><th>State</th></tr>
+			<tr><th>{{ 'SERVICE' | translate }}</th><th>{{ 'USER' | translate }}</th><th>{{ 'DATE'  | translate }}</th><th>{{ 'STATE' | translate }}</th></tr>
 		</tfoot>
 		<tbody>
 			<tr data-ng-repeat="( key , reserve ) in reservations track by $index" style="cursor:pointer" class="{{ reserve.clazz }}" data-toggle="modal" data-target=".{{ reserve._id }}">
@@ -19,26 +19,26 @@
 			<mytabs style="background:white !important">
 
 				<mytabcontent title="Answer" data-ng-if="reserve.status != 'E' ">
-					<textarea data-ng-model="reserve.response" class="form-control" style="width:90%;margin-left:5%;" rows="5" placehoder="asd"></textarea>
+					<textarea data-ng-model="reserve.response" class="form-control" style="width:90%;margin-left:5%;" rows="5"></textarea>
 				</mytabcontent>
 
 				<mytabcontent title="Service" data-ng-if="true" >
 					<div class="row left">
-						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>Category</b>&emsp;{{ reserve.ref_service.ref_category.name }}</div>
-						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>Date</b>&emsp;{{ reserve.dt_start }} - {{ reserve.dt_end }}</div>
-						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>Price</b>&emsp;$ {{ reserve.ref_service.price }}</div>
-						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>Total</b>&emsp;$ {{ reserve.total }}</div>
-						<div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"><b>Details</b>&emsp;{{ reserve.details }}</div>
+						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">    <b>{{ 'CATEGORY' | translate }}</b>&emsp;{{ reserve.ref_service.ref_category.name }}</div>
+						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">    <b>{{ 'DATE'     | translate }}</b>&emsp;{{ reserve.dt_start }} - {{ reserve.dt_end }}</div>
+						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">    <b>{{ 'PRICE'    | translate }}</b>&emsp;{{ 'MONEY' | translate }} {{ reserve.ref_service.price }}</div>
+						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">    <b>{{ 'TOTAL'    | translate }}</b>&emsp;{{ 'MONEY' | translate }} {{ reserve.total }}</div>
+						<div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"><b>{{ 'DETAILS'  | translate }}</b>&emsp;{{ resere.details }}</div>
 					</div>
 				</mytabcontent>
 			
 				<mytabcontent title="User" data-ng-if="true">
 					<div class="row left">
-						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>User</b>&emsp;{{ reserve.ref_user.name }}</div>
-						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>Phone</b>&emsp;{{ reserve.ref_user.phone }}</div>
-						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>Street</b>&emsp;{{ reserve.ref_user.address.street }} - {{ reserve.ref_user.address.number }}</div>
-						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>District</b>&emsp;{{ reserve.ref_user.address.district }}</div>
-						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>City</b>&emsp;{{ reserve.ref_user.address.city.city }} ( {{ reserve.ref_user.address.city.initials }} )</div>
+						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'USER'     | translate }}</b>&emsp;{{ reserve.ref_user.name }}</div>
+						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'PHONE'    | translate }}</b>&emsp;{{ reserve.ref_user.phone }}</div>
+						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'STREET'   | translate }}</b>&emsp;{{ reserve.ref_user.address.street }} - {{ reserve.ref_user.address.number }}</div>
+						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'DISTRICT' | translate }}</b>&emsp;{{ reserve.ref_user.address.district }}</div>
+						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'CITY'     | translate }}</b>&emsp;{{ reserve.ref_user.address.city.city }} ( {{ reserve.ref_user.address.city.initials }} )</div>
 					</div>
 				</mytabcontent>
 
@@ -48,10 +48,10 @@
 
 		<mymodalfooter>
 
-				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-danger"  data-dismiss="modal" data-ng-click="reject(reserve);"><i class="fa fa-thumbs-down"></i>&nbsp;Reject</button> 
-				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-success" data-dismiss="modal" data-ng-click="accept(reserve);"><i class="fa fa-thumbs-up">  </i>&nbsp;Accept</button> 
-				<button data-ng-if="reserve.status == 'E'" class="btn btn-primary" data-dismiss="modal" data-ng-click="conclude(reserve);"><i class="fa fa-check-square-o"></i>&nbsp;Colnclude</button> 
-				<button  class="btn btn-default" data-dismiss="modal" ><i class="fa fa-close">      </i>&nbsp;Close </button>
+				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-danger"  data-dismiss="modal" data-ng-click="reject(reserve);"><i class="fa fa-thumbs-down"></i>&nbsp;{{ 'REJECT' | translate }}</button> 
+				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-success" data-dismiss="modal" data-ng-click="accept(reserve);"><i class="fa fa-thumbs-up"></i>&nbsp;{{ 'ACCEPT' | translate }}</button> 
+				<button data-ng-if="reserve.status == 'E'" class="btn btn-primary" data-dismiss="modal" data-ng-click="conclude(reserve);"><i class="fa fa-check-square-o"></i>&nbsp;{{ 'CONCLUDE' | translate }}</button> 
+				<button  class="btn btn-default" data-dismiss="modal" ><i class="fa fa-close"></i>&nbsp;{{ 'CLOSE' | translate }} </button> 
 
 		</mymodalfooter>
 

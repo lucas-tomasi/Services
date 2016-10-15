@@ -1,9 +1,11 @@
-
 <!DOCTYPE html>
 
 <div data-ng-app="services">
     
     <head>
+        
+        <!-- <meta charset="utf-8"> -->
+        
         <title>Services</title>
         <!-- build:css css/index.min.css -->
         <link rel="stylesheet"  type="text/css" href="/css/app.css">
@@ -25,6 +27,7 @@
         <script type="text/javascript" src="/vendor/bootstrap-switch/dist/js/bootstrap-switch.js">              </script>
         <script type="text/javascript" src="/vendor/angular/angular.js">                                        </script>
         <script type="text/javascript" src="/vendor/angular-route/angular-route.js">                            </script>
+        <script type="text/javascript" src="/vendor/angular-translate/angular-translate.js">                    </script>
         <script type="text/javascript" src="/vendor/angular-sanitize/angular-sanitize.js">                      </script>
         <script type="text/javascript" src="/vendor/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"> </script>
         <script type="text/javascript" src="/vendor/angularUtils-pagination/dirPagination.js">                  </script>
@@ -32,9 +35,10 @@
         <script type="text/javascript" src="/vendor/moment/min/moment-with-locales.js">                         </script>
         <script type="text/javascript" src="/vendor/ngDatepicker/src/js/ngDatepicker.js">                       </script>
         <script type="text/javascript" src="/vendor/fullcalendar/dist/fullcalendar.js">                         </script>
+        <script type="text/javascript" src='/vendor/fullcalendar/dist/lang-all.js'>                             </script>
         <script type="text/javascript" src="/vendor/sweetalert/dist/sweetalert.min.js">                         </script>
-        <script type="text/javascript" src="/vendor/highcharts/highcharts.js">                               </script>
-        <script type="text/javascript" src="/vendor/highcharts/modules/drilldown.js">                        </script>
+        <script type="text/javascript" src="/vendor/highcharts/highcharts.js">                                  </script>
+        <script type="text/javascript" src="/vendor/highcharts/modules/drilldown.js">                           </script>
 
         <script type="text/javascript" src="/vendor/datatables.net/js/jquery.dataTables.js">                    </script>        
         <script type="text/javascript" src="/vendor/datatables.net-bs/js/dataTables.bootstrap.js">              </script>        
@@ -49,9 +53,10 @@
         <script type="text/javascript" src="/vendor/datatables.net-buttons/js/buttons.html5.js">                </script>        
         <script type="text/javascript" src="/vendor/datatables.net-buttons/js/buttons.print.js">                </script>        
 
-        <script type="text/javascript" src="/js/MySession.js">                                                  </script>
-        <script type="text/javascript" src="/js/Util.js">                                                       </script>
-        <script type="text/javascript" src="/js/Message.js">                                                    </script>
+        <script type="text/javascript" src="/js/utils/MySession.js">                                            </script>
+        <script type="text/javascript" src="/js/utils/Util.js">                                                 </script>
+        <script type="text/javascript" src="/js/utils/Message.js">                                              </script>
+        <script type="text/javascript" src="/js/utils/MyTranslate.js">                                          </script>
 
         <script type="text/javascript" src="/js/app.js">                                                        </script>
         <script type="text/javascript" src="/js/directives/mypanel.js">                                         </script>
@@ -103,9 +108,6 @@
 
     </head>
     <body>
-<!--         <div class="preload" data-ng-show="load" data-ng-controller="MainController as Spinner">
-            <div class="fa fa-spinner fa-pulse fa-3x fa-fw myspinner"></div>
-        </div> -->
         <div>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
@@ -122,10 +124,10 @@
                         <li class="dropdown">
                           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=username%>&nbsp;&nbsp;&nbsp;<img src="<%=image%>" class="myimage" style="border-radius:15px;"height="30px" width="30px"></a>
                             <ul class="dropdown-menu">
-                                <li><a class="menu-navbar" data-ng-href="/#/myrequests"><i class="fa fa-history"></i> My Requests</a></li>
-                                <li><a class="menu-navbar" data-ng-href="/#/myaccount"><i class="fa fa-user"></i> My account</a></li>
+                                <li><a class="menu-navbar" data-ng-href="/#/myrequests"><i class="fa fa-history"></i> {{ 'MY_AS' | translate }} {{ 'RESERVATIONS' | translate }}</a></li>
+                                <li><a class="menu-navbar" data-ng-href="/#/myaccount"><i class="fa fa-user"></i> {{ 'MY_A' | translate }} {{ 'ACCOUNT' | translate }}</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a class="menu-navbar" data-ng-href="/auth/logout/"><i class="fa fa-power-off"></i> Logout</a></li>
+                                <li><a class="menu-navbar" data-ng-href="/auth/logout/"><i class="fa fa-power-off"></i> {{ 'LOGOUT' | translate }}</a></li>
                             </ul>
                         </li>
                         <% } else {  %>

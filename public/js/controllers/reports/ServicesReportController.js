@@ -39,7 +39,7 @@
 				
 				prepareFilters();
 
-				Reservations.getReservationsReportUser( $scope.filter ).success( function ( data ) {
+				Reservations.getReservationsReportServices( $scope.filter ).success( function ( data ) {
 		 			$scope.services = data;
 		 			Util.generateTable( 'tableUserReports' , 'Report User' );
 		 			

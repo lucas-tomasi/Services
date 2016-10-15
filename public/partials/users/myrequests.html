@@ -2,14 +2,14 @@
 	
 	<table id="tableRequests" class="table table-hover  table-condensed">
 		<thead>
-			<tr><th>Service</th><th>Professional</th><th>Date</th><th style="width:50px;">Price</th><th>State</th></tr>
+			<tr><th>{{ 'SERVICE' | translate }}</th><th>{{ 'PROFESSIONAL' | translate }}</th><th>{{ 'DATE' | translate }}</th><th style="width:50px;">{{ 'PRICE' | translate }}</th><th>{{ 'STATE' | translate }}</th></tr>
 		</thead>
 		<tfoot>
-			<tr><th>Service</th><th>Professional</th><th>Date</th><th>Price</th><th>State</th></tr>
+			<tr><th>{{ 'SERVICE' | translate }}</th><th>{{ 'PROFESSIONAL' | translate }}</th><th>{{ 'DATE' | translate }}</th><th>{{ 'PRICE' | translate }}</th><th>{{ 'STATE' | translate }}</th></tr>
 		</tfoot>
 		<tbody>
 			<tr data-ng-repeat="( key , reserve ) in reservations track by $index" class="{{ reserve.clazz }}">
-				<td>{{ reserve.ref_service.title }}</td><td>{{ reserve.ref_service.professional.name }}</td><td>{{ reserve.dt_start }} - {{ reserve.dt_end }}</td><td><span style="float:left">&nbsp;$</span><span style="float:right">{{ reserve.total }}&nbsp;</span></td><td><i class="{{reserve.icon}}">&nbsp;{{ reserve.desc_status }}</td>
+				<td>{{ reserve.ref_service.title }}</td><td>{{ reserve.ref_service.professional.name }}</td><td>{{ reserve.dt_start }} - {{ reserve.dt_end }}</td><td><span style="float:left">&nbsp;{{ 'MONEY' | translate }}</span><span style="float:right">{{ reserve.total }}&nbsp;</span></td><td><i class="{{reserve.icon}}">&nbsp;{{ reserve.desc_status }}</td>
 			</tr>
 		</tbody>
 	</table>	
