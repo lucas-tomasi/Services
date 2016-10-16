@@ -41,7 +41,7 @@
 
 				Reservations.getReservationsReportServices( $scope.filter ).success( function ( data ) {
 		 			$scope.services = data;
-		 			Util.generateTable( 'tableUserReports' , 'Report User' );
+		 			Util.generateTable( 'tableServiceReports' , MyTranslate.get( 'REPORT_SERVICES' ) );
 		 			
 		 			$('.report-form').addClass('close-form');
 		 			$('.report').addClass('open-form');

@@ -28,63 +28,53 @@
 				Users.getUserLogged().then( user => $scope.user = user.data );
 			}
 
-			function getServices () 
-			{
-				Services.getServicePublic()
-					.success(
-						function ( data ) {
-							$scope.service = data;
-							$scope.service.comments.sort( function ( one , two ) {
-								 return two.date > one.date;
-							});
-							
-							$scope.service.comments = $scope.service.comments.map( function( comment ){
-								comment.date = moment( comment.date ).format('DD MMMM YYYY HH:mm:ss');
-								return comment;
-							});
+			function getServices () {
+				Services.getServicePublic().success( function ( data ) {
+					$scope.service = data;
+					$scope.service.comments.sort( function ( one , two ) {
+						 return two.date > one.date;
+					});
+					
+					$scope.service.comments = $scope.service.comments.map( function( comment ){
+						comment.date = moment( comment.date ).format('DD MMMM YYYY HH:mm:ss');
+						return comment;
+					});
 
-							Reservations.getReservationsByService().success( function ( data ) {
-								$scope.services_reservations = (data)? data : [];
-								$scope.services_reservations = $scope.services_reservations.map( function( service ){
-									service.editable = false;
-									return service;
-								});
-								var reservations = MySession.get( 'reservations' );
-								if( reservations ) {
-									reservations.map( function( service ){										
-										if( service.ref_service == $scope.service._id ){
-											$scope.services_reservations.push( service );
-										}
-										return service;
-									});
+					Reservations.getReservationsByService().success( function ( data ) {
+						$scope.services_reservations = (data)? data : [];
+						$scope.services_reservations = $scope.services_reservations.map( function( service ){
+							service.editable = false;
+							return service;
+						});
+						var reservations = MySession.get( 'reservations' );
+						if( reservations ) {
+							reservations.map( function( service ){										
+								if( service.ref_service == $scope.service._id ){
+									$scope.services_reservations.push( service );
 								}
+								return service;
 							});
-						})
-					.error(
-						function ( err ) {
-							$scope.service = [];  
-						});	 
+						}
+					});
+				}).error( function ( err ) {
+					$scope.service = [];  
+				});	 
 			}
 			
-			$scope.paintYellow = function ( star ) 
-			{
-				if( !$scope.starClicked )
-				{
+			$scope.paintYellow = function ( star ) {
+				if( !$scope.starClicked ) {
 					$scope.cont = star;
 				}
 			};
 
-			$scope.clickStar = function ( star ) 
-			{
+			$scope.clickStar = function ( star ) {
 				$scope.starClicked = !$scope.starClicked;
 			};
 
 			$scope.comment = function () 
 			{
-				if( $scope.user )
-				{
-					if( $scope.new_comment )
-					{
+				if( $scope.user ) {
+					if( $scope.new_comment ) {
 						var new_comment = $scope.new_comment.replace( /\r\n|\r|\n/g	, "<br>" );
 					
 						var comment = { service: $scope.service._id  ,  username: $scope.user.name, comment: new_comment , stars: $scope.cont , date: new Date() };
@@ -95,18 +85,14 @@
 
 						$scope.service.comments.unshift( comment );
 
-						$scope.cont = 0;
-						$scope.new_comment = '';
+						$scope.cont = 0 , $scope.new_comment = '';
 					}
-				}
-				else
-				{
-					Message.alert( 'please login');	
+				} else {
+					Message.alert( MyTranslate.get( 'PLEASE_LOGIN' ) );	
 				}
 			};
 
-			$scope.makeReservetions = function () 
-			{	
+			$scope.makeReservetions = function () {	
 				$location.path( '/confirm/reserve/' );
 			}
 			

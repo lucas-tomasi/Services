@@ -109,17 +109,26 @@
     </head>
     <body>
         <div>
-            <nav class="navbar navbar-default navbar-fixed-top">
+            <nav class="navbar navbar-default navbar-fixed-top" data-ng-controller="MainController as  Main">
                 <div class="container">
-
                     <a class="navbar-brand title" href="#/">Services</a>    
+            
+                    <ul class="nav navbar-nav navbar-right" style="margin: 10px -65px 0px 0px !important">
+                        <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><img data-ng-src="/res/{{lang}}.png" style="width:20px;height:20px;margin-top: -15px;"></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="menu-navbar" data-ng-click="changeLanguage('pt')"><img src="/res/pt.png" style="width:20px;height:20px"> {{ 'LANG_PT' | translate }}</a></li>
+                                <li><a class="menu-navbar" data-ng-click="changeLanguage('en')"><img src="/res/en.png"    style="width:20px;height:20px"> {{ 'LANG_EN' | translate }}</a></li>
+                            </ul>  
+                        </li>
+                    </ul>
+            
                     <% if( logged ){ %> 
-                    <ul class="nav navbar-nav navbar-right" data-ng-controller="MainController as  Main">
+                    <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown" style="cursor:default" data-ng-if="qtde > 0">
                           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i style="font-size:25px;" class="fa fa-shopping-cart"></i><span style="margin-top: -30px;color:#a94442;background-color:#dca7a7" class="badge">{{ qtde }}</span></a>
                         </li>
                     </ul>
-                    
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=username%>&nbsp;&nbsp;&nbsp;<img src="<%=image%>" class="myimage" style="border-radius:15px;"height="30px" width="30px"></a>

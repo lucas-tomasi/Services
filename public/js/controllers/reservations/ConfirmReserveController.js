@@ -49,8 +49,7 @@
 
 
 			$scope.updateTotals = function () {
-				$scope.total = 0;
-				$scope.count = 0;
+				$scope.total = 0, $scope.count = 0;
 				if( $scope.reservations ){
 					$scope.reservations.forEach( function( reserve, index) {
 						
@@ -60,7 +59,7 @@
 						}
 					});
 					
-					$scope.total = '$ ' + $scope.total.toFixed(2);
+					$scope.total = MyTranslate.get( 'MONEY' ) +' ' + $scope.total.toFixed(2);
 				}
 			};
 
@@ -68,13 +67,11 @@
 				$location.path( '/' );
 			};
 
-			$scope.onPage = function ( page ) 
-			{
+			$scope.onPage = function ( page ) {
 				$scope.page = page;
 			};
 
-			$scope.reserve = function( ) 
-			{
+			$scope.reserve = function() {
 				if( $scope.count > 0 ){
 					delete $scope.user.image;
 					User.saveAddress( $scope.user ).success(  function ( data ) {
@@ -87,22 +84,21 @@
 									$rootScope.$broadcast( 'clearReservations' );
 								})
 								.error( function( err ){
-									Message.error( 'Error saving reserve' );
+									Message.error( MyTranslate.get( 'ERROR_SERVICE_SAVE' ) );
 								});
 							}
 						});
 					})
 					.error( function( err ){
-						Message.error( 'Error saving users' );
+						Message.error( MyTranslate.get( 'ERROR_USER_SAVE' ) );
 					});
 				} else {
-					Message.alert( "You don't have reservations" );
+					Message.alert( MyTranslate.get( 'NO_RESERVE' ) );
 				}
 				$location.path( '/' );
 			};
 
-			$scope.cancel = function()
-			{
+			$scope.cancel = function() {
 				MySession.clear();
 				$location.path('/');	
 			};

@@ -11,13 +11,13 @@
 
 		function ( $routeProvider , $httpProvider, $translateProvider ) 
 		{
+			if( !MySession.get('language') ) MySession.set( 'language', 'pt' );
 
 			$translateProvider
 			    .translations('en', MyTranslate.getTranslations( 'en' ) )
 			    .translations('pt', MyTranslate.getTranslations( 'pt' ) )
-			    .preferredLanguage('pt');
+			    .preferredLanguage( MySession.get('language') );
 			
-			if( !MySession.get('language') ) MySession.set( 'language', 'pt' );
 
 			$httpProvider.interceptors.push('Interceptor');
 		

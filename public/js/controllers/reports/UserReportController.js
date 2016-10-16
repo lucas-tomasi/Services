@@ -18,8 +18,8 @@
 
 			var getTypes = function() {
 				$scope.types = [
-					{ id: '1' , text: 'Users' },
-					{ id: '2' , text: 'Professionals'},
+					{ id: '1' , text: MyTranslate.get( 'USER' ) },
+					{ id: '2' , text: MyTranslate.get( 'PROFESSIONAL' )},
 					{ id: '3' , text: 'Admin' }
 				];
 			};			
@@ -34,8 +34,7 @@
 				Reservations.getReservationsReportUser( $scope.filter ).success( function ( data ) {
 		 			
 		 			$scope.users = data;
-		 			console.log( data );
-		 			Util.generateTable( 'tableUserReports' , 'Report User' );
+		 			Util.generateTable( 'tableUserReports' , MyTranslate.get('REPORT_USER') );
 		 			
 		 			$('.report-form').addClass('close-form');
 		 			$('.report').addClass('open-form');

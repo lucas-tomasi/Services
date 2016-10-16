@@ -8,42 +8,31 @@
 
 		function( $scope, CategoriesServices )
 		{			
-			$scope.init = function()
-			{
+			$scope.init = function() {
 				$scope.columns = [
-					{ title: 'Code'   , type: 'code'       , key: '_id'   , id: '_id' },
-					{ title: 'Name'   , type: 'link'       , key: 'name'  , id: '_id' },
-					{ title: 'Active' , type: 'check'      , key: 'active', id: '_id' },
+					{ title: MyTranslate.get('CODE')   , type: 'code'       , key: '_id'   , id: '_id' },
+					{ title: MyTranslate.get('NAME')   , type: 'link'       , key: 'name'  , id: '_id' },
+					{ title: MyTranslate.get('ACTIVE') , type: 'check'      , key: 'active', id: '_id' },
 					{ title: ''       , type: 'btn-delete' , key: ''      , id: '_id' }
 				];
 
 				getCategories();
 			
-				$scope.delete = function ( id ) 
-				{
-					CategoriesServices.deleteCategory( id )	
-
-					.success(
-						function ( data ) 
-						{
-							getCategories();
-							Message.alert( 'Category: ' + id + ', deleted successfully' );
-						});
+				$scope.delete = function ( id ) {
+					CategoriesServices.deleteCategory( id ).success( function ( data ) {
+						getCategories();
+						Message.success( MyTranslate.get("DELETED") );
+					});
 				};
 			};			
 
 			function getCategories() {
 
-				CategoriesServices.getCategories()
-			 	
-			 	.success( 
-			 		function( data ) {
+				CategoriesServices.getCategories().success( function( data ) {
 						$scope.categories = data;
-					})
-				.error( 
-					function (status) {
+				}).error( function (status) {
 			 			$scope.categories =  [];
-					});
+				});
 			}
 
 			$scope.init();				

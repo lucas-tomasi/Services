@@ -26,7 +26,7 @@
 					
 				});
 
-				Util.generateTable( 'tableRequests' , 'My Requests' );
+				Util.generateTable( 'tableRequests' , MyTranslate.get( 'MY_AS' ) + " " + MyTranslate.get( 'RESERVATIONS' ) );
 
 			});
 	}]);

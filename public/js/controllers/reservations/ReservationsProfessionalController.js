@@ -27,7 +27,7 @@
 					obj.clazz       = Util.getClassReserve( obj.status );
 				});
 
-				Util.generateTable( 'tableReservations' , 'Reservations' );		
+				Util.generateTable( 'tableReservations' , MyTranslate.get( 'RESERVATIONS' ) );		
 					
 			});
 			
@@ -40,8 +40,7 @@
 					reserve.clazz       = Util.getClassReserve( reserve.status );
 					$('.'+ reserve._id ).modal('hide');
 				}).error( function( err ){
-					console.log( err );
-					Message.error( 'Sorry, there was an error' );
+					Message.error( MyTranslate.get( 'SORRY' ) );
 				});
 			};
 
@@ -49,24 +48,24 @@
 				if( reserve.response ) {
 					reserve.status   = 'C';
 					reserve.response = Util.scapeToHtml( reserve.response );
-					Message.confirm( 'Confirm reject' , analyze, reserve );
+					Message.confirm( MyTranslate.get( 'CONFIRM' ) , analyze, reserve );
 				} else {
-					Message.alert( 'Please, write a answer!' );
+					Message.alert( MyTranslate.get( 'PLEASE_ANSWER' ) );
 				}
 			};
 
 			$scope.conclude = function( reserve ) {
 				reserve.status  = 'X';
-				Message.confirm( 'Confirm concluded' , analyze, reserve );
+				Message.confirm( MyTranslate.get( 'CONFIRM' ) , analyze, reserve );
 			};
 
 			$scope.accept = function( reserve ) {
 				if( reserve.response ) {
 					reserve.status   = 'E';
 					reserve.response = Util.scapeToHtml( reserve.response );
-					Message.confirm( 'Confirm Accept' , analyze, reserve );
+					Message.confirm( MyTranslate.get( 'CONFIRM' ) , analyze, reserve );
 				} else {
-					Message.alert( 'Please, write a answer!' );
+					Message.alert( MyTranslate.get( 'CONFIRM' ) );
 				}
 			};
 

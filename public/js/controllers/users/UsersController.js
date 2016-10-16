@@ -22,31 +22,22 @@
 
 				getUsers();
 			
-				$scope.delete = function ( id ) 
-				{
-					UsersServices.deleteUser( id )	
+			};	
 
-					.success(
-						function ( data ) 
-						{
-							getUsers();
-							Message.alert( 'User: ' + id + ', deleted successfully' );
-						});
-				};
-			};			
+			$scope.delete = function ( id ) 
+			{
+				UsersServices.deleteUser( id ).success( function ( data ) {
+					getUsers();
+					Message.alert( MyTranslate.get( 'DELETED' ) );
+				});
+			};
 
 			function getUsers() {
-
-				UsersServices.getUsers()
-			 	
-			 	.success( 
-			 		function( data ) {
-						$scope.users = data;
-					})
-				.error( 
-					function (status) {
-			 			$scope.users =  [];
-					});
+				UsersServices.getUsers().success( function( data ) {
+					$scope.users = data;
+				}).error( function (status) {
+		 			$scope.users =  [];
+				});
 			}
 
 			$scope.init();				

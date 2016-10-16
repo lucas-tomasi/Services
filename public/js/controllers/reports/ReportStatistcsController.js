@@ -69,19 +69,17 @@
 
 		  	function loadChart()
 		  	{
-	            Highcharts.setOptions( { lang: { drillUpText: '◁ Back to {series.name}' } } );
+	            Highcharts.setOptions( { lang: { drillUpText: '◁ '+ MyTransalte.get( 'BACK_TO' )  +' {series.name}' } } );
 		      	
 		        $('#container').highcharts(
 		        {
 		            chart: { type: 'column', backgroundColor: '#ECEFF1' },
 
-		            title: { text: '<br>Reservations Statistics' , style: { fontWeight: 'bold', color: "#459c50" } },
+		            title: { text: '<br>' + MyTranslate.get( 'STATISTICS' )  , style: { fontWeight: 'bold', color: "#459c50" } },
 
-		            // subtitle: { text: 'Reservations', style: { color: "#459c50" }  },
+		            xAxis: [ { type: MyTranslate.get('CATEGORY') } ],
 
-		            xAxis: [ { type: 'category' } ],
-
-		            yAxis: [ { title: { text: 'Quantity', style: { fontWeight: 'bold', color: "#459c50" } } } ],
+		            yAxis: [ { title: { text: MyTranslate.get( 'QUANT' ), style: { fontWeight: 'bold', color: "#459c50" } } } ],
 
 		            legend: { enabled: false },
 
@@ -91,7 +89,7 @@
 		                       pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}' +'</b><br/>' },
 
 		            series: [{ 
-		                    name: 'Categories', colorByPoint: true,
+		                    name: MyTranslate.get( 'CATEGORIES' ), colorByPoint: true,
 		                    data: $scope.servicesCategories 
 		            } ],
 		            

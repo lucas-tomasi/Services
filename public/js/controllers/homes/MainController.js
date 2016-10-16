@@ -4,14 +4,21 @@
 
 	angular.module('services')
 
-	.controller( 'MainController' , [ '$rootScope' , '$scope' ,
+	.controller( 'MainController' , [ '$rootScope' , '$scope' , '$translate',
 
-		function( $rootScope, $scope )
+		function( $rootScope, $scope, $translate )
 		{	
-			$scope.init = function () 
-			{
+			$scope.init = function () {
 				$scope.qtde = ( MySession.get('reservations') )? MySession.get('reservations').length : null;
-			}
+				$scope.lang  = MySession.get('language');
+			};
+
+			$scope.changeLanguage = function( lang ) {
+				$scope.lang  = lang;	
+				MySession.set( 'language' , lang );
+				$translate.use( lang );
+			};
+
 
 			$rootScope.$on( 'onLoad' , function (event , load ) {
 				$scope.load = load;	 

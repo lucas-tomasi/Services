@@ -44,13 +44,13 @@
 								
 								if( start < moment().add( interval ,'d') )
 								{
-									Message.alert('Select a larger date ' + moment( moment().add( interval ,'d')._d ).format('DD MMMM YYYY HH:mm:ss') );
+									Message.alert( MyTranslate.get( 'DATE_LARGE' ) + " " + moment( moment().add( interval ,'d')._d ).format('DD MMMM YYYY HH:mm') );
 								}
 								else
 								{
 									if( scope.user )
 									{
-										Message.text( 'Please, write details the reserve' ,  function ( param ) 
+										Message.text( MyTranslate.get( 'DETAILS_RESERVE' ) ,  function ( param ) 
 										{
 											var message = Util.scapeToHtml( param );
 											var eventData = {
@@ -78,10 +78,8 @@
 											$(element).fullCalendar('renderEvent', eventData, true); // stick? = true
 											$(element).fullCalendar('unselect');
 										});
-									}
-									else
-									{
-										Message.alert(  'Please login' );
+									} else {
+										Message.alert(  MyTranslate.get( 'PLEASE_LOGIN' ) );
 									}
 								}
 							},
@@ -93,7 +91,7 @@
 								var e = $(this);
 								if( calEvent.editable )
 						        {
-						        	var message = calEvent.message + "\n" + calEvent.start.format('DD/MM/YYYY HH:mm') + " at " + calEvent.end.format('DD/MM/YYYY HH:mm');
+						        	var message = calEvent.start.format('DD/MM/YYYY HH:mm') + " "+ MyTranslate.get( 'AT' ) +" " + calEvent.end.format('DD/MM/YYYY HH:mm');
 							        Message.question( message , function() {
 							        
 							        	e.remove();
@@ -109,7 +107,7 @@
 
 							        	scope.$apply();
 										$(element).fullCalendar( 'removeEvents', [calEvent._id]);
-						        	}, calEvent.username , 'Delete');
+						        	}, calEvent.username , MyTranslate.get( 'DELETE' ) );
 							    }
 						    }
 						});

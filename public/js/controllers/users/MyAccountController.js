@@ -32,9 +32,9 @@
 
 			$scope.store = function() {
 				Users.saveAddress( $scope.user ).success( function( data ) {
-					Message.success('');
+					Message.success( MyTranslate.get( 'SAVE' ) );
 				}).error( function( err ){
-					Message.error('Error saving user');
+					Message.error( MyTranslate.get( 'ERROR_USER_SAVE' ) );
 				});
 			};
 
