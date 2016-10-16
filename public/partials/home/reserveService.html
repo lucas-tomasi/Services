@@ -1,13 +1,19 @@
-<div class="row">    
-    <div class="col-sm-12 col-lg-6 col-md-6"><br>
-        <form style="display:table;">
-            <div class="thumbnail">                
-                <mycalendar style="widht:80%" service="service" data="services_reservations" user='user' name='services_reservations'  model='new_reservations' width='500' height='425' lang="{{ lang }}"></mycalendar>
-            </div>
-        </form>
-    </div>
-    <br>
-    <div class="col-sm-12 col-lg-6 col-md-6">
+<br>
+<mytabs>
+    <mytabcontent title="{{ 'RESERVATIONS' | translate }}">
+        <div class="col-sm-12 col-lg-12 col-md-12" style="margin-bottom:50px;padding: 0px 10% 0px 10%;">
+            <form style="">
+                <div class="thumbnail" >                
+                    <mycalendar service="service" data="services_reservations" user='user' name='services_reservations'  model='new_reservations' lang="{{ lang }}"></mycalendar>
+                </div>
+            </form>
+        </div>
+    </mytabcontent> 
+
+    <mytabcontent title="{{ 'DETAILS' | translate }}"> 
+
+<div class="row" style="padding: 0px 15% 0px 15%;">    
+    <div class="col-sm-12 col-lg-12 col-md-12">
         <div class="thumbnail" style=" height:370px;">
             <img src="{{ service.images[0].bas64 }}" style="width: 320px;height: 150px;"alt="">
             <div class="caption">
@@ -15,10 +21,10 @@
                 <h4><b>{{ service.title }} - {{ service.ref_category.name }}</b></h4>
                 <p data-ng-bind-html="service.description"></p>
             </div>
-        </div>
-        <div style="float:right">
-             <button class="btn btn-success" data-ng-click="makeReservetions();" data-ng-disabled="hasMake()" ><i class="fa fa-check-square-o"></i>  {{ 'MAKE_RESERVATION' | translate }}</button>
-            <a data-ng-href="/#/" style="color:white !important;" class="btn btn-primary"><i class="fa fa-hand-o-left"></i>  {{ 'BACK' | translate }}</a>
+            <div style="float:right">
+                 <button class="btn btn-success" data-ng-click="makeReservetions();" data-ng-disabled="hasMake()" ><i class="fa fa-check-square-o"></i>  {{ 'MAKE_RESERVATION' | translate }}</button>
+                <a data-ng-href="/#/" style="color:white !important;" class="btn btn-primary"><i class="fa fa-hand-o-left"></i>  {{ 'BACK' | translate }}</a>
+            </div>
         </div>
     </div>
 </div>
@@ -61,5 +67,5 @@
     </div>
 </div>
 
-
+</mytabcontent> 
 <br><br><br><br><br>
