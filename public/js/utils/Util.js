@@ -53,7 +53,7 @@
     };
 
     Util.formatDateToBR = function( date ) {
-        return moment( date ).add( 3, 'hours' ).format('DD/MM/YYYY HH:mm');
+        return moment( date ).add( 2, 'hours' ).format('DD/MM/YYYY HH:mm');
     };
 
     Util.getStatusReserve = function( state ) {

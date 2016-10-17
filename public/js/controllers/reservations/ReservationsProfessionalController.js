@@ -20,8 +20,8 @@
 					obj.hours       = hour / 60 ;
 					obj.total       = parseFloat( hour * ( obj.price / 60 ) ).toFixed( 2 );
 					obj.price       = parseFloat( obj.price ).toFixed( 2 );
-					obj.dt_end      = Util.formatDateToBR( obj.start );
-					obj.dt_start    = Util.formatDateToBR( obj.end );
+					obj.dt_end      = Util.formatDateToBR( obj.end );
+					obj.dt_start    = Util.formatDateToBR( obj.start );
 					obj.desc_status = Util.getStatusReserve( obj.status );
 					obj.icon        = Util.getIconReserve( obj.status );
 					obj.clazz       = Util.getClassReserve( obj.status );

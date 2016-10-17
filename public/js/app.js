@@ -71,7 +71,7 @@
 				.when('/actions/reservations/:id', {
 					templateUrl: 'partials/actions/reservationsProfessional.html',
 					controller: 'ReservationsProfessionalController',
-					authorize: [2]
+					authorize: [2,3]
 				})
 
 /*routes auth*/
@@ -96,8 +96,7 @@
 				.when('/reports/services', {
 					templateUrl: 'partials/reports/services.html',
 					controller: 'ServicesReportController',
-					authorize: false
-					// authorize: [3]
+					authorize: [3]
 				})
 		
 /*routes defaults*/

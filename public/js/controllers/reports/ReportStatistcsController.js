@@ -69,7 +69,7 @@
 
 		  	function loadChart()
 		  	{
-	            Highcharts.setOptions( { lang: { drillUpText: '◁ '+ MyTransalte.get( 'BACK_TO' )  +' {series.name}' } } );
+	            Highcharts.setOptions( { lang: { drillUpText: '◁ '+ MyTranslate.get( 'BACK_TO' )  +' {series.name}' } } );
 		      	
 		        $('#container').highcharts(
 		        {

@@ -297,7 +297,6 @@ module.exports = function ( app )
 							return false;
 						}
 						if( filter.active && Boolean(parseInt(filter.active)) != Boolean(item.active) ){
-							console.log( 'das');
 							return false;
 						}
 						return true; 

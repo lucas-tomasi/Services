@@ -38,31 +38,34 @@ module.exports = function () {
 	};
 
 	MyMail.send = function(){
-		if( to && html && subject ) {	    
-		    ini.parse( './config/mail.ini' , function ( error , mail ) {
-		        service = mail.service;
-		        from    = mail.from;
-		        user    = mail.user;
-		        pass    = mail.pass;
+		try{
+			if( to && html && subject ) {	    
+			    ini.parse( './config/mail.ini' , function ( error , mail ) {
+			        service = mail.service;
+			        from    = mail.from;
+			        user    = mail.user;
+			        pass    = mail.pass;
 
-		        config  = 'smtps://'+user+':'+pass+'@'+service;
+			        config  = 'smtps://'+user+':'+pass+'@'+service;
 
-		        mymail  = nodemailer.createTransport( config );
+			        mymail  = nodemailer.createTransport( config );
 
-			    mymail.sendMail({
-			        from:    from, 
-			        to:      to,
-			        subject: subject,
-			        html:    html,
-			        attachments: attachments 
-			    }, function(err) {
-			        if(err) {
-			        	console.log( err );
-			            throw err;
-			        }
-			        return true;
-			    });
-	    	});    
+				    mymail.sendMail({
+				        from:    from, 
+				        to:      to,
+				        subject: subject,
+				        html:    html,
+				        attachments: attachments 
+				    }, function(err) {
+				        if(err) {
+				        	return false;
+				        }
+				        return true;
+				    });
+		    	});    
+			}
+		} catch( err ){
+			return false;
 		}
 	};
 

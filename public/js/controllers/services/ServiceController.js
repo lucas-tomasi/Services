@@ -44,9 +44,12 @@
 			}
 
 			$scope.store = function () {
-				var date_end = $scope.service.dt_end.split( '/' );
+				if( $scope.service.dt_end ){
+					var date_end = $scope.service.dt_end.split( '/' );
+					console.log( date_end );
+					$scope.service.dt_end      = new Date( date_end[2] ,date_end[1] ,date_end[0] ).toISOString();
+				}
 				$scope.service.description = $scope.service.description.replace( /\r\n|\r|\n/g	, "<br>" );
-				$scope.service.dt_end      = new Date( date_end[2] ,date_end[1] ,date_end[0] ).toISOString();
 				ServicesServices.storeService( $scope.service ).success( function ( data ) {
 					Message.success( MyTranslate.get( 'SAVE' ) );
 					$scope.service = data;	
