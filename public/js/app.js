@@ -1,26 +1,23 @@
 (function(){
-	
+
 	'use strict';
 
-	angular.module( 'services' , [  'frapontillo.bootstrap-switch' , 'ngSanitize',
-									'ngRoute' , 'jkuri.datepicker' , 'pascalprecht.translate',
-									'angularUtils.directives.dirPagination'
-								 ])
-	
+	angular.module( 'services' , [  'frapontillo.bootstrap-switch' , 'ngSanitize','ngRoute' , 'jkuri.datepicker' , 'pascalprecht.translate', 'angularUtils.directives.dirPagination' ])
+
 	.config( [ '$routeProvider' , '$httpProvider' ,  '$translateProvider' ,
 
-		function ( $routeProvider , $httpProvider, $translateProvider ) 
+		function ( $routeProvider , $httpProvider, $translateProvider )
 		{
 			if( !MySession.get('language') ) MySession.set( 'language', 'pt' );
+
 
 			$translateProvider
 			    .translations('en', MyTranslate.getTranslations( 'en' ) )
 			    .translations('pt', MyTranslate.getTranslations( 'pt' ) )
 			    .preferredLanguage( MySession.get('language') );
-			
 
 			$httpProvider.interceptors.push('Interceptor');
-		
+
 			$routeProvider
 
 /*routes categories*/
@@ -98,9 +95,9 @@
 					controller: 'ServicesReportController',
 					authorize: [3]
 				})
-		
+
 /*routes defaults*/
-		
+
 				.when('/404', {
 					templateUrl: 'partials/404.html',
 					authorize: false })
@@ -138,16 +135,16 @@
 			$routeProvider.otherwise({ redirectTo: '/' });
 		}])
 
-		.run([ '$rootScope', '$location', 'UsersServices', function ( $rootScope  , $location, User ) 
+		.run([ '$rootScope', '$location', 'UsersServices', function ( $rootScope  , $location, User )
 		{
-			var getUrl = function ( route ) 
+			var getUrl = function ( route )
 			{
 					var url = route.originalPath;
-					url     = url.replace( /(?:([^\/]+))$/ , route.params.id );		 
+					url     = url.replace( /(?:([^\/]+))$/ , route.params.id );
 					return url;
 			};
 
-			var hasAccess = function ( next , user ) 
+			var hasAccess = function ( next , user )
 			{
 				if( next.authorize.indexOf( user.type ) != -1 )
 				{
@@ -156,42 +153,42 @@
 				else
 				{
 					var url = history.length > 1 ? history[ history.length - 1 ] : "/";
-					
+
 					if( next.authorize.indexOf(1) != -1 )
 					{
 						Message.alert( 'Please login' );
 						$location.path( '/auth/' );
 					}
-					else 
+					else
 					{
 						$location.path( url );
 						Message.error( 'Permission Denied!' );
-					} 
+					}
 				}
 			}
 
     		var history = [];
-		
-			$rootScope.$on( "$routeChangeStart" , function( event, next, curr ) 
+
+			$rootScope.$on( "$routeChangeStart" , function( event, next, curr )
 			{
 				if( next && /logout/.test( next.originalPath ) )
 				{
 					MySession.clear();
-					$location.path( '/' );	
+					$location.path( '/' );
 				}
 
 				var old = MySession.get('urlOld');
-				
+
 				if( old && ( !curr || !/auth/.test( curr.originalPath ) ) )
 				{
 					MySession.remove('urlOld');
 					$location.path( old );
-				}	
+				}
 
 				if( curr && curr.scope )
-				{	
+				{
 					history.push( getUrl( curr ) );
-					
+
 					if( next.originalPath == '/auth/' )
 					{
 						MySession.set( 'urlOld' , history[ history.length - 1 ] );
@@ -204,10 +201,10 @@
 					{
 						if( !MySession.get( 'user' ) )
 						{
-							User.getUserLogged().success( function( user ){ 
-								
+							User.getUserLogged().success( function( user ){
+
 								hasAccess( next , user );
-								
+
 								var userLogged = {
 									_id   : user._id,
 									email : user.email,

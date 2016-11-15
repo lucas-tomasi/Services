@@ -3,16 +3,16 @@
     <mytabcontent title="{{ 'RESERVATIONS' | translate }}">
         <div class="col-sm-12 col-lg-12 col-md-12" style="margin-bottom:50px;padding: 0px 10% 0px 10%;">
             <form style="">
-                <div class="thumbnail" >                
+                <div class="thumbnail" >
                     <mycalendar service="service" data="services_reservations" user='user' name='services_reservations'  model='new_reservations' lang="{{ lang }}"></mycalendar>
                 </div>
             </form>
         </div>
-    </mytabcontent> 
+    </mytabcontent>
 
-    <mytabcontent title="{{ 'DETAILS' | translate }}"> 
+    <mytabcontent title="{{ 'DETAILS' | translate }}">
 
-<div class="row" style="padding: 0px 15% 0px 15%;">    
+<div class="row" style="padding: 0px 15% 0px 15%;">
     <div class="col-sm-12 col-lg-12 col-md-12">
         <div class="thumbnail" style=" height:370px;">
             <img src="{{ service.images[0].bas64 }}" style="width: 320px;height: 150px;"alt="">
@@ -32,11 +32,11 @@
 <div class="row" style="padding: 0px 20% 0px 20%;">
     <div class="well">
         <h4>{{ 'LEAVE' | translate }} {{ 'A' | translate }} {{ 'COMMENT' | translate }}:</h4>
-        <form role="form">
+        <form name="reserve">
             <div class="form-group">
-                <textarea class="form-control" data-ng-model="new_comment" rows="3"></textarea>
+                <textarea class="form-control" name="new_comment" data-ng-model="new_comment" rows="3"></textarea>
             </div>
-                <button data-ng-click="comment();" data-ng-disabled="!new_comment" class="btn btn-primary">{{ 'SUBMIT' | translate }}</button>
+                <button data-ng-click="comment( new_comment );new_comment = '';" data-ng-disabled="!new_comment" class="btn btn-primary">{{ 'SUBMIT' | translate }}</button>
             <div class="ratings"  style="float: right">
             <p>
                 <span class="glyphicon glyphicon-star" style="opacity:0" ng-mouseover="paintYellow( -1 );"></span>
@@ -67,5 +67,5 @@
     </div>
 </div>
 
-</mytabcontent> 
+</mytabcontent>
 <br><br><br><br><br>
