@@ -18,11 +18,11 @@
 
 			<mytabs style="background:white !important">
 
-				<mytabcontent title="Answer" data-ng-if="reserve.status != 'E' ">
+				<mytabcontent title="Answer" data-ng-if=" reserve.status != 'E' ">
 					<textarea data-ng-model="reserve.response" class="form-control" style="width:90%;margin-left:5%;" rows="5"></textarea>
 				</mytabcontent>
 
-				<mytabcontent title="Service" data-ng-if="true" >
+				<mytabcontent title="Service">
 					<div class="row left">
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">    <b>{{ 'CATEGORY' | translate }}</b>&emsp;{{ reserve.ref_service.ref_category.name }}</div>
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">    <b>{{ 'DATE'     | translate }}</b>&emsp;{{ reserve.dt_start }} - {{ reserve.dt_end }}</div>
@@ -32,7 +32,7 @@
 					</div>
 				</mytabcontent>
 
-				<mytabcontent title="User" data-ng-if="true">
+				<mytabcontent title="User">
 					<div class="row left">
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'USER'     | translate }}</b>&emsp;{{ reserve.ref_user.name }}</div>
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'PHONE'    | translate }}</b>&emsp;{{ reserve.ref_user.phone }}</div>
