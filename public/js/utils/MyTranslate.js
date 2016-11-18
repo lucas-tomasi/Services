@@ -36,7 +36,7 @@
             PERFORMED: "Performed", STARS: "Stars", BACK_FORM: "Back to Form", GENERATE: "Generate", TYPE: "Type", IMAGES: "Images", INFO: "Info", ACCOUNT: "Account", PHOTO: "Photo", LOGO: "The Best Service You Can Find Here",
             ERR_LOGIN: "Login and/or Password invalids", CODE: "Code", DELETED: "Deleted", SAVE: "Saved", MAX_PRICE: "Max Price", MAX_STARS: "Max Stars", MAX_REVIEWS: "Max Reviews", MIN_PRICE: "Min Price", MIN_STARS: "Min Stars", MIN_REVIEWS: "Min Reviews",
             REPORT_USER: "User Report", REPORT_SERVICES: "Services Report", ERROR_USER_SAVE: "Error saving user", ERROR_RESERVE_SAVE: "Error saving reserve", NO_RESERVE: "You don't have reservations", SORRY: "Sorry, there was an error", PLEASE_ANSWER: "Please, write a answer!",
-            CONFIRM: "Confirm", PLEASE_LOGIN: "Please, login", LANG_PT: "Portuguese", LANG_EN: "English", REMOVE_RESERVATION: "Clear", CLEAR_RESERVATIONS: "Do you want to delete the selected reservations?",
+            CONFIRM: "Confirm", PLEASE_LOGIN: "Please, login", LANG_PT: "Portuguese", LANG_EN: "English", REMOVE_RESERVATION: "Clear", CLEAR_RESERVATIONS: "Do you want to delete the selected reservations?", "START": "Start", "END": "End",
         },
         pt: {
             REVIEWS: "Avaliações", SUCCESS: "Sucesso", ALERT: "Alerta", ERROR: "Erro", CLOSE: "Fechar", CONCLUDE: "Concluir", ACCEPT: "Aceitar", REJECT: "Rejeitar", NAME: "Nome", MONEY: "R$", SERVICE: "Serviço", SERVICES: "Serviços", USER: "Usuário",
@@ -47,7 +47,7 @@
             TITLE: 'Título', DESCRIPTION: "Descrição", BACK: "Voltar", ALL: "Todos", COMMENT: "Comentário", COMMENTS: "Comentários", LEAVE: "Escreva" , A: "um", AT: "Até", MAKE_RESERVATION: "Reservar", DETAILS_RESERVE: "escreva os detalhes da reserva" ,
             PERFORMED: "Concluidas", STARS: "Estrelas", BACK_FORM: "Voltar para o formulário", GENERATE: "Gerar", TYPE: "Tipo", IMAGES: "Imagens", INFO: "Info", ACCOUNT: "conta", PHOTO: "Foto", LOGO: "O melhor serviço você encontra aqui",
             LOGOUT: "Sair", NUMBER: "Número", MENU: "Menu" , ENTRIES: "Cadastros", STATISTICS: "Estatísticas de reservas" , ACTIONS: 'Ações', REPORTS: "Relatórios", ERR_LOGIN: "Usuário e/ou Senha inválidos", CODE: "Código", DELETED: "Deletado", SAVE: "Salvo", QUANT: "Quantidade", BACK_TO: "Voltar para",
-            MAX_PRICE: "Maiores Preços", MAX_STARS: "Mais Estrelas", MAX_REVIEWS: "Maiores Avaliações", MIN_PRICE: "Menores Preços", MIN_STARS: "Menos Estrelas", MIN_REVIEWS: "Menores Avaliações",  SORRY: "Desculpe, houve um erro",
+            MAX_PRICE: "Maiores Preços", MAX_STARS: "Mais Estrelas", MAX_REVIEWS: "Maiores Avaliações", MIN_PRICE: "Menores Preços", MIN_STARS: "Menos Estrelas", MIN_REVIEWS: "Menores Avaliações",  SORRY: "Desculpe, houve um erro", "START": "Início" , "END": "Fim",
             REPORT_USER: "Relatório de Usuários", REPORT_SERVICES: "Relatório de Serviços", ERROR_USER_SAVE: "Erro ao salvar usuário", ERROR_RESERVE_SAVE: "Erro ao salvar reservas", NO_RESERVE: "Você não possui reservas", PLEASE_ANSWER: "Por favor, escreva uma resposta!", DELETE: "Excluir",
             CONFIRM: "Confirmar", PLEASE_LOGIN: "Por favor, faça o login", DATE_LARGE: "Selecione uma data maior que", LANG_PT: "Português", LANG_EN: "Inglês", REMOVE_RESERVATION: "Limpar", CLEAR_RESERVATIONS: "Deseja apagar as reservas selecionadas?",
         }

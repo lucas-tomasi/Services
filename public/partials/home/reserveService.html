@@ -15,7 +15,7 @@
 <div class="row" style="padding: 0px 15% 0px 15%;">
     <div class="col-sm-12 col-lg-12 col-md-12">
         <div class="thumbnail" style=" height:370px;">
-            <img src="{{ service.images[0].bas64 }}" style="width: 320px;height: 150px;"alt="">
+            <img src="" style="width: 320px;height: 150px;background: url({{ service.images[0].bas64 }}) no-repeat;background-size: 320px 150px;"alt="">
             <div class="caption">
                 <h4 class="pull-right" >{{ 'MONEY' | translate }} {{ service.price }}</h4>
                 <h4><b>{{ service.title }} - {{ service.ref_category.name }}</b></h4>

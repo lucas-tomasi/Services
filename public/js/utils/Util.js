@@ -19,7 +19,7 @@
 
     root.Util = factory();
 }
-(this, function ($) 
+(this, function ($)
 {
 	var Util = {};
 
@@ -39,13 +39,13 @@
         ];
     };
 
-    Util.hoursBetween = function( data1, data2 ) { 
+    Util.hoursBetween = function( data1, data2 ) {
         var hours=1000*60;
-        var date1_ms = data1.getTime(); 
-        var date2_ms = data2.getTime(); 
-        var difference_ms = date2_ms - date1_ms; 
-        
-        return Math.round(difference_ms/hours); 
+        var date1_ms = data1.getTime();
+        var date2_ms = data2.getTime();
+        var difference_ms = date2_ms - date1_ms;
+
+        return Math.round(difference_ms/hours);
     };
 
     Util.scapeToHtml = function( param ) {
@@ -103,8 +103,9 @@
         if( jQuery('#' + _id ).attr( 'type_table' ) == 'my_data_tables' ){
             jQuery('#' + _id ).DataTable().destroy();
         }
-        
+
         jQuery(document).ready(function(){
+            jQuery.fn.dataTable.moment( 'DD/MM/YYYY HH:mm' );
             jQuery('#'+ _id +' tfoot th').each( function () {
                 var title = jQuery(this).text();
                 jQuery(this).html( '<input type="text" style="width:100%;" class="form-control" placeholder="'+title+'" />' );
@@ -133,7 +134,7 @@
                         text: '<i class="fa fa-print"></i>&nbsp;Print',
                         title: _title,
                         className: 'btn btn-default'
-                    } 
+                    }
                 ]
             });
 
@@ -148,7 +149,6 @@
 
             jQuery(".dataTables_filter").remove();
             jQuery("div.dt-buttons").append('<span class="btn" style="float:right;font-size:18px;"><b>'+_title+'</b></span>');
-
             jQuery('#' + _id ).attr( 'type_table' , 'my_data_tables' );
         });
     };

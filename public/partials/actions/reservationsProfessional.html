@@ -1,21 +1,21 @@
 <div class="mypanel">
 	<table id="tableReservations" class="table table-hover  table-condensed">
 		<thead>
-			<tr><th>{{ 'SERVICE' | translate }}</th><th>{{ 'USER' | translate }}</th><th>{{ 'DATE'  | translate }}</th><th>{{ 'STATE' | translate }}</th></tr>
+			<tr><th>{{ 'SERVICE' | translate }}</th><th>{{ 'USER' | translate }}</th><th>{{ 'START'  | translate }}</th><th>{{ 'END'  | translate }}</th><th>{{ 'STATE' | translate }}</th></tr>
 		</thead>
 		<tfoot>
-			<tr><th>{{ 'SERVICE' | translate }}</th><th>{{ 'USER' | translate }}</th><th>{{ 'DATE'  | translate }}</th><th>{{ 'STATE' | translate }}</th></tr>
+			<tr><th>{{ 'SERVICE' | translate }}</th><th>{{ 'USER' | translate }}</th><th>{{ 'START'  | translate }}</th><th>{{ 'END'  | translate }}</th><th>{{ 'STATE' | translate }}</th></tr>
 		</tfoot>
 		<tbody>
 			<tr data-ng-repeat="( key , reserve ) in reservations track by $index" style="cursor:pointer" class="{{ reserve.clazz }}" data-toggle="modal" data-target=".{{ reserve._id }}">
-				<td>{{ reserve.ref_service.title }}</td><td>{{ reserve.ref_user.name }} - {{ reserve.ref_user.email }}</td><td>{{ reserve.dt_start }} - {{ reserve.dt_end }}</td><td><i class="{{reserve.icon}}">&nbsp;{{ reserve.desc_status }}</td>
+				<td>{{ reserve.ref_service.title }}</td><td>{{ reserve.ref_user.name }} - {{ reserve.ref_user.email }}</td><td>{{ reserve.dt_start }}</td><td>{{ reserve.dt_end }}</td><td><i class="{{reserve.icon}}">&nbsp;{{ reserve.desc_status }}</td>
 			</tr>
 		</tbody>
-	</table>	
+	</table>
 	<mymodal data-ng-repeat="( key , reserve ) in reservations" height='200' title="{{ reserve.ref_service.title }}" name="{{ reserve._id }}">
-		
+
 		<mymodalbody>
-		
+
 			<mytabs style="background:white !important">
 
 				<mytabcontent title="Answer" data-ng-if="reserve.status != 'E' ">
@@ -31,7 +31,7 @@
 						<div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"><b>{{ 'DETAILS'  | translate }}</b>&emsp;{{ reserve.details }}</div>
 					</div>
 				</mytabcontent>
-			
+
 				<mytabcontent title="User" data-ng-if="true">
 					<div class="row left">
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'USER'     | translate }}</b>&emsp;{{ reserve.ref_user.name }}</div>
@@ -48,10 +48,10 @@
 
 		<mymodalfooter>
 
-				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-danger"  data-dismiss="modal" data-ng-click="reject(reserve);"><i class="fa fa-thumbs-down"></i>&nbsp;{{ 'REJECT' | translate }}</button> 
-				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-success" data-dismiss="modal" data-ng-click="accept(reserve);"><i class="fa fa-thumbs-up"></i>&nbsp;{{ 'ACCEPT' | translate }}</button> 
-				<button data-ng-if="reserve.status == 'E'" class="btn btn-primary" data-dismiss="modal" data-ng-click="conclude(reserve);"><i class="fa fa-check-square-o"></i>&nbsp;{{ 'CONCLUDE' | translate }}</button> 
-				<button  class="btn btn-default" data-dismiss="modal" ><i class="fa fa-close"></i>&nbsp;{{ 'CLOSE' | translate }} </button> 
+				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-danger"  data-dismiss="modal" data-ng-click="reject(reserve);"><i class="fa fa-thumbs-down"></i>&nbsp;{{ 'REJECT' | translate }}</button>
+				<button data-ng-if="reserve.status != 'X' && reserve.status != 'Z' && reserve.status != 'E'" class="btn btn-success" data-dismiss="modal" data-ng-click="accept(reserve);"><i class="fa fa-thumbs-up"></i>&nbsp;{{ 'ACCEPT' | translate }}</button>
+				<button data-ng-if="reserve.status == 'E'" class="btn btn-primary" data-dismiss="modal" data-ng-click="conclude(reserve);"><i class="fa fa-check-square-o"></i>&nbsp;{{ 'CONCLUDE' | translate }}</button>
+				<button  class="btn btn-default" data-dismiss="modal" ><i class="fa fa-close"></i>&nbsp;{{ 'CLOSE' | translate }} </button>
 
 		</mymodalfooter>
 
