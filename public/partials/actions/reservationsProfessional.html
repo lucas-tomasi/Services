@@ -18,10 +18,6 @@
 
 			<mytabs style="background:white !important">
 
-				<mytabcontent title="Answer" data-ng-if=" reserve.status != 'E' ">
-					<textarea data-ng-model="reserve.response" class="form-control" style="width:90%;margin-left:5%;" rows="5"></textarea>
-				</mytabcontent>
-
 				<mytabcontent title="Service">
 					<div class="row left">
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">    <b>{{ 'CATEGORY' | translate }}</b>&emsp;{{ reserve.ref_service.ref_category.name }}</div>
@@ -40,6 +36,10 @@
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'DISTRICT' | translate }}</b>&emsp;{{ reserve.ref_user.address.district }}</div>
 						<div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6"><b>{{ 'CITY'     | translate }}</b>&emsp;{{ reserve.ref_user.address.city.city }} ( {{ reserve.ref_user.address.city.initials }} )</div>
 					</div>
+				</mytabcontent>
+
+				<mytabcontent title="Answer">
+					<textarea data-ng-model="reserve.response" data-ng-disabled="reserve.status != 'A'" class="form-control" style="width:90%;margin-left:5%;" rows="5"></textarea>
 				</mytabcontent>
 
 			</mytabs>

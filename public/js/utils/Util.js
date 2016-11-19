@@ -114,6 +114,7 @@
             var table = jQuery('#' + _id ).DataTable({
                 columnDefs: [],
                 processing: true,
+                order: [],
                 dom: 'Bfrtip',
                 caption: { p : 'dasd' },
                 buttons: [

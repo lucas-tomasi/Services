@@ -32,13 +32,12 @@
 			});
 
 			var analyze = function( reserve ) {
-
+				reserve.status = reserve.prestatus;
 				Reservations.analyze( reserve ).success( function( data ){
 					Message.success( '' );
 					reserve.desc_status = Util.getStatusReserve( reserve.status );
 					reserve.icon        = Util.getIconReserve( reserve.status );
 					reserve.clazz       = Util.getClassReserve( reserve.status );
-					reserve.status      = reserve.prestatus;
 					$('.'+ reserve._id ).modal('hide');
 				}).error( function( err ){
 					Message.error( MyTranslate.get( 'SORRY' ) );

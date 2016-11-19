@@ -8,10 +8,10 @@ exports.convertToObjectId = function( ids ){
 exports.getStatesReservations = function() {
 
 	return {
-		A: { color: "#eb9316", name: "Waiting Accept" },
-		E: { color: "#5bc0de", name: "Waiting Realization" },
-		C: { color: "#c12e2a", name: "Rejected" },
-		X: { color: "#5cb85c", name: "Completed" },
-		Z: { color: "#ddd"   , name: "Unrealized" }
+		A: { color: "#eb9316", name: "STATE_A" },
+		E: { color: "#5bc0de", name: "STATE_E" },
+		C: { color: "#c12e2a", name: "STATE_C" },
+		X: { color: "#5cb85c", name: "STATE_X" },
+		Z: { color: "#ddd"   , name: "STATE_Z" }
 	};
 };

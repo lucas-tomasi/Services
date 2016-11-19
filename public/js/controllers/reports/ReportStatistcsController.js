@@ -5,11 +5,11 @@
 	angular.module('services')
 
 	.controller( 'ReportStatistcsController' , [ '$scope' , 'ServicesServices' , 'ReservationsServices' ,
-		
+
 		function( $scope, Services, Reservations ) {
-			
+
 			$scope.init = function() {
-				getReserationsServicesDrilldown();				
+				getReserationsServicesDrilldown();
 			};
 
 			function getReserationsServicesDrilldown()
@@ -28,7 +28,7 @@
 				Services.getServicesCategoriesDrilldown( services ).success( function( data ){
 					$scope.servicesCategories = data;
 					getStatusReservationsDrilldown();
-				});			
+				});
 			}
 
 			function getStatusReservationsDrilldown()
@@ -53,14 +53,14 @@
 					});
 					$scope.drilldown.push( { id: category.drilldown, color: category.color, name: category.name, data: data } );
 				});
-				
+
 				angular.forEach( reservesServices , function( service , i ){
 					var data = [];
 					angular.forEach( $scope.statusReservations, function( state, i){
 						if( service.id == state.id ) {
-							data.push( { name: state.name, y: state.y, color: state.color } );
+							data.push( { name: MyTranslate.get(state.name), y: state.y, color: state.color } );
 						}
-					});					
+					});
 					$scope.drilldown.push( { id: service.id, name: service.name, data: data } );
 				});
 
@@ -70,14 +70,14 @@
 		  	function loadChart()
 		  	{
 	            Highcharts.setOptions( { lang: { drillUpText: '◁ '+ MyTranslate.get( 'BACK_TO' )  +' {series.name}' } } );
-		      	
+
 		        $('#container').highcharts(
 		        {
 		            chart: { type: 'column', backgroundColor: '#ECEFF1' },
 
 		            title: { text: '<br>' + MyTranslate.get( 'STATISTICS' )  , style: { fontWeight: 'bold', color: "#459c50" } },
 
-		            xAxis: [ { type: MyTranslate.get('CATEGORY') } ],
+		            xAxis: [ { type: 'category' } ],
 
 		            yAxis: [ { title: { text: MyTranslate.get( 'QUANT' ), style: { fontWeight: 'bold', color: "#459c50" } } } ],
 
@@ -85,18 +85,18 @@
 
 		            plotOptions: { series: { borderWidth: 0, dataLabels: { enabled: true, format: '{point.y:.0f}' } } },
 
-		            tooltip: { headerFormat: '<span style="font-size:11px">{series.name}</span><br>', 
+		            tooltip: { headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
 		                       pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}' +'</b><br/>' },
 
-		            series: [{ 
+		            series: [{
 		                    name: MyTranslate.get( 'CATEGORIES' ), colorByPoint: true,
-		                    data: $scope.servicesCategories 
+		                    data: $scope.servicesCategories
 		            } ],
-		            
+
 		            drilldown: {
 		            	series: $scope.drilldown
 		            },
-		            
+
 		            credits: [ { enabled: false } ]
 		        } );
 		  	};
