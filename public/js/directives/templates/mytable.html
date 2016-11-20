@@ -1,11 +1,11 @@
 <div style="width: 250px;">
 
-	<p><input data-ng-model="filter" type="text" class="form-control" placeholder="search"></p>	
+	<p><input data-ng-model="filter" type="text" class="form-control" placeholder="search"></p>
 
 </div>
 
 <table class="table table-hover  table-condensed">
-	
+
 		<tr>
 
 			<th data-ng-repeat="column in columns" data-ng-click="sort( column.key )" data-ng-class="{ 'center' : column.type === 'check' , 'bs-table-id' : column.type === 'code' , 'bs-table-actions' : column.type === 'btn-delete'}">
@@ -16,9 +16,9 @@
 			</th>
 
 		</tr>
-	
-		<tr dir-paginate="item in items | filter : filter | orderBy: sortKey: reverse | itemsPerPage: 5"> 
-			
+
+		<tr dir-paginate="item in items | filter : filter | orderBy: sortkey: reverse | itemsPerPage: 5"> 
+
 			<td data-ng-repeat="column in columns" data-ng-if="column.type === 'code'" class="bs-table-id" >{{ item[column.key] }}</td>
 
 			<td data-ng-repeat="column in columns" data-ng-if="column.type === 'link'">
@@ -32,7 +32,7 @@
 				<!-- <input type="checkbox" ng-checked="item[column.key]" readonly disabled > -->
 
 			</td>
-				
+
 			<td ng-repeat="column in columns" data-ng-if="column.type === 'btn-delete'" class="bs-table-actions">
 
 				<button class="btn" data-ng-click="onDelete( item );" ><i class="fa fa-trash-o red" ></i></button>
@@ -43,7 +43,7 @@
 			<td ng-repeat="column in columns" data-ng-if="column.type === '' ">{{ item[column.key] }}</td>
 
 		</tr>
-	
+
 </table>
 
 <div style='text-align:center'>
